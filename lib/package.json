@@ -1,0 +1,83 @@
+{
+  "name": "@kentra/ui-kit",
+  "version": "0.1.0",
+  "private": false,
+  "description": "Kentra Angular UI Kit",
+  "main": "dist/fesm2022/kentra-ui-kit.mjs",
+  "module": "dist/fesm2022/kentra-ui-kit.mjs",
+  "types": "dist/index.d.ts",
+  "sideEffects": [
+    "./dist/styles.css"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/fesm2022/kentra-ui-kit.mjs"
+    },
+    "./styles.css": "./dist/styles.css",
+    "./layout": {
+      "types": "./dist/layout/index.d.ts",
+      "default": "./dist/fesm2022/kentra-ui-kit-layout.mjs"
+    },
+    "./typography": {
+      "types": "./dist/typography/index.d.ts",
+      "default": "./dist/fesm2022/kentra-ui-kit-typography.mjs"
+    },
+    "./actions": {
+      "types": "./dist/actions/index.d.ts",
+      "default": "./dist/fesm2022/kentra-ui-kit-actions.mjs"
+    },
+    "./forms": {
+      "types": "./dist/forms/index.d.ts",
+      "default": "./dist/fesm2022/kentra-ui-kit-forms.mjs"
+    },
+    "./navigation": {
+      "types": "./dist/navigation/index.d.ts",
+      "default": "./dist/fesm2022/kentra-ui-kit-navigation.mjs"
+    },
+    "./data-display": {
+      "types": "./dist/data-display/index.d.ts",
+      "default": "./dist/fesm2022/kentra-ui-kit-data-display.mjs"
+    },
+    "./feedback": {
+      "types": "./dist/feedback/index.d.ts",
+      "default": "./dist/fesm2022/kentra-ui-kit-feedback.mjs"
+    },
+    "./overlays": {
+      "types": "./dist/overlays/index.d.ts",
+      "default": "./dist/fesm2022/kentra-ui-kit-overlays.mjs"
+    },
+    "./charts": {
+      "types": "./dist/charts/index.d.ts",
+      "default": "./dist/fesm2022/kentra-ui-kit-charts.mjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "scripts": {
+    "build:styles": "sass styles/styles.scss styles.css --no-source-map",
+    "build": "npm run build:styles && ng-packagr -p ng-package.json",
+    "dev": "npm run build:styles && ng-packagr -p ng-package.json -w",
+    "test": "echo \"No tests configured yet\"",
+    "lint": "echo \"No lint configured yet\"",
+    "pack:dry": "npm pack --dry-run",
+    "publish:ci": "npm publish"
+  },
+  "dependencies": {
+    "chart.js": "^4.4.4",
+    "tslib": "^2.7.0"
+  },
+  "peerDependencies": {
+    "@angular/common": "^21.0.0",
+    "@angular/core": "^21.0.0"
+  },
+  "devDependencies": {
+    "ng-packagr": "^21.0.0",
+    "sass": "^1.83.4",
+    "typescript": "^5.9.2"
+  }
+}

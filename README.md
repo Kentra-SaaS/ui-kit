@@ -1,64 +1,66 @@
 # Kentra UI Kit
 
 ## Purpose
-This repository is the shared UI Kit monorepo for Kentra interfaces.
-It provides reusable UI foundations across Product UI and Web-App surfaces.
-The monorepo standardizes tokens, components, charts, and framework adapters.
-Design and implementation choices target consistency and reuse.
-Accessibility, theming, and distribution rules are defined in source docs.
+This repository contains a single publishable Angular UI Kit package.
+The package bundles root styles and infrastructure for categorized component entry points.
 
-## System Role
-The UI Kit is a cross-system dependency for Product-Core UI and Web-App.
-It does not own product-domain logic, licensing, or backend decisions.
-It defines reusable presentation building blocks and packaging workflows.
-Framework-specific packages expose the same design primitives.
-Changes should preserve compatibility expectations across consuming apps.
-Core patterns should stay aligned with architecture and governance references.
+## Package
+- Publishable package: `@kentra/ui-kit`
+- Registry: GitHub Packages (`@kentra` scope)
+
+## Public Imports
+- `@kentra/ui-kit`
+- `@kentra/ui-kit/styles.css`
+- `@kentra/ui-kit/layout`
+- `@kentra/ui-kit/typography`
+- `@kentra/ui-kit/actions`
+- `@kentra/ui-kit/forms`
+- `@kentra/ui-kit/navigation`
+- `@kentra/ui-kit/data-display`
+- `@kentra/ui-kit/feedback`
+- `@kentra/ui-kit/overlays`
+- `@kentra/ui-kit/charts`
+
+## Internal (not public)
+- `tokens`
+- `core`
+- `charts` foundation internals
 
 ## Quick Start
-Install all workspace dependencies:
 ```bash
 npm install
-```
-Build all workspaces:
-```bash
 npm run build
 ```
-Run workspace tests:
+
+## Important Commands
 ```bash
-npm run test
-```
-Run workspace lint checks:
-```bash
-npm run lint
-```
-Start docs app:
-```bash
-npm run dev:docs
+# Install dependencies
+npm install
+
+# Build root styles (SCSS -> CSS) and library dist
+npm run build
+
+# Build only styles for @kentra/ui-kit
+npm -w @kentra/ui-kit run build:styles
+
+# Watch-mode build for local development
+npm -w @kentra/ui-kit run dev
+
+# Validate npm package content without publishing
+npm -w @kentra/ui-kit run pack:dry
+
+# Publish package manually (CI uses this on master with version guard)
+npm -w @kentra/ui-kit run publish:ci
 ```
 
-## Repository Layout
-- `package.json`: root workspace definition and script entrypoint.
-- `tsconfig.base.json`: shared TypeScript baseline across workspaces.
-- `packages/tokens`: design token package.
-- `packages/core`: framework-agnostic core UI package.
-- `packages/charts`: chart wrappers and data-visualization components.
-- `packages/astro`: Astro integration package.
-- `packages/angular`: Angular integration package.
-- `apps/docs`: documentation application for UI Kit usage.
-- `apps/playground-angular`: Angular playground for component validation.
-- `apps/playground-astro`: Astro playground for component validation.
+## Styles
+Global styles import in consumer applications:
 
-## Related Documentation
-- UI Kit architecture hub:
-  `../docs/engineering/architektur/ui-kit/README.md`
-- UI Kit concept and principles:
-  `../docs/engineering/architektur/ui-kit/konzept-und-prinzipien.md`
-- Component model and boundaries:
-  `../docs/engineering/architektur/ui-kit/komponentenmodell-und-grenzen.md`
-- Distribution and versioning:
-  `../docs/engineering/architektur/ui-kit/distribution-und-versionierung.md`
-- Canonical system architecture:
-  `../docs/engineering/architektur/system-architecture-canonical.md`
-- Frontend theming integration:
-  `../docs/engineering/architektur/frontend/theming-and-ui-kit.md`
+```scss
+@import "@kentra/ui-kit/styles.css";
+```
+
+## Release
+- Branch: `master`
+- Versioning: manual in `lib/package.json`
+- CI publish guard: publish only when version does not already exist in registry

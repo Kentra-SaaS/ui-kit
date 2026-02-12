@@ -1,0 +1,58 @@
+name: Release @kentra/ui-kit
+
+on:
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          registry-url: https://npm.pkg.github.com
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build package
+        run: npm -w @kentra/ui-kit run build
+
+      - name: Check published version
+        id: version_check
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PKG_NAME=$(node -p "require('./lib/package.json').name")
+          PKG_VERSION=$(node -p "require('./lib/package.json').version")
+
+          echo "name=$PKG_NAME" >> "$GITHUB_OUTPUT"
+          echo "version=$PKG_VERSION" >> "$GITHUB_OUTPUT"
+
+          if npm view "${PKG_NAME}@${PKG_VERSION}" version --registry=https://npm.pkg.github.com > /dev/null 2>&1; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Publish package
+        if: steps.version_check.outputs.exists == 'false'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npm publish -w @kentra/ui-kit
+
+      - name: Skip publish (version already exists)
+        if: steps.version_check.outputs.exists == 'true'
+        run: echo "${{ steps.version_check.outputs.name }}@${{ steps.version_check.outputs.version }} already exists. Publish skipped."

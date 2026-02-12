@@ -1,0 +1,44 @@
+:root {
+  --kentra-color-surface: #ffffff;
+  --kentra-color-text: #0f172a;
+  --kentra-color-primary: #1d4ed8;
+
+  --kentra-font-family-base: "Inter", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --kentra-font-size-body: 16px;
+  --kentra-line-height-body: 1.5;
+
+  --kentra-spacing-xs: 0.25rem;
+  --kentra-spacing-sm: 0.5rem;
+  --kentra-spacing-md: 1rem;
+  --kentra-spacing-lg: 1.5rem;
+
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --kentra-color-surface: #0f172a;
+  --kentra-color-text: #e2e8f0;
+  --kentra-color-primary: #60a5fa;
+
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  background: var(--kentra-color-surface);
+  color: var(--kentra-color-text);
+  font-family: var(--kentra-font-family-base);
+  font-size: var(--kentra-font-size-body);
+  line-height: var(--kentra-line-height-body);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

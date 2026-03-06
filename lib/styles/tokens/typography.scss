@@ -1,0 +1,46 @@
+@mixin declare-manrope-font-faces() {
+  @font-face {
+    font-family: "Manrope";
+    src: url("./assets/fonts/manrope/manrope-latin-400-normal.woff2") format("woff2");
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Manrope";
+    src: url("./assets/fonts/manrope/manrope-latin-500-normal.woff2") format("woff2");
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Manrope";
+    src: url("./assets/fonts/manrope/manrope-latin-600-normal.woff2") format("woff2");
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Manrope";
+    src: url("./assets/fonts/manrope/manrope-latin-700-normal.woff2") format("woff2");
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+  }
+}
+
+@mixin declare-typography-tokens() {
+  :root {
+    --k-font-family-base: "Manrope", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --k-font-family-heading: var(--k-font-family-base);
+    --k-font-family-mono: "JetBrains Mono", "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+    --k-font-weight-regular: 400;
+    --k-font-weight-medium: 500;
+    --k-font-weight-semibold: 600;
+    --k-font-weight-bold: 700;
+  }
+}

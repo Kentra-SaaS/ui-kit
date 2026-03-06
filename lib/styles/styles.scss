@@ -1,10 +1,12 @@
 @use "colors/palette";
 @use "themes/dark";
 @use "themes/light";
+@use "tokens/base";
 @use "tokens/background";
 @use "tokens/icon-set";
 @use "tokens/typography";
 
+@include base.declare-base-style-tokens();
 @include typography.declare-manrope-font-faces();
 @include typography.declare-typography-tokens();
 

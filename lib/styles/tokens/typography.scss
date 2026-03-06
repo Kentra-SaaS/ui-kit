@@ -42,5 +42,54 @@
     --k-font-weight-medium: 500;
     --k-font-weight-semibold: 600;
     --k-font-weight-bold: 700;
+
+    /* Type scale (raw) */
+    --k-font-size-2xs: 0.6875rem;
+    --k-font-size-xs: 0.75rem;
+    --k-font-size-sm: 0.875rem;
+    --k-font-size-md: 1rem;
+    --k-font-size-lg: 1.125rem;
+    --k-font-size-xl: 1.25rem;
+    --k-font-size-2xl: 1.5rem;
+    --k-font-size-3xl: 1.875rem;
+    --k-font-size-4xl: 2.25rem;
+    --k-font-size-5xl: 3rem;
+
+    --k-line-height-compact: 1.2;
+    --k-line-height-snug: 1.35;
+    --k-line-height-normal: 1.5;
+    --k-line-height-relaxed: 1.65;
+
+    /* Type scale (semantic) */
+    --k-typography-display-font-size: var(--k-font-size-5xl);
+    --k-typography-display-line-height: 1.1;
+    --k-typography-display-font-weight: var(--k-font-weight-bold);
+
+    --k-typography-h1-font-size: var(--k-font-size-4xl);
+    --k-typography-h1-line-height: var(--k-line-height-compact);
+    --k-typography-h2-font-size: var(--k-font-size-3xl);
+    --k-typography-h2-line-height: var(--k-line-height-compact);
+    --k-typography-h3-font-size: var(--k-font-size-2xl);
+    --k-typography-h3-line-height: var(--k-line-height-snug);
+    --k-typography-h4-font-size: var(--k-font-size-xl);
+    --k-typography-h4-line-height: var(--k-line-height-snug);
+    --k-typography-h5-font-size: var(--k-font-size-lg);
+    --k-typography-h5-line-height: var(--k-line-height-snug);
+    --k-typography-h6-font-size: var(--k-font-size-md);
+    --k-typography-h6-line-height: var(--k-line-height-normal);
+    --k-typography-heading-font-weight: var(--k-font-weight-semibold);
+
+    --k-typography-body-lg-font-size: var(--k-font-size-lg);
+    --k-typography-body-lg-line-height: var(--k-line-height-relaxed);
+    --k-typography-body-md-font-size: var(--k-font-size-md);
+    --k-typography-body-md-line-height: var(--k-line-height-normal);
+    --k-typography-body-sm-font-size: var(--k-font-size-sm);
+    --k-typography-body-sm-line-height: var(--k-line-height-normal);
+    --k-typography-caption-font-size: var(--k-font-size-xs);
+    --k-typography-caption-line-height: var(--k-line-height-normal);
+    --k-typography-label-font-size: var(--k-font-size-sm);
+    --k-typography-label-line-height: var(--k-line-height-snug);
+    --k-typography-body-font-weight: var(--k-font-weight-regular);
+    --k-typography-label-font-weight: var(--k-font-weight-medium);
   }
 }

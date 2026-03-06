@@ -1,11 +1,13 @@
 @use "./dark/background";
 @use "./dark/text";
+@use "./dark/interaction-state";
 @use "./dark/border";
 @use "./dark/link";
 @use "./dark/action";
 @use "./dark/input";
 @use "./dark/state";
 @use "./dark/overlay";
+@use "./dark/elevation";
 @use "./dark/app-background";
 
 [data-theme="dark"] {
@@ -13,11 +15,13 @@
 
   @include background.apply-dark-background-colors();
   @include text.apply-dark-text-colors();
+  @include interaction-state.apply-dark-interaction-state-colors();
   @include border.apply-dark-border-colors();
   @include link.apply-dark-link-colors();
   @include action.apply-dark-action-colors();
   @include input.apply-dark-input-colors();
   @include state.apply-dark-state-colors();
   @include overlay.apply-dark-overlay-colors();
+  @include elevation.apply-dark-elevation-tokens();
   @include app-background.apply-dark-app-background-colors();
 }

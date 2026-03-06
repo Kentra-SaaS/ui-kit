@@ -1,0 +1,5 @@
+@mixin apply-dark-background-colors() {
+  --k-color-bg-surface: var(--k-color-neutral-800);
+  --k-color-bg-elevated: var(--k-color-neutral-700);
+  --k-color-bg-inverse: var(--k-color-neutral-0);
+}

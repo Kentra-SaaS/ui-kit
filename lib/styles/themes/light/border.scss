@@ -1,0 +1,6 @@
+@mixin apply-light-border-colors() {
+  --k-color-border-subtle: var(--k-color-neutral-100);
+  --k-color-border-default: var(--k-color-neutral-200);
+  --k-color-border-strong: var(--k-color-neutral-300);
+  --k-color-focus-ring: var(--k-color-brand-500);
+}

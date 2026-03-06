@@ -1,0 +1,9 @@
+@mixin apply-light-input-colors() {
+  --k-color-input-bg: var(--k-color-neutral-0);
+  --k-color-input-text: var(--k-color-neutral-900);
+  --k-color-input-border: var(--k-color-neutral-300);
+  --k-color-input-placeholder: var(--k-color-neutral-400);
+  --k-color-input-disabled-bg: var(--k-color-neutral-100);
+  --k-color-input-disabled-text: var(--k-color-neutral-500);
+  --k-color-input-disabled-border: var(--k-color-neutral-200);
+}

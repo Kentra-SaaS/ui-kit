@@ -1,0 +1,10 @@
+@mixin apply-dark-state-colors() {
+  --k-color-state-info: var(--k-color-brand-300);
+  --k-color-state-info-bg: rgb(14 165 233 / 18%);
+  --k-color-state-success: var(--k-color-success-300);
+  --k-color-state-success-bg: rgb(74 222 128 / 18%);
+  --k-color-state-warning: var(--k-color-warning-300);
+  --k-color-state-warning-bg: rgb(253 224 71 / 20%);
+  --k-color-state-danger: var(--k-color-danger-300);
+  --k-color-state-danger-bg: rgb(248 113 113 / 20%);
+}

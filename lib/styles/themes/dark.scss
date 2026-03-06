@@ -1,0 +1,21 @@
+@use "./dark/background";
+@use "./dark/text";
+@use "./dark/border";
+@use "./dark/link";
+@use "./dark/action";
+@use "./dark/input";
+@use "./dark/state";
+@use "./dark/overlay";
+
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  @include background.apply-dark-background-colors();
+  @include text.apply-dark-text-colors();
+  @include border.apply-dark-border-colors();
+  @include link.apply-dark-link-colors();
+  @include action.apply-dark-action-colors();
+  @include input.apply-dark-input-colors();
+  @include state.apply-dark-state-colors();
+  @include overlay.apply-dark-overlay-colors();
+}

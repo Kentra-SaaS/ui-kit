@@ -1,0 +1,62 @@
+@use "../colors/palette";
+@use "../themes/light";
+@use "../themes/dark";
+
+@mixin app-background {
+
+  .k-app-background {
+    position: relative;
+    isolation: isolate;
+    min-height: 100dvh;
+    background-color: var(--k-color-app-bg-base);
+    background-image:
+            radial-gradient(115% 85% at 8% 0%, var(--k-color-app-bg-glow-primary) 0%, transparent 58%),
+            radial-gradient(90% 70% at 92% 12%, var(--k-color-app-bg-glow-secondary) 0%, transparent 64%),
+            linear-gradient(135deg, transparent 20%, var(--k-color-app-bg-angle) 52%, transparent 78%),
+            radial-gradient(140% 90% at 50% 100%, var(--k-color-app-bg-glow-tertiary) 0%, transparent 66%);
+    overflow: hidden;
+  }
+
+  .k-app-background::before,
+  .k-app-background::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  /* Blueprint-like fine grid and long structural lines. */
+  .k-app-background::before {
+    background-image:
+            linear-gradient(to right, var(--k-color-app-bg-grid-line) 1px, transparent 1px),
+            linear-gradient(to bottom, var(--k-color-app-bg-grid-line) 1px, transparent 1px),
+            linear-gradient(24deg, var(--k-color-app-bg-grid-fade) 38%, var(--k-color-app-bg-detail-line) 50%, var(--k-color-app-bg-grid-fade) 62%),
+            linear-gradient(-24deg, var(--k-color-app-bg-grid-fade) 36%, var(--k-color-app-bg-detail-line) 49%, var(--k-color-app-bg-grid-fade) 63%);
+    background-size: 68px 68px, 68px 68px, 100% 100%, 100% 100%;
+    background-position: center center, center center, 0 0, 0 0;
+    opacity: 0.9;
+  }
+
+  /* Vignette + subtle grain to match screenshot atmosphere. */
+  .k-app-background::after {
+    background-image:
+            radial-gradient(160% 110% at 50% 0%, transparent 56%, var(--k-color-app-bg-vignette) 100%),
+            radial-gradient(circle at 20% 30%, var(--k-color-app-bg-noise) 0 0.8px, transparent 1px),
+            radial-gradient(circle at 70% 60%, var(--k-color-app-bg-noise) 0 0.7px, transparent 1px);
+    background-size: 100% 100%, 3px 3px, 4px 4px;
+    background-position: center center, 0 0, 1px 2px;
+    opacity: 0.7;
+  }
+
+  @media (max-width: 840px) {
+    .k-app-background::before {
+      background-size: 52px 52px, 52px 52px, 100% 100%, 100% 100%;
+      opacity: 0.65;
+    }
+
+    .k-app-background::after {
+      opacity: 0.5;
+    }
+  }
+
+}

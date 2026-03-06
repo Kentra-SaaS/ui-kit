@@ -6,6 +6,7 @@
 @use "./light/input";
 @use "./light/state";
 @use "./light/overlay";
+@use "./light/app-background";
 
 :root,
 [data-theme="light"] {
@@ -19,4 +20,5 @@
   @include input.apply-light-input-colors();
   @include state.apply-light-state-colors();
   @include overlay.apply-light-overlay-colors();
+  @include app-background.apply-light-app-background-colors();
 }

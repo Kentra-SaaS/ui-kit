@@ -1,3 +1,6 @@
-@use "themes/palette";
-@use "themes/light";
+@use "colors/palette";
 @use "themes/dark";
+@use "themes/light";
+@use "tokens/background";
+
+@include background.app-background();

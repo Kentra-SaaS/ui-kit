@@ -6,6 +6,7 @@
 @use "./dark/input";
 @use "./dark/state";
 @use "./dark/overlay";
+@use "./dark/app-background";
 
 [data-theme="dark"] {
   color-scheme: dark;
@@ -18,4 +19,5 @@
   @include input.apply-dark-input-colors();
   @include state.apply-dark-state-colors();
   @include overlay.apply-dark-overlay-colors();
+  @include app-background.apply-dark-app-background-colors();
 }

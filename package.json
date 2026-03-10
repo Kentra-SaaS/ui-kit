@@ -62,7 +62,9 @@
     "build:styles": "sass styles/styles.scss styles.css --no-source-map",
     "build": "npm run build:styles && ng-packagr -p ng-package.json",
     "dev": "npm run build:styles && ng-packagr -p ng-package.json -w",
-    "test": "npm run build:styles && node --test ./tests/*.test.mjs",
+    "test": "npm run build:styles && vitest run",
+    "test:watch": "vitest",
+    "test:typecheck": "tsc -p tsconfig.spec.json --noEmit",
     "lint": "echo \"No lint configured yet\"",
     "pack:dry": "npm pack --dry-run",
     "publish:ci": "npm publish"
@@ -76,8 +78,10 @@
     "@angular/core": "^21.0.0"
   },
   "devDependencies": {
+    "@types/node": "^25.4.0",
     "ng-packagr": "^21.0.0",
     "sass": "^1.83.4",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.2",
+    "vitest": "^4.0.18"
   }
 }

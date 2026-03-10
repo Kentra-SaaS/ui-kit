@@ -3,5 +3,6 @@
   "compilerOptions": {
     "outDir": "./dist/out-tsc"
   },
-  "include": ["./**/*.ts"]
+  "include": ["**/*.ts"],
+  "exclude": ["**/*.spec.ts", "./vitest.config.ts"]
 }

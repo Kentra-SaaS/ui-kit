@@ -1,0 +1,5 @@
+@mixin apply-dark-link-colors() {
+  --k-color-link-default: var(--k-color-brand-300);
+  --k-color-link-hover: var(--k-color-brand-200);
+  --k-color-link-visited: var(--k-color-secondary-300);
+}

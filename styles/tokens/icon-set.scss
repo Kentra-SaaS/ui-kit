@@ -1,0 +1,36 @@
+@mixin declare-phosphor-icon-font-face() {
+  @font-face {
+    font-family: "Phosphor";
+    src: url("./assets/icons/regular/Phosphor.woff2") format("woff2");
+    font-style: normal;
+    font-weight: 400;
+    font-display: block;
+  }
+}
+
+@mixin declare-icon-set-tokens() {
+  :root {
+    --k-font-family-icon: "Phosphor";
+    --k-icon-size-sm: 1rem;
+    --k-icon-size-md: 1.25rem;
+    --k-icon-size-lg: 1.5rem;
+  }
+}
+
+@mixin apply-icon-foundation-class() {
+  .k-icon {
+    font-family: var(--k-font-family-icon);
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 0;
+    text-transform: none;
+    font-feature-settings: "liga";
+    font-variant-ligatures: discretionary-ligatures;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}

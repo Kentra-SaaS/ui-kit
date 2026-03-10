@@ -1,0 +1,5 @@
+@mixin apply-light-background-colors() {
+  --k-color-bg-surface: var(--k-color-neutral-25);
+  --k-color-bg-elevated: var(--k-color-neutral-0);
+  --k-color-bg-inverse: var(--k-color-neutral-900);
+}

@@ -1,0 +1,10 @@
+@mixin apply-light-state-colors() {
+  --k-color-state-info: var(--k-color-brand-600);
+  --k-color-state-info-bg: var(--k-color-brand-100);
+  --k-color-state-success: var(--k-color-success-700);
+  --k-color-state-success-bg: var(--k-color-success-100);
+  --k-color-state-warning: var(--k-color-warning-700);
+  --k-color-state-warning-bg: var(--k-color-warning-100);
+  --k-color-state-danger: var(--k-color-danger-700);
+  --k-color-state-danger-bg: var(--k-color-danger-100);
+}

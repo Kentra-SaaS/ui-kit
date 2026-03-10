@@ -1,0 +1,6 @@
+@mixin apply-dark-border-colors() {
+  --k-color-border-subtle: var(--k-color-neutral-700);
+  --k-color-border-default: var(--k-color-neutral-600);
+  --k-color-border-strong: var(--k-color-neutral-500);
+  --k-color-focus-ring: var(--k-color-state-focus-ring);
+}

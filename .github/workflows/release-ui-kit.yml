@@ -28,15 +28,15 @@ jobs:
         run: npm ci
 
       - name: Build package
-        run: npm -w @kentra/ui-kit run build
+        run: npm run build
 
       - name: Check published version
         id: version_check
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          PKG_NAME=$(node -p "require('./lib/package.json').name")
-          PKG_VERSION=$(node -p "require('./lib/package.json').version")
+          PKG_NAME=$(node -p "require('./package.json').name")
+          PKG_VERSION=$(node -p "require('./package.json').version")
 
           echo "name=$PKG_NAME" >> "$GITHUB_OUTPUT"
           echo "version=$PKG_VERSION" >> "$GITHUB_OUTPUT"
@@ -51,7 +51,7 @@ jobs:
         if: steps.version_check.outputs.exists == 'false'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npm publish -w @kentra/ui-kit
+        run: npm publish
 
       - name: Skip publish (version already exists)
         if: steps.version_check.outputs.exists == 'true'

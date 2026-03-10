@@ -1,0 +1,16 @@
+@mixin apply-dark-interaction-state-colors() {
+  --k-color-state-hover-overlay: rgb(255 255 255 / 8%);
+  --k-color-state-active-overlay: rgb(255 255 255 / 14%);
+  --k-color-state-selected-bg: rgb(56 189 248 / 24%);
+  --k-color-state-selected-text: var(--k-color-brand-100);
+
+  --k-color-state-focus-ring: var(--k-color-brand-300);
+  --k-color-state-focus-outline: rgb(125 211 252 / 36%);
+
+  --k-color-state-disabled-bg: var(--k-color-neutral-700);
+  --k-color-state-disabled-border: var(--k-color-neutral-600);
+  --k-color-state-disabled-text: var(--k-color-neutral-400);
+  --k-color-state-disabled-icon: var(--k-color-neutral-400);
+
+  --k-state-disabled-opacity: 0.56;
+}

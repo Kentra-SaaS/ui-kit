@@ -40,17 +40,17 @@ npm install
 # Build root styles (SCSS -> CSS) and library dist
 npm run build
 
-# Build only styles for @kentra/ui-kit
-npm -w @kentra/ui-kit run build:styles
+# Build only styles
+npm run build:styles
 
 # Watch-mode build for local development
-npm -w @kentra/ui-kit run dev
+npm run dev
 
 # Validate npm package content without publishing
-npm -w @kentra/ui-kit run pack:dry
+npm run pack:dry
 
 # Publish package manually (CI uses this on master with version guard)
-npm -w @kentra/ui-kit run publish:ci
+npm run publish:ci
 ```
 
 ## Styles
@@ -62,5 +62,5 @@ Global styles import in consumer applications:
 
 ## Release
 - Branch: `master`
-- Versioning: manual in `lib/package.json`
+- Versioning: manual in `package.json`
 - CI publish guard: publish only when version does not already exist in registry

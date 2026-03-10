@@ -38,8 +38,3 @@ export * from "./overlays/modal-tokens";
 export * from "./overlays/drawer-tokens";
 export * from "./overlays/tooltip-tokens";
 export * from "./overlays/dropdown-menu-tokens";
-
-export * from "./charts/chart-container-tokens";
-export * from "./charts/line-chart-tokens";
-export * from "./charts/bar-chart-tokens";
-export * from "./charts/donut-chart-tokens";

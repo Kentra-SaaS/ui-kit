@@ -37,4 +37,4 @@ pnpm-debug.log*
 Thumbs.db
 
 # Generated root styles for package build
-lib/styles.css
+styles.css

@@ -3,7 +3,7 @@ import { fileURLToPath } from "node:url";
 
 import { describe, expect, it } from "vitest";
 
-import { tokens } from "../internal/tokens";
+import { tokens } from "../internal/tokens/core";
 import { collectDeclaredCssVariables, collectTokens } from "./token-test-utils";
 
 const thisDirectory = dirname(fileURLToPath(import.meta.url));

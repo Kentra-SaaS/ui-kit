@@ -1,9 +1,9 @@
 import { describe, expect, it } from "vitest";
 
-import { tokens } from "../internal/tokens";
+import { tokens } from "../internal/tokens/core";
 import { collectTokens } from "./token-test-utils";
 
-describe("tokens contract", () => {
+describe("components-bundle contract", () => {
   it("contains valid css and var references", () => {
     const tokenList = collectTokens(tokens);
     expect(tokenList.length).toBeGreaterThan(0);

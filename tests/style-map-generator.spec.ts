@@ -7,6 +7,7 @@ describe("style-map generator", () => {
   it("renders selectors for registered component maps", () => {
     const css = generateComponentCss(componentStyleMaps);
 
+    expect(css).toContain(".k-button {");
     expect(css).toContain(".k-button--size-sm {");
     expect(css).toContain(".k-button--variant-primary {");
     expect(css).toContain(".k-button--variant-primary:hover {");

@@ -36,9 +36,9 @@ const alertBaseStyle = {
 
 export const alertTokens = {
   styles: {
+    base: alertBaseStyle,
     info: {
       default: {
-        ...alertBaseStyle,
         colors: {
           bg: tokens.theme.colors.state.info.bg,
           border: tokens.theme.colors.state.info.fg,
@@ -48,7 +48,6 @@ export const alertTokens = {
         },
       },
       dismissible: {
-        ...alertBaseStyle,
         closeAction: {
           ...alertBaseStyle.closeAction,
           hoverOverlay: tokens.theme.interactionState.hoverOverlay,
@@ -65,7 +64,6 @@ export const alertTokens = {
     },
     success: {
       default: {
-        ...alertBaseStyle,
         colors: {
           bg: tokens.theme.colors.state.success.bg,
           border: tokens.theme.colors.state.success.fg,
@@ -75,7 +73,6 @@ export const alertTokens = {
         },
       },
       dismissible: {
-        ...alertBaseStyle,
         closeAction: {
           ...alertBaseStyle.closeAction,
           hoverOverlay: tokens.theme.interactionState.hoverOverlay,
@@ -92,7 +89,6 @@ export const alertTokens = {
     },
     warning: {
       default: {
-        ...alertBaseStyle,
         colors: {
           bg: tokens.theme.colors.state.warning.bg,
           border: tokens.theme.colors.state.warning.fg,
@@ -102,7 +98,6 @@ export const alertTokens = {
         },
       },
       dismissible: {
-        ...alertBaseStyle,
         closeAction: {
           ...alertBaseStyle.closeAction,
           hoverOverlay: tokens.theme.interactionState.hoverOverlay,
@@ -119,7 +114,6 @@ export const alertTokens = {
     },
     danger: {
       default: {
-        ...alertBaseStyle,
         colors: {
           bg: tokens.theme.colors.state.danger.bg,
           border: tokens.theme.colors.state.danger.fg,
@@ -129,7 +123,6 @@ export const alertTokens = {
         },
       },
       dismissible: {
-        ...alertBaseStyle,
         closeAction: {
           ...alertBaseStyle.closeAction,
           hoverOverlay: tokens.theme.interactionState.hoverOverlay,
@@ -148,5 +141,5 @@ export const alertTokens = {
 } as const;
 
 export type AlertTokensContract = typeof alertTokens;
-export type AlertVariant = keyof AlertTokensContract["styles"];
+export type AlertVariant = Exclude<keyof AlertTokensContract["styles"], "base">;
 export type AlertState = keyof AlertTokensContract["styles"]["info"];

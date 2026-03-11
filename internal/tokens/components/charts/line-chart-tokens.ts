@@ -37,9 +37,9 @@ const lineSeriesPalette = {
 
 export const lineChartTokens = {
   styles: {
+    base: lineChartBaseStyle,
     default: {
       loading: {
-        ...lineChartBaseStyle,
         colors: {
           grid: tokens.theme.colors.border.subtle,
           axis: tokens.theme.colors.text.secondary,
@@ -48,7 +48,6 @@ export const lineChartTokens = {
         },
       },
       ready: {
-        ...lineChartBaseStyle,
         interpolation: "linear",
         colors: {
           grid: tokens.theme.colors.border.subtle,
@@ -60,7 +59,6 @@ export const lineChartTokens = {
         },
       },
       empty: {
-        ...lineChartBaseStyle,
         colors: {
           grid: tokens.theme.colors.border.subtle,
           axis: tokens.theme.colors.text.secondary,
@@ -70,7 +68,6 @@ export const lineChartTokens = {
         },
       },
       error: {
-        ...lineChartBaseStyle,
         colors: {
           grid: tokens.theme.colors.border.subtle,
           axis: tokens.theme.colors.text.secondary,
@@ -82,7 +79,6 @@ export const lineChartTokens = {
     },
     smooth: {
       loading: {
-        ...lineChartBaseStyle,
         colors: {
           grid: tokens.theme.colors.border.subtle,
           axis: tokens.theme.colors.text.secondary,
@@ -91,7 +87,6 @@ export const lineChartTokens = {
         },
       },
       ready: {
-        ...lineChartBaseStyle,
         interpolation: "monotone",
         tension: "0.35",
         colors: {
@@ -104,7 +99,6 @@ export const lineChartTokens = {
         },
       },
       empty: {
-        ...lineChartBaseStyle,
         colors: {
           grid: tokens.theme.colors.border.subtle,
           axis: tokens.theme.colors.text.secondary,
@@ -114,7 +108,6 @@ export const lineChartTokens = {
         },
       },
       error: {
-        ...lineChartBaseStyle,
         colors: {
           grid: tokens.theme.colors.border.subtle,
           axis: tokens.theme.colors.text.secondary,
@@ -126,7 +119,6 @@ export const lineChartTokens = {
     },
     stepped: {
       loading: {
-        ...lineChartBaseStyle,
         colors: {
           grid: tokens.theme.colors.border.subtle,
           axis: tokens.theme.colors.text.secondary,
@@ -135,7 +127,6 @@ export const lineChartTokens = {
         },
       },
       ready: {
-        ...lineChartBaseStyle,
         interpolation: "stepped",
         stepped: true,
         colors: {
@@ -148,7 +139,6 @@ export const lineChartTokens = {
         },
       },
       empty: {
-        ...lineChartBaseStyle,
         colors: {
           grid: tokens.theme.colors.border.subtle,
           axis: tokens.theme.colors.text.secondary,
@@ -158,7 +148,6 @@ export const lineChartTokens = {
         },
       },
       error: {
-        ...lineChartBaseStyle,
         colors: {
           grid: tokens.theme.colors.border.subtle,
           axis: tokens.theme.colors.text.secondary,
@@ -172,5 +161,5 @@ export const lineChartTokens = {
 } as const;
 
 export type LineChartTokensContract = typeof lineChartTokens;
-export type LineChartVariant = keyof LineChartTokensContract["styles"];
+export type LineChartVariant = Exclude<keyof LineChartTokensContract["styles"], "base">;
 export type LineChartState = keyof LineChartTokensContract["styles"]["default"];

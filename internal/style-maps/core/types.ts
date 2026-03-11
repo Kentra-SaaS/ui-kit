@@ -45,6 +45,8 @@ export interface ComponentStyleMap<
   readonly id: string;
   /** Base class name used for generated selectors (e.g. `k-button`). */
   readonly baseClass: `k-${string}`;
+  /** Base alias variables rendered directly on `.k-x`. */
+  readonly base?: Vars;
   /** Size-to-variable mapping (`.k-x--size-*`). */
   readonly sizes: Record<TSize, Vars>;
   /** Variant + state mapping (`.k-x--variant-*` + state selector). */

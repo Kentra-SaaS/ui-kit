@@ -59,6 +59,11 @@ export const generateComponentCss = (styleMaps: readonly ComponentStyleMap[]): s
   const chunks: string[] = [GENERATED_HEADER, ""];
 
   for (const styleMap of styleMaps) {
+    if (styleMap.base && Object.keys(styleMap.base).length > 0) {
+      const selector = `.${styleMap.baseClass}`;
+      chunks.push(renderRule(selector, styleMap.base), "");
+    }
+
     for (const [size, vars] of Object.entries(styleMap.sizes)) {
       const selector = `.${styleMap.baseClass}--size-${toKebabCase(size)}`;
       chunks.push(renderRule(selector, vars), "");

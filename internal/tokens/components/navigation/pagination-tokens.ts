@@ -31,9 +31,9 @@ const basePaginationStyle = {
 
 export const paginationTokens = {
   styles: {
+    base: basePaginationStyle,
     default: {
       default: {
-        ...basePaginationStyle,
         colors: {
           bg: tokens.theme.colors.action.secondary.bg,
           text: tokens.theme.colors.action.secondary.text,
@@ -41,7 +41,6 @@ export const paginationTokens = {
         },
       },
       focusVisible: {
-        ...basePaginationStyle,
         colors: {
           bg: tokens.theme.colors.action.secondary.bg,
           text: tokens.theme.colors.action.secondary.text,
@@ -49,7 +48,6 @@ export const paginationTokens = {
         },
       },
       disabled: {
-        ...basePaginationStyle,
         colors: {
           bg: tokens.theme.colors.action.secondary.disabledBg,
           text: tokens.theme.colors.action.secondary.disabledText,
@@ -58,7 +56,6 @@ export const paginationTokens = {
         disabledOpacity: tokens.theme.interactionState.disabled.opacity,
       },
       active: {
-        ...basePaginationStyle,
         colors: {
           bg: tokens.theme.colors.action.primary.bg,
           text: tokens.theme.colors.action.primary.text,
@@ -68,7 +65,6 @@ export const paginationTokens = {
     },
     compact: {
       default: {
-        ...basePaginationStyle,
         container: {
           gap: tokens.global.baseStyle.space.step1,
         },
@@ -86,7 +82,6 @@ export const paginationTokens = {
         },
       },
       focusVisible: {
-        ...basePaginationStyle,
         container: {
           gap: tokens.global.baseStyle.space.step1,
         },
@@ -104,7 +99,6 @@ export const paginationTokens = {
         },
       },
       disabled: {
-        ...basePaginationStyle,
         container: {
           gap: tokens.global.baseStyle.space.step1,
         },
@@ -123,7 +117,6 @@ export const paginationTokens = {
         disabledOpacity: tokens.theme.interactionState.disabled.opacity,
       },
       active: {
-        ...basePaginationStyle,
         container: {
           gap: tokens.global.baseStyle.space.step1,
         },
@@ -145,5 +138,5 @@ export const paginationTokens = {
 } as const;
 
 export type PaginationTokensContract = typeof paginationTokens;
-export type PaginationVariant = keyof PaginationTokensContract["styles"];
+export type PaginationVariant = Exclude<keyof PaginationTokensContract["styles"], "base">;
 export type PaginationState = keyof PaginationTokensContract["styles"]["default"];

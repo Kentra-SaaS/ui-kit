@@ -17,6 +17,7 @@ export const dividerTokens = {
     lg: tokens.global.baseStyle.space.step6,
   },
   styles: {
+    base: {},
     horizontal: {
       subtle: {
         ...subtleDividerStyle,
@@ -45,5 +46,5 @@ export const dividerTokens = {
 } as const;
 
 export type DividerTokensContract = typeof dividerTokens;
-export type DividerOrientation = keyof DividerTokensContract["styles"];
+export type DividerOrientation = Exclude<keyof DividerTokensContract["styles"], "base">;
 export type DividerVariant = keyof DividerTokensContract["styles"]["horizontal"];

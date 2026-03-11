@@ -38,9 +38,9 @@ const sideNavBaseStyle = {
 
 export const sideNavTokens = {
   styles: {
+    base: sideNavBaseStyle,
     expanded: {
       default: {
-        ...sideNavBaseStyle,
         navWidth: "17rem",
         colors: {
           navBg: tokens.theme.colors.background.elevated,
@@ -52,7 +52,6 @@ export const sideNavTokens = {
         },
       },
       active: {
-        ...sideNavBaseStyle,
         navWidth: "17rem",
         colors: {
           navBg: tokens.theme.colors.background.elevated,
@@ -64,7 +63,6 @@ export const sideNavTokens = {
         },
       },
       focusVisible: {
-        ...sideNavBaseStyle,
         navWidth: "17rem",
         colors: {
           navBg: tokens.theme.colors.background.elevated,
@@ -76,7 +74,6 @@ export const sideNavTokens = {
         },
       },
       disabled: {
-        ...sideNavBaseStyle,
         navWidth: "17rem",
         colors: {
           navBg: tokens.theme.colors.background.elevated,
@@ -91,7 +88,6 @@ export const sideNavTokens = {
     },
     collapsed: {
       default: {
-        ...sideNavBaseStyle,
         navWidth: "4.5rem",
         item: {
           ...sideNavBaseStyle.item,
@@ -108,7 +104,6 @@ export const sideNavTokens = {
         },
       },
       active: {
-        ...sideNavBaseStyle,
         navWidth: "4.5rem",
         item: {
           ...sideNavBaseStyle.item,
@@ -125,7 +120,6 @@ export const sideNavTokens = {
         },
       },
       focusVisible: {
-        ...sideNavBaseStyle,
         navWidth: "4.5rem",
         item: {
           ...sideNavBaseStyle.item,
@@ -142,7 +136,6 @@ export const sideNavTokens = {
         },
       },
       disabled: {
-        ...sideNavBaseStyle,
         navWidth: "4.5rem",
         item: {
           ...sideNavBaseStyle.item,
@@ -164,5 +157,5 @@ export const sideNavTokens = {
 } as const;
 
 export type SideNavTokensContract = typeof sideNavTokens;
-export type SideNavVariant = keyof SideNavTokensContract["styles"];
+export type SideNavVariant = Exclude<keyof SideNavTokensContract["styles"], "base">;
 export type SideNavState = keyof SideNavTokensContract["styles"]["expanded"];

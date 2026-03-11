@@ -30,9 +30,9 @@ const baseTabsStyle = {
 
 export const tabsTokens = {
   styles: {
+    base: baseTabsStyle,
     line: {
       default: {
-        ...baseTabsStyle,
         colors: {
           listBorder: tokens.theme.colors.border.subtle,
           text: tokens.theme.colors.text.secondary,
@@ -41,7 +41,6 @@ export const tabsTokens = {
         },
       },
       active: {
-        ...baseTabsStyle,
         colors: {
           listBorder: tokens.theme.colors.border.subtle,
           text: tokens.theme.colors.text.primary,
@@ -50,7 +49,6 @@ export const tabsTokens = {
         },
       },
       focusVisible: {
-        ...baseTabsStyle,
         colors: {
           listBorder: tokens.theme.colors.border.subtle,
           text: tokens.theme.colors.text.primary,
@@ -59,7 +57,6 @@ export const tabsTokens = {
         },
       },
       disabled: {
-        ...baseTabsStyle,
         colors: {
           listBorder: tokens.theme.colors.border.subtle,
           text: tokens.theme.interactionState.disabled.text,
@@ -71,7 +68,6 @@ export const tabsTokens = {
     },
     pill: {
       default: {
-        ...baseTabsStyle,
         colors: {
           listBorder: tokens.theme.colors.border.subtle,
           text: tokens.theme.colors.text.secondary,
@@ -80,7 +76,6 @@ export const tabsTokens = {
         },
       },
       active: {
-        ...baseTabsStyle,
         colors: {
           listBorder: tokens.theme.colors.border.subtle,
           text: tokens.theme.interactionState.selected.text,
@@ -89,7 +84,6 @@ export const tabsTokens = {
         },
       },
       focusVisible: {
-        ...baseTabsStyle,
         colors: {
           listBorder: tokens.theme.colors.border.subtle,
           text: tokens.theme.colors.text.primary,
@@ -98,7 +92,6 @@ export const tabsTokens = {
         },
       },
       disabled: {
-        ...baseTabsStyle,
         colors: {
           listBorder: tokens.theme.colors.border.subtle,
           text: tokens.theme.interactionState.disabled.text,
@@ -112,5 +105,5 @@ export const tabsTokens = {
 } as const;
 
 export type TabsTokensContract = typeof tabsTokens;
-export type TabsVariant = keyof TabsTokensContract["styles"];
+export type TabsVariant = Exclude<keyof TabsTokensContract["styles"], "base">;
 export type TabsState = keyof TabsTokensContract["styles"]["line"];

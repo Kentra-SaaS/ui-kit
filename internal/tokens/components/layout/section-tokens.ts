@@ -14,8 +14,8 @@ const sharedSectionStyle = {
 
 export const sectionTokens = {
   styles: {
+    base: sharedSectionStyle,
     default: {
-      ...sharedSectionStyle,
       colors: {
         bg: tokens.theme.colors.background.surface,
         border: tokens.theme.colors.border.subtle,
@@ -24,7 +24,6 @@ export const sectionTokens = {
       shadow: tokens.theme.elevation.shadow.xs,
     },
     elevated: {
-      ...sharedSectionStyle,
       colors: {
         bg: tokens.theme.colors.background.elevated,
         border: tokens.theme.colors.border.subtle,
@@ -33,7 +32,6 @@ export const sectionTokens = {
       shadow: tokens.theme.elevation.shadow.md,
     },
     outlined: {
-      ...sharedSectionStyle,
       colors: {
         bg: tokens.theme.colors.background.surface,
         border: tokens.theme.colors.border.strong,
@@ -45,4 +43,4 @@ export const sectionTokens = {
 } as const;
 
 export type SectionTokensContract = typeof sectionTokens;
-export type SectionVariant = keyof SectionTokensContract["styles"];
+export type SectionVariant = Exclude<keyof SectionTokensContract["styles"], "base">;

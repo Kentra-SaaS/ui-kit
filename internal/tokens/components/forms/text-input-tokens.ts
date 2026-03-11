@@ -30,9 +30,9 @@ const baseTextInputStyle = {
 
 export const textInputTokens = {
   styles: {
+    base: baseTextInputStyle,
     default: {
       default: {
-        ...baseTextInputStyle,
         colors: {
           bg: tokens.theme.colors.input.bg,
           text: tokens.theme.colors.input.text,
@@ -41,7 +41,6 @@ export const textInputTokens = {
         },
       },
       focusVisible: {
-        ...baseTextInputStyle,
         colors: {
           bg: tokens.theme.colors.input.bg,
           text: tokens.theme.colors.input.text,
@@ -50,7 +49,6 @@ export const textInputTokens = {
         },
       },
       disabled: {
-        ...baseTextInputStyle,
         colors: {
           bg: tokens.theme.colors.input.disabledBg,
           text: tokens.theme.colors.input.disabledText,
@@ -60,7 +58,6 @@ export const textInputTokens = {
         disabledOpacity: tokens.theme.interactionState.disabled.opacity,
       },
       readonly: {
-        ...baseTextInputStyle,
         colors: {
           bg: tokens.theme.colors.background.elevated,
           text: tokens.theme.colors.text.secondary,
@@ -69,7 +66,6 @@ export const textInputTokens = {
         },
       },
       error: {
-        ...baseTextInputStyle,
         colors: {
           bg: tokens.theme.colors.input.bg,
           text: tokens.theme.colors.input.text,
@@ -80,7 +76,6 @@ export const textInputTokens = {
     },
     withPrefix: {
       default: {
-        ...baseTextInputStyle,
         size: {
           ...baseTextInputStyle.size,
           paddingX: tokens.global.baseStyle.space.step2,
@@ -95,7 +90,6 @@ export const textInputTokens = {
         },
       },
       focusVisible: {
-        ...baseTextInputStyle,
         size: {
           ...baseTextInputStyle.size,
           paddingX: tokens.global.baseStyle.space.step2,
@@ -110,7 +104,6 @@ export const textInputTokens = {
         },
       },
       disabled: {
-        ...baseTextInputStyle,
         size: {
           ...baseTextInputStyle.size,
           paddingX: tokens.global.baseStyle.space.step2,
@@ -126,7 +119,6 @@ export const textInputTokens = {
         disabledOpacity: tokens.theme.interactionState.disabled.opacity,
       },
       readonly: {
-        ...baseTextInputStyle,
         size: {
           ...baseTextInputStyle.size,
           paddingX: tokens.global.baseStyle.space.step2,
@@ -141,7 +133,6 @@ export const textInputTokens = {
         },
       },
       error: {
-        ...baseTextInputStyle,
         size: {
           ...baseTextInputStyle.size,
           paddingX: tokens.global.baseStyle.space.step2,
@@ -158,7 +149,6 @@ export const textInputTokens = {
     },
     withSuffix: {
       default: {
-        ...baseTextInputStyle,
         size: {
           ...baseTextInputStyle.size,
           paddingX: tokens.global.baseStyle.space.step2,
@@ -173,7 +163,6 @@ export const textInputTokens = {
         },
       },
       focusVisible: {
-        ...baseTextInputStyle,
         size: {
           ...baseTextInputStyle.size,
           paddingX: tokens.global.baseStyle.space.step2,
@@ -188,7 +177,6 @@ export const textInputTokens = {
         },
       },
       disabled: {
-        ...baseTextInputStyle,
         size: {
           ...baseTextInputStyle.size,
           paddingX: tokens.global.baseStyle.space.step2,
@@ -204,7 +192,6 @@ export const textInputTokens = {
         disabledOpacity: tokens.theme.interactionState.disabled.opacity,
       },
       readonly: {
-        ...baseTextInputStyle,
         size: {
           ...baseTextInputStyle.size,
           paddingX: tokens.global.baseStyle.space.step2,
@@ -219,7 +206,6 @@ export const textInputTokens = {
         },
       },
       error: {
-        ...baseTextInputStyle,
         size: {
           ...baseTextInputStyle.size,
           paddingX: tokens.global.baseStyle.space.step2,
@@ -238,5 +224,5 @@ export const textInputTokens = {
 } as const;
 
 export type TextInputTokensContract = typeof textInputTokens;
-export type TextInputVariant = keyof TextInputTokensContract["styles"];
+export type TextInputVariant = Exclude<keyof TextInputTokensContract["styles"], "base">;
 export type TextInputState = keyof TextInputTokensContract["styles"]["default"];

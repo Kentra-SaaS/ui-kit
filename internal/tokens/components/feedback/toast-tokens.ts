@@ -39,9 +39,9 @@ const toastBaseStyle = {
 
 export const toastTokens = {
   styles: {
+    base: toastBaseStyle,
     info: {
       enter: {
-        ...toastBaseStyle,
         opacity: "0",
         translateY: "0.75rem",
         colors: {
@@ -53,7 +53,6 @@ export const toastTokens = {
         },
       },
       visible: {
-        ...toastBaseStyle,
         opacity: "1",
         translateY: "0",
         colors: {
@@ -65,7 +64,6 @@ export const toastTokens = {
         },
       },
       exit: {
-        ...toastBaseStyle,
         opacity: "0",
         translateY: "-0.5rem",
         colors: {
@@ -79,7 +77,6 @@ export const toastTokens = {
     },
     success: {
       enter: {
-        ...toastBaseStyle,
         opacity: "0",
         translateY: "0.75rem",
         colors: {
@@ -91,7 +88,6 @@ export const toastTokens = {
         },
       },
       visible: {
-        ...toastBaseStyle,
         opacity: "1",
         translateY: "0",
         colors: {
@@ -103,7 +99,6 @@ export const toastTokens = {
         },
       },
       exit: {
-        ...toastBaseStyle,
         opacity: "0",
         translateY: "-0.5rem",
         colors: {
@@ -117,7 +112,6 @@ export const toastTokens = {
     },
     warning: {
       enter: {
-        ...toastBaseStyle,
         opacity: "0",
         translateY: "0.75rem",
         colors: {
@@ -129,7 +123,6 @@ export const toastTokens = {
         },
       },
       visible: {
-        ...toastBaseStyle,
         opacity: "1",
         translateY: "0",
         colors: {
@@ -141,7 +134,6 @@ export const toastTokens = {
         },
       },
       exit: {
-        ...toastBaseStyle,
         opacity: "0",
         translateY: "-0.5rem",
         colors: {
@@ -155,7 +147,6 @@ export const toastTokens = {
     },
     danger: {
       enter: {
-        ...toastBaseStyle,
         opacity: "0",
         translateY: "0.75rem",
         colors: {
@@ -167,7 +158,6 @@ export const toastTokens = {
         },
       },
       visible: {
-        ...toastBaseStyle,
         opacity: "1",
         translateY: "0",
         colors: {
@@ -179,7 +169,6 @@ export const toastTokens = {
         },
       },
       exit: {
-        ...toastBaseStyle,
         opacity: "0",
         translateY: "-0.5rem",
         colors: {
@@ -195,5 +184,5 @@ export const toastTokens = {
 } as const;
 
 export type ToastTokensContract = typeof toastTokens;
-export type ToastVariant = keyof ToastTokensContract["styles"];
+export type ToastVariant = Exclude<keyof ToastTokensContract["styles"], "base">;
 export type ToastState = keyof ToastTokensContract["styles"]["info"];

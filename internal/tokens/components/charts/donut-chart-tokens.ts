@@ -37,16 +37,15 @@ const donutSegmentPalette = {
 
 export const donutChartTokens = {
   styles: {
+    base: donutChartBaseStyle,
     default: {
       loading: {
-        ...donutChartBaseStyle,
         colors: {
           skeleton: tokens.theme.colors.border.subtle,
           legendText: tokens.theme.colors.text.secondary,
         },
       },
       ready: {
-        ...donutChartBaseStyle,
         chart: {
           ...donutChartBaseStyle.chart,
           cutout: donutChartBaseStyle.chart.cutoutDefault,
@@ -59,7 +58,6 @@ export const donutChartTokens = {
         },
       },
       empty: {
-        ...donutChartBaseStyle,
         colors: {
           placeholderSegment: tokens.theme.colors.border.subtle,
           legendText: tokens.theme.colors.text.secondary,
@@ -68,7 +66,6 @@ export const donutChartTokens = {
         },
       },
       error: {
-        ...donutChartBaseStyle,
         colors: {
           placeholderSegment: tokens.theme.colors.state.danger.bg,
           legendText: tokens.theme.colors.text.secondary,
@@ -79,7 +76,6 @@ export const donutChartTokens = {
     },
     withCenterMetric: {
       loading: {
-        ...donutChartBaseStyle,
         chart: {
           ...donutChartBaseStyle.chart,
           cutout: donutChartBaseStyle.chart.cutoutWithCenterMetric,
@@ -90,7 +86,6 @@ export const donutChartTokens = {
         },
       },
       ready: {
-        ...donutChartBaseStyle,
         chart: {
           ...donutChartBaseStyle.chart,
           cutout: donutChartBaseStyle.chart.cutoutWithCenterMetric,
@@ -103,7 +98,6 @@ export const donutChartTokens = {
         },
       },
       empty: {
-        ...donutChartBaseStyle,
         chart: {
           ...donutChartBaseStyle.chart,
           cutout: donutChartBaseStyle.chart.cutoutWithCenterMetric,
@@ -116,7 +110,6 @@ export const donutChartTokens = {
         },
       },
       error: {
-        ...donutChartBaseStyle,
         chart: {
           ...donutChartBaseStyle.chart,
           cutout: donutChartBaseStyle.chart.cutoutWithCenterMetric,
@@ -133,5 +126,5 @@ export const donutChartTokens = {
 } as const;
 
 export type DonutChartTokensContract = typeof donutChartTokens;
-export type DonutChartVariant = keyof DonutChartTokensContract["styles"];
+export type DonutChartVariant = Exclude<keyof DonutChartTokensContract["styles"], "base">;
 export type DonutChartState = keyof DonutChartTokensContract["styles"]["default"];

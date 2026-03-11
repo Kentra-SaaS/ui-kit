@@ -29,9 +29,9 @@ const tooltipBaseStyle = {
 
 export const tooltipTokens = {
   styles: {
+    base: tooltipBaseStyle,
     top: {
       hidden: {
-        ...tooltipBaseStyle,
         offset: "0.5rem",
         opacity: "0",
         transform: "translateY(0.25rem)",
@@ -43,7 +43,6 @@ export const tooltipTokens = {
         },
       },
       visible: {
-        ...tooltipBaseStyle,
         offset: "0.5rem",
         opacity: "1",
         transform: "translateY(0)",
@@ -57,7 +56,6 @@ export const tooltipTokens = {
     },
     right: {
       hidden: {
-        ...tooltipBaseStyle,
         offset: "0.5rem",
         opacity: "0",
         transform: "translateX(-0.25rem)",
@@ -69,7 +67,6 @@ export const tooltipTokens = {
         },
       },
       visible: {
-        ...tooltipBaseStyle,
         offset: "0.5rem",
         opacity: "1",
         transform: "translateX(0)",
@@ -83,7 +80,6 @@ export const tooltipTokens = {
     },
     bottom: {
       hidden: {
-        ...tooltipBaseStyle,
         offset: "0.5rem",
         opacity: "0",
         transform: "translateY(-0.25rem)",
@@ -95,7 +91,6 @@ export const tooltipTokens = {
         },
       },
       visible: {
-        ...tooltipBaseStyle,
         offset: "0.5rem",
         opacity: "1",
         transform: "translateY(0)",
@@ -109,7 +104,6 @@ export const tooltipTokens = {
     },
     left: {
       hidden: {
-        ...tooltipBaseStyle,
         offset: "0.5rem",
         opacity: "0",
         transform: "translateX(0.25rem)",
@@ -121,7 +115,6 @@ export const tooltipTokens = {
         },
       },
       visible: {
-        ...tooltipBaseStyle,
         offset: "0.5rem",
         opacity: "1",
         transform: "translateX(0)",
@@ -137,5 +130,5 @@ export const tooltipTokens = {
 } as const;
 
 export type TooltipTokensContract = typeof tooltipTokens;
-export type TooltipVariant = keyof TooltipTokensContract["styles"];
+export type TooltipVariant = Exclude<keyof TooltipTokensContract["styles"], "base">;
 export type TooltipState = keyof TooltipTokensContract["styles"]["top"];

@@ -18,9 +18,9 @@ const switchBaseStyle = {
 
 export const switchTokens = {
   styles: {
+    base: switchBaseStyle,
     default: {
       off: {
-        ...switchBaseStyle,
         size: {
           trackWidth: "2.75rem",
           trackHeight: "1.5rem",
@@ -34,7 +34,6 @@ export const switchTokens = {
         },
       },
       on: {
-        ...switchBaseStyle,
         size: {
           trackWidth: "2.75rem",
           trackHeight: "1.5rem",
@@ -48,7 +47,6 @@ export const switchTokens = {
         },
       },
       focusVisible: {
-        ...switchBaseStyle,
         size: {
           trackWidth: "2.75rem",
           trackHeight: "1.5rem",
@@ -62,7 +60,6 @@ export const switchTokens = {
         },
       },
       disabled: {
-        ...switchBaseStyle,
         size: {
           trackWidth: "2.75rem",
           trackHeight: "1.5rem",
@@ -79,7 +76,6 @@ export const switchTokens = {
     },
     compact: {
       off: {
-        ...switchBaseStyle,
         size: {
           trackWidth: "2.25rem",
           trackHeight: "1.25rem",
@@ -93,7 +89,6 @@ export const switchTokens = {
         },
       },
       on: {
-        ...switchBaseStyle,
         size: {
           trackWidth: "2.25rem",
           trackHeight: "1.25rem",
@@ -107,7 +102,6 @@ export const switchTokens = {
         },
       },
       focusVisible: {
-        ...switchBaseStyle,
         size: {
           trackWidth: "2.25rem",
           trackHeight: "1.25rem",
@@ -121,7 +115,6 @@ export const switchTokens = {
         },
       },
       disabled: {
-        ...switchBaseStyle,
         size: {
           trackWidth: "2.25rem",
           trackHeight: "1.25rem",
@@ -140,5 +133,5 @@ export const switchTokens = {
 } as const;
 
 export type SwitchTokensContract = typeof switchTokens;
-export type SwitchVariant = keyof SwitchTokensContract["styles"];
+export type SwitchVariant = Exclude<keyof SwitchTokensContract["styles"], "base">;
 export type SwitchState = keyof SwitchTokensContract["styles"]["default"];

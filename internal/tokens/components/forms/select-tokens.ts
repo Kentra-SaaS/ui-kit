@@ -37,9 +37,9 @@ const baseSelectStyle = {
 
 export const selectTokens = {
   styles: {
+    base: baseSelectStyle,
     default: {
       default: {
-        ...baseSelectStyle,
         colors: {
           triggerBg: tokens.theme.colors.input.bg,
           triggerText: tokens.theme.colors.input.text,
@@ -52,7 +52,6 @@ export const selectTokens = {
         },
       },
       open: {
-        ...baseSelectStyle,
         colors: {
           triggerBg: tokens.theme.colors.input.bg,
           triggerText: tokens.theme.colors.input.text,
@@ -65,7 +64,6 @@ export const selectTokens = {
         },
       },
       focusVisible: {
-        ...baseSelectStyle,
         colors: {
           triggerBg: tokens.theme.colors.input.bg,
           triggerText: tokens.theme.colors.input.text,
@@ -78,7 +76,6 @@ export const selectTokens = {
         },
       },
       disabled: {
-        ...baseSelectStyle,
         colors: {
           triggerBg: tokens.theme.colors.input.disabledBg,
           triggerText: tokens.theme.colors.input.disabledText,
@@ -92,7 +89,6 @@ export const selectTokens = {
         disabledOpacity: tokens.theme.interactionState.disabled.opacity,
       },
       error: {
-        ...baseSelectStyle,
         colors: {
           triggerBg: tokens.theme.colors.input.bg,
           triggerText: tokens.theme.colors.input.text,
@@ -107,7 +103,6 @@ export const selectTokens = {
     },
     compact: {
       default: {
-        ...baseSelectStyle,
         trigger: {
           ...baseSelectStyle.trigger,
           minHeight: tokens.global.baseStyle.space.step8,
@@ -130,7 +125,6 @@ export const selectTokens = {
         },
       },
       open: {
-        ...baseSelectStyle,
         trigger: {
           ...baseSelectStyle.trigger,
           minHeight: tokens.global.baseStyle.space.step8,
@@ -153,7 +147,6 @@ export const selectTokens = {
         },
       },
       focusVisible: {
-        ...baseSelectStyle,
         trigger: {
           ...baseSelectStyle.trigger,
           minHeight: tokens.global.baseStyle.space.step8,
@@ -176,7 +169,6 @@ export const selectTokens = {
         },
       },
       disabled: {
-        ...baseSelectStyle,
         trigger: {
           ...baseSelectStyle.trigger,
           minHeight: tokens.global.baseStyle.space.step8,
@@ -200,7 +192,6 @@ export const selectTokens = {
         disabledOpacity: tokens.theme.interactionState.disabled.opacity,
       },
       error: {
-        ...baseSelectStyle,
         trigger: {
           ...baseSelectStyle.trigger,
           minHeight: tokens.global.baseStyle.space.step8,
@@ -227,5 +218,5 @@ export const selectTokens = {
 } as const;
 
 export type SelectTokensContract = typeof selectTokens;
-export type SelectVariant = keyof SelectTokensContract["styles"];
+export type SelectVariant = Exclude<keyof SelectTokensContract["styles"], "base">;
 export type SelectState = keyof SelectTokensContract["styles"]["default"];

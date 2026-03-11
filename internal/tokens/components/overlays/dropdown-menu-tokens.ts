@@ -37,9 +37,9 @@ const dropdownMenuBaseStyle = {
 
 export const dropdownMenuTokens = {
   styles: {
+    base: dropdownMenuBaseStyle,
     default: {
       closed: {
-        ...dropdownMenuBaseStyle,
         opacity: "0",
         scale: "0.98",
         colors: {
@@ -51,7 +51,6 @@ export const dropdownMenuTokens = {
         },
       },
       open: {
-        ...dropdownMenuBaseStyle,
         opacity: "1",
         scale: "1",
         colors: {
@@ -63,7 +62,6 @@ export const dropdownMenuTokens = {
         },
       },
       focusVisible: {
-        ...dropdownMenuBaseStyle,
         opacity: "1",
         scale: "1",
         colors: {
@@ -76,7 +74,6 @@ export const dropdownMenuTokens = {
         },
       },
       disabledItem: {
-        ...dropdownMenuBaseStyle,
         opacity: "1",
         scale: "1",
         colors: {
@@ -92,7 +89,6 @@ export const dropdownMenuTokens = {
     },
     dangerSection: {
       closed: {
-        ...dropdownMenuBaseStyle,
         opacity: "0",
         scale: "0.98",
         colors: {
@@ -106,7 +102,6 @@ export const dropdownMenuTokens = {
         },
       },
       open: {
-        ...dropdownMenuBaseStyle,
         opacity: "1",
         scale: "1",
         colors: {
@@ -120,7 +115,6 @@ export const dropdownMenuTokens = {
         },
       },
       focusVisible: {
-        ...dropdownMenuBaseStyle,
         opacity: "1",
         scale: "1",
         colors: {
@@ -135,7 +129,6 @@ export const dropdownMenuTokens = {
         },
       },
       disabledItem: {
-        ...dropdownMenuBaseStyle,
         opacity: "1",
         scale: "1",
         colors: {
@@ -155,5 +148,5 @@ export const dropdownMenuTokens = {
 } as const;
 
 export type DropdownMenuTokensContract = typeof dropdownMenuTokens;
-export type DropdownMenuVariant = keyof DropdownMenuTokensContract["styles"];
+export type DropdownMenuVariant = Exclude<keyof DropdownMenuTokensContract["styles"], "base">;
 export type DropdownMenuState = keyof DropdownMenuTokensContract["styles"]["default"];

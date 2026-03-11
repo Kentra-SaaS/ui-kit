@@ -20,9 +20,9 @@ const progressBaseStyle = {
 
 export const progressTokens = {
   styles: {
+    base: progressBaseStyle,
     determinate: {
       default: {
-        ...progressBaseStyle,
         colors: {
           track: tokens.theme.colors.background.elevated,
           indicator: tokens.theme.colors.action.primary.bg,
@@ -30,7 +30,6 @@ export const progressTokens = {
         },
       },
       paused: {
-        ...progressBaseStyle,
         pausedOpacity: tokens.theme.interactionState.disabled.opacity,
         colors: {
           track: tokens.theme.colors.background.elevated,
@@ -41,7 +40,6 @@ export const progressTokens = {
     },
     indeterminate: {
       default: {
-        ...progressBaseStyle,
         animation: {
           duration: tokens.global.baseStyle.motion.duration.slow,
           easing: tokens.global.baseStyle.motion.ease.standard,
@@ -53,7 +51,6 @@ export const progressTokens = {
         },
       },
       paused: {
-        ...progressBaseStyle,
         animation: {
           duration: tokens.global.baseStyle.motion.duration.slow,
           easing: tokens.global.baseStyle.motion.ease.standard,
@@ -71,5 +68,5 @@ export const progressTokens = {
 } as const;
 
 export type ProgressTokensContract = typeof progressTokens;
-export type ProgressVariant = keyof ProgressTokensContract["styles"];
+export type ProgressVariant = Exclude<keyof ProgressTokensContract["styles"], "base">;
 export type ProgressState = keyof ProgressTokensContract["styles"]["determinate"];

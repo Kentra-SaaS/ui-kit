@@ -29,9 +29,9 @@ const baseTextareaStyle = {
 
 export const textareaTokens = {
   styles: {
+    base: baseTextareaStyle,
     default: {
       default: {
-        ...baseTextareaStyle,
         resize: "vertical",
         colors: {
           bg: tokens.theme.colors.input.bg,
@@ -41,7 +41,6 @@ export const textareaTokens = {
         },
       },
       focusVisible: {
-        ...baseTextareaStyle,
         resize: "vertical",
         colors: {
           bg: tokens.theme.colors.input.bg,
@@ -51,7 +50,6 @@ export const textareaTokens = {
         },
       },
       disabled: {
-        ...baseTextareaStyle,
         resize: "none",
         colors: {
           bg: tokens.theme.colors.input.disabledBg,
@@ -62,7 +60,6 @@ export const textareaTokens = {
         disabledOpacity: tokens.theme.interactionState.disabled.opacity,
       },
       readonly: {
-        ...baseTextareaStyle,
         resize: "none",
         colors: {
           bg: tokens.theme.colors.background.elevated,
@@ -72,7 +69,6 @@ export const textareaTokens = {
         },
       },
       error: {
-        ...baseTextareaStyle,
         resize: "vertical",
         colors: {
           bg: tokens.theme.colors.input.bg,
@@ -84,7 +80,6 @@ export const textareaTokens = {
     },
     autoResize: {
       default: {
-        ...baseTextareaStyle,
         resize: "none",
         autoResize: true,
         colors: {
@@ -95,7 +90,6 @@ export const textareaTokens = {
         },
       },
       focusVisible: {
-        ...baseTextareaStyle,
         resize: "none",
         autoResize: true,
         colors: {
@@ -106,7 +100,6 @@ export const textareaTokens = {
         },
       },
       disabled: {
-        ...baseTextareaStyle,
         resize: "none",
         autoResize: true,
         colors: {
@@ -118,7 +111,6 @@ export const textareaTokens = {
         disabledOpacity: tokens.theme.interactionState.disabled.opacity,
       },
       readonly: {
-        ...baseTextareaStyle,
         resize: "none",
         autoResize: true,
         colors: {
@@ -129,7 +121,6 @@ export const textareaTokens = {
         },
       },
       error: {
-        ...baseTextareaStyle,
         resize: "none",
         autoResize: true,
         colors: {
@@ -144,5 +135,5 @@ export const textareaTokens = {
 } as const;
 
 export type TextareaTokensContract = typeof textareaTokens;
-export type TextareaVariant = keyof TextareaTokensContract["styles"];
+export type TextareaVariant = Exclude<keyof TextareaTokensContract["styles"], "base">;
 export type TextareaState = keyof TextareaTokensContract["styles"]["default"];

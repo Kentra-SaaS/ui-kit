@@ -29,9 +29,9 @@ const checkboxBaseStyle = {
 
 export const checkboxTokens = {
   styles: {
+    base: checkboxBaseStyle,
     default: {
       unchecked: {
-        ...checkboxBaseStyle,
         colors: {
           bg: tokens.theme.colors.input.bg,
           border: tokens.theme.colors.input.border,
@@ -40,7 +40,6 @@ export const checkboxTokens = {
         },
       },
       checked: {
-        ...checkboxBaseStyle,
         colors: {
           bg: tokens.theme.colors.action.primary.bg,
           border: tokens.theme.colors.action.primary.bg,
@@ -49,7 +48,6 @@ export const checkboxTokens = {
         },
       },
       indeterminate: {
-        ...checkboxBaseStyle,
         colors: {
           bg: tokens.theme.colors.action.primary.bg,
           border: tokens.theme.colors.action.primary.bg,
@@ -58,7 +56,6 @@ export const checkboxTokens = {
         },
       },
       focusVisible: {
-        ...checkboxBaseStyle,
         colors: {
           bg: tokens.theme.colors.input.bg,
           border: tokens.theme.interactionState.focus.ring,
@@ -67,7 +64,6 @@ export const checkboxTokens = {
         },
       },
       disabled: {
-        ...checkboxBaseStyle,
         colors: {
           bg: tokens.theme.interactionState.disabled.bg,
           border: tokens.theme.interactionState.disabled.border,
@@ -77,7 +73,6 @@ export const checkboxTokens = {
         disabledOpacity: tokens.theme.interactionState.disabled.opacity,
       },
       error: {
-        ...checkboxBaseStyle,
         colors: {
           bg: tokens.theme.colors.input.bg,
           border: tokens.theme.colors.state.danger.fg,
@@ -88,7 +83,6 @@ export const checkboxTokens = {
     },
     indeterminate: {
       unchecked: {
-        ...checkboxBaseStyle,
         colors: {
           bg: tokens.theme.colors.input.bg,
           border: tokens.theme.colors.input.border,
@@ -97,7 +91,6 @@ export const checkboxTokens = {
         },
       },
       checked: {
-        ...checkboxBaseStyle,
         colors: {
           bg: tokens.theme.colors.action.primary.bg,
           border: tokens.theme.colors.action.primary.bg,
@@ -106,7 +99,6 @@ export const checkboxTokens = {
         },
       },
       indeterminate: {
-        ...checkboxBaseStyle,
         colors: {
           bg: tokens.theme.colors.action.primary.bg,
           border: tokens.theme.colors.action.primary.bg,
@@ -115,7 +107,6 @@ export const checkboxTokens = {
         },
       },
       focusVisible: {
-        ...checkboxBaseStyle,
         colors: {
           bg: tokens.theme.colors.input.bg,
           border: tokens.theme.interactionState.focus.ring,
@@ -124,7 +115,6 @@ export const checkboxTokens = {
         },
       },
       disabled: {
-        ...checkboxBaseStyle,
         colors: {
           bg: tokens.theme.interactionState.disabled.bg,
           border: tokens.theme.interactionState.disabled.border,
@@ -134,7 +124,6 @@ export const checkboxTokens = {
         disabledOpacity: tokens.theme.interactionState.disabled.opacity,
       },
       error: {
-        ...checkboxBaseStyle,
         colors: {
           bg: tokens.theme.colors.input.bg,
           border: tokens.theme.colors.state.danger.fg,
@@ -147,5 +136,5 @@ export const checkboxTokens = {
 } as const;
 
 export type CheckboxTokensContract = typeof checkboxTokens;
-export type CheckboxVariant = keyof CheckboxTokensContract["styles"];
+export type CheckboxVariant = Exclude<keyof CheckboxTokensContract["styles"], "base">;
 export type CheckboxState = keyof CheckboxTokensContract["styles"]["default"];

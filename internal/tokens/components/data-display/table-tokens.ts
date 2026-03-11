@@ -32,9 +32,9 @@ const baseTableStyle = {
 
 export const tableTokens = {
   styles: {
+    base: baseTableStyle,
     default: {
       default: {
-        ...baseTableStyle,
         colors: {
           bg: tokens.theme.colors.background.surface,
           headerBg: tokens.theme.colors.background.elevated,
@@ -44,7 +44,6 @@ export const tableTokens = {
         },
       },
       hoverRow: {
-        ...baseTableStyle,
         colors: {
           bg: tokens.theme.colors.background.surface,
           headerBg: tokens.theme.colors.background.elevated,
@@ -55,7 +54,6 @@ export const tableTokens = {
         },
       },
       selectedRow: {
-        ...baseTableStyle,
         colors: {
           bg: tokens.theme.colors.background.surface,
           headerBg: tokens.theme.colors.background.elevated,
@@ -66,7 +64,6 @@ export const tableTokens = {
         },
       },
       empty: {
-        ...baseTableStyle,
         colors: {
           bg: tokens.theme.colors.background.surface,
           headerBg: tokens.theme.colors.background.elevated,
@@ -76,7 +73,6 @@ export const tableTokens = {
         },
       },
       loading: {
-        ...baseTableStyle,
         colors: {
           bg: tokens.theme.colors.background.surface,
           headerBg: tokens.theme.colors.background.elevated,
@@ -89,7 +85,6 @@ export const tableTokens = {
     },
     dense: {
       default: {
-        ...baseTableStyle,
         cell: {
           ...baseTableStyle.cell,
           paddingX: tokens.global.baseStyle.space.step2,
@@ -104,7 +99,6 @@ export const tableTokens = {
         },
       },
       hoverRow: {
-        ...baseTableStyle,
         cell: {
           ...baseTableStyle.cell,
           paddingX: tokens.global.baseStyle.space.step2,
@@ -120,7 +114,6 @@ export const tableTokens = {
         },
       },
       selectedRow: {
-        ...baseTableStyle,
         cell: {
           ...baseTableStyle.cell,
           paddingX: tokens.global.baseStyle.space.step2,
@@ -136,7 +129,6 @@ export const tableTokens = {
         },
       },
       empty: {
-        ...baseTableStyle,
         cell: {
           ...baseTableStyle.cell,
           paddingX: tokens.global.baseStyle.space.step2,
@@ -151,7 +143,6 @@ export const tableTokens = {
         },
       },
       loading: {
-        ...baseTableStyle,
         cell: {
           ...baseTableStyle.cell,
           paddingX: tokens.global.baseStyle.space.step2,
@@ -169,7 +160,6 @@ export const tableTokens = {
     },
     striped: {
       default: {
-        ...baseTableStyle,
         colors: {
           bg: tokens.theme.colors.background.surface,
           headerBg: tokens.theme.colors.background.elevated,
@@ -181,7 +171,6 @@ export const tableTokens = {
         },
       },
       hoverRow: {
-        ...baseTableStyle,
         colors: {
           bg: tokens.theme.colors.background.surface,
           headerBg: tokens.theme.colors.background.elevated,
@@ -194,7 +183,6 @@ export const tableTokens = {
         },
       },
       selectedRow: {
-        ...baseTableStyle,
         colors: {
           bg: tokens.theme.colors.background.surface,
           headerBg: tokens.theme.colors.background.elevated,
@@ -207,7 +195,6 @@ export const tableTokens = {
         },
       },
       empty: {
-        ...baseTableStyle,
         colors: {
           bg: tokens.theme.colors.background.surface,
           headerBg: tokens.theme.colors.background.elevated,
@@ -217,7 +204,6 @@ export const tableTokens = {
         },
       },
       loading: {
-        ...baseTableStyle,
         colors: {
           bg: tokens.theme.colors.background.surface,
           headerBg: tokens.theme.colors.background.elevated,
@@ -232,5 +218,5 @@ export const tableTokens = {
 } as const;
 
 export type TableTokensContract = typeof tableTokens;
-export type TableVariant = keyof TableTokensContract["styles"];
+export type TableVariant = Exclude<keyof TableTokensContract["styles"], "base">;
 export type TableState = keyof TableTokensContract["styles"]["default"];

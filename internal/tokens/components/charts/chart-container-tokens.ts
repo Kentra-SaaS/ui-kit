@@ -41,9 +41,9 @@ const chartContainerBaseStyle = {
 
 export const chartContainerTokens = {
   styles: {
+    base: chartContainerBaseStyle,
     default: {
       loading: {
-        ...chartContainerBaseStyle,
         colors: {
           bg: tokens.theme.colors.background.elevated,
           border: tokens.theme.colors.border.subtle,
@@ -54,7 +54,6 @@ export const chartContainerTokens = {
         },
       },
       ready: {
-        ...chartContainerBaseStyle,
         colors: {
           bg: tokens.theme.colors.background.elevated,
           border: tokens.theme.colors.border.subtle,
@@ -64,7 +63,6 @@ export const chartContainerTokens = {
         },
       },
       empty: {
-        ...chartContainerBaseStyle,
         colors: {
           bg: tokens.theme.colors.background.elevated,
           border: tokens.theme.colors.border.subtle,
@@ -75,7 +73,6 @@ export const chartContainerTokens = {
         },
       },
       error: {
-        ...chartContainerBaseStyle,
         colors: {
           bg: tokens.theme.colors.background.elevated,
           border: tokens.theme.colors.state.danger.fg,
@@ -88,7 +85,6 @@ export const chartContainerTokens = {
     },
     compact: {
       loading: {
-        ...chartContainerBaseStyle,
         spacing: {
           ...chartContainerBaseStyle.spacing,
           paddingX: tokens.global.baseStyle.space.step4,
@@ -109,7 +105,6 @@ export const chartContainerTokens = {
         },
       },
       ready: {
-        ...chartContainerBaseStyle,
         spacing: {
           ...chartContainerBaseStyle.spacing,
           paddingX: tokens.global.baseStyle.space.step4,
@@ -129,7 +124,6 @@ export const chartContainerTokens = {
         },
       },
       empty: {
-        ...chartContainerBaseStyle,
         spacing: {
           ...chartContainerBaseStyle.spacing,
           paddingX: tokens.global.baseStyle.space.step4,
@@ -150,7 +144,6 @@ export const chartContainerTokens = {
         },
       },
       error: {
-        ...chartContainerBaseStyle,
         spacing: {
           ...chartContainerBaseStyle.spacing,
           paddingX: tokens.global.baseStyle.space.step4,
@@ -175,5 +168,5 @@ export const chartContainerTokens = {
 } as const;
 
 export type ChartContainerTokensContract = typeof chartContainerTokens;
-export type ChartContainerVariant = keyof ChartContainerTokensContract["styles"];
+export type ChartContainerVariant = Exclude<keyof ChartContainerTokensContract["styles"], "base">;
 export type ChartContainerState = keyof ChartContainerTokensContract["styles"]["default"];

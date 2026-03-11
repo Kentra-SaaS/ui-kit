@@ -14,10 +14,11 @@ export const stackTokens = {
     stretch: "stretch",
   },
   styles: {
-    default: {
+    base: {
       display: "flex",
       direction: "column",
     },
+    default: {},
   },
 } as const;
 

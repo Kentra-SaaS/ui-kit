@@ -24,9 +24,10 @@ export const containerTokens = {
     },
   },
   styles: {
-    default: {
+    base: {
       background: tokens.theme.colors.background.surface,
     },
+    default: {},
   },
 } as const;
 

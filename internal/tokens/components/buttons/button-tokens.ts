@@ -92,13 +92,12 @@ export const buttonTokens = {
     },
   },
   styles: {
+    base: baseButtonStyle,
     primary: {
       default: {
-        ...baseButtonStyle,
         colors: primaryBaseColors,
       },
       hover: {
-        ...baseButtonStyle,
         colors: {
           bg: tokens.theme.colors.action.primary.bgHover,
           text: tokens.theme.colors.action.primary.text,
@@ -107,7 +106,6 @@ export const buttonTokens = {
         },
       },
       active: {
-        ...baseButtonStyle,
         colors: {
           bg: tokens.theme.colors.action.primary.bgActive,
           text: tokens.theme.colors.action.primary.text,
@@ -116,7 +114,6 @@ export const buttonTokens = {
         },
       },
       focusVisible: {
-        ...baseButtonStyle,
         colors: {
           bg: tokens.theme.colors.action.primary.bg,
           text: tokens.theme.colors.action.primary.text,
@@ -125,7 +122,6 @@ export const buttonTokens = {
         },
       },
       disabled: {
-        ...baseButtonStyle,
         colors: {
           bg: tokens.theme.colors.action.primary.disabledBg,
           text: tokens.theme.colors.action.primary.disabledText,
@@ -134,17 +130,14 @@ export const buttonTokens = {
         },
       },
       loading: {
-        ...baseButtonStyle,
         colors: primaryBaseColors,
       },
     },
     secondary: {
       default: {
-        ...baseButtonStyle,
         colors: secondaryBaseColors,
       },
       hover: {
-        ...baseButtonStyle,
         colors: {
           bg: tokens.theme.colors.action.secondary.bgHover,
           text: tokens.theme.colors.action.secondary.text,
@@ -153,7 +146,6 @@ export const buttonTokens = {
         },
       },
       active: {
-        ...baseButtonStyle,
         colors: {
           bg: tokens.theme.colors.action.secondary.bgActive,
           text: tokens.theme.colors.action.secondary.text,
@@ -162,7 +154,6 @@ export const buttonTokens = {
         },
       },
       focusVisible: {
-        ...baseButtonStyle,
         colors: {
           bg: tokens.theme.colors.action.secondary.bg,
           text: tokens.theme.colors.action.secondary.text,
@@ -171,7 +162,6 @@ export const buttonTokens = {
         },
       },
       disabled: {
-        ...baseButtonStyle,
         colors: {
           bg: tokens.theme.colors.action.secondary.disabledBg,
           text: tokens.theme.colors.action.secondary.disabledText,
@@ -180,17 +170,14 @@ export const buttonTokens = {
         },
       },
       loading: {
-        ...baseButtonStyle,
         colors: secondaryBaseColors,
       },
     },
     tertiary: {
       default: {
-        ...baseButtonStyle,
         colors: tertiaryBaseColors,
       },
       hover: {
-        ...baseButtonStyle,
         colors: {
           bg: tokens.theme.interactionState.hoverOverlay,
           text: tokens.theme.colors.link.hover,
@@ -199,7 +186,6 @@ export const buttonTokens = {
         },
       },
       active: {
-        ...baseButtonStyle,
         colors: {
           bg: tokens.theme.interactionState.activeOverlay,
           text: tokens.theme.colors.link.default,
@@ -208,7 +194,6 @@ export const buttonTokens = {
         },
       },
       focusVisible: {
-        ...baseButtonStyle,
         colors: {
           bg: tokens.theme.colors.background.surface,
           text: tokens.theme.colors.link.default,
@@ -217,7 +202,6 @@ export const buttonTokens = {
         },
       },
       disabled: {
-        ...baseButtonStyle,
         colors: {
           bg: tokens.theme.interactionState.disabled.bg,
           text: tokens.theme.interactionState.disabled.text,
@@ -226,17 +210,14 @@ export const buttonTokens = {
         },
       },
       loading: {
-        ...baseButtonStyle,
         colors: tertiaryBaseColors,
       },
     },
     danger: {
       default: {
-        ...baseButtonStyle,
         colors: dangerBaseColors,
       },
       hover: {
-        ...baseButtonStyle,
         colors: {
           bg: tokens.global.palette.danger.c500,
           text: tokens.global.palette.neutral.c0,
@@ -245,7 +226,6 @@ export const buttonTokens = {
         },
       },
       active: {
-        ...baseButtonStyle,
         colors: {
           bg: tokens.global.palette.danger.c700,
           text: tokens.global.palette.neutral.c0,
@@ -254,7 +234,6 @@ export const buttonTokens = {
         },
       },
       focusVisible: {
-        ...baseButtonStyle,
         colors: {
           bg: tokens.global.palette.danger.c700,
           text: tokens.global.palette.neutral.c0,
@@ -263,7 +242,6 @@ export const buttonTokens = {
         },
       },
       disabled: {
-        ...baseButtonStyle,
         colors: {
           bg: tokens.theme.interactionState.disabled.bg,
           text: tokens.theme.interactionState.disabled.text,
@@ -272,7 +250,6 @@ export const buttonTokens = {
         },
       },
       loading: {
-        ...baseButtonStyle,
         colors: dangerBaseColors,
       },
     },
@@ -281,5 +258,5 @@ export const buttonTokens = {
 
 export type ButtonTokensContract = typeof buttonTokens;
 export type ButtonSize = keyof ButtonTokensContract["size"];
-export type ButtonVariant = keyof ButtonTokensContract["styles"];
+export type ButtonVariant = Exclude<keyof ButtonTokensContract["styles"], "base">;
 export type ButtonState = keyof ButtonTokensContract["styles"]["primary"];

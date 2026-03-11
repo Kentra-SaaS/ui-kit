@@ -28,9 +28,9 @@ const baseRadioGroupStyle = {
 
 export const radioGroupTokens = {
   styles: {
+    base: baseRadioGroupStyle,
     vertical: {
       default: {
-        ...baseRadioGroupStyle,
         layout: {
           direction: "column",
           itemGap: tokens.global.baseStyle.space.step3,
@@ -44,7 +44,6 @@ export const radioGroupTokens = {
         },
       },
       focusVisible: {
-        ...baseRadioGroupStyle,
         layout: {
           direction: "column",
           itemGap: tokens.global.baseStyle.space.step3,
@@ -58,7 +57,6 @@ export const radioGroupTokens = {
         },
       },
       disabled: {
-        ...baseRadioGroupStyle,
         layout: {
           direction: "column",
           itemGap: tokens.global.baseStyle.space.step3,
@@ -73,7 +71,6 @@ export const radioGroupTokens = {
         disabledOpacity: tokens.theme.interactionState.disabled.opacity,
       },
       error: {
-        ...baseRadioGroupStyle,
         layout: {
           direction: "column",
           itemGap: tokens.global.baseStyle.space.step3,
@@ -89,7 +86,6 @@ export const radioGroupTokens = {
     },
     horizontal: {
       default: {
-        ...baseRadioGroupStyle,
         layout: {
           direction: "row",
           itemGap: tokens.global.baseStyle.space.step4,
@@ -103,7 +99,6 @@ export const radioGroupTokens = {
         },
       },
       focusVisible: {
-        ...baseRadioGroupStyle,
         layout: {
           direction: "row",
           itemGap: tokens.global.baseStyle.space.step4,
@@ -117,7 +112,6 @@ export const radioGroupTokens = {
         },
       },
       disabled: {
-        ...baseRadioGroupStyle,
         layout: {
           direction: "row",
           itemGap: tokens.global.baseStyle.space.step4,
@@ -132,7 +126,6 @@ export const radioGroupTokens = {
         disabledOpacity: tokens.theme.interactionState.disabled.opacity,
       },
       error: {
-        ...baseRadioGroupStyle,
         layout: {
           direction: "row",
           itemGap: tokens.global.baseStyle.space.step4,
@@ -150,5 +143,5 @@ export const radioGroupTokens = {
 } as const;
 
 export type RadioGroupTokensContract = typeof radioGroupTokens;
-export type RadioGroupVariant = keyof RadioGroupTokensContract["styles"];
+export type RadioGroupVariant = Exclude<keyof RadioGroupTokensContract["styles"], "base">;
 export type RadioGroupState = keyof RadioGroupTokensContract["styles"]["vertical"];

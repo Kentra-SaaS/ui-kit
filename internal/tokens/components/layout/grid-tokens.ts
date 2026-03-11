@@ -29,7 +29,7 @@ export const gridTokens = {
     },
   },
   styles: {
-    default: {
+    base: {
       display: "grid",
     },
   },

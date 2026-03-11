@@ -19,9 +19,9 @@ const breadcrumbsBaseStyle = {
 
 export const breadcrumbsTokens = {
   styles: {
+    base: breadcrumbsBaseStyle,
     default: {
       default: {
-        ...breadcrumbsBaseStyle,
         spacing: {
           itemGap: tokens.global.baseStyle.space.step2,
           separatorGap: tokens.global.baseStyle.space.step2,
@@ -34,7 +34,6 @@ export const breadcrumbsTokens = {
         },
       },
       focusVisible: {
-        ...breadcrumbsBaseStyle,
         spacing: {
           itemGap: tokens.global.baseStyle.space.step2,
           separatorGap: tokens.global.baseStyle.space.step2,
@@ -49,7 +48,6 @@ export const breadcrumbsTokens = {
     },
     compact: {
       default: {
-        ...breadcrumbsBaseStyle,
         spacing: {
           itemGap: tokens.global.baseStyle.space.step1,
           separatorGap: tokens.global.baseStyle.space.step1,
@@ -62,7 +60,6 @@ export const breadcrumbsTokens = {
         },
       },
       focusVisible: {
-        ...breadcrumbsBaseStyle,
         spacing: {
           itemGap: tokens.global.baseStyle.space.step1,
           separatorGap: tokens.global.baseStyle.space.step1,
@@ -79,5 +76,5 @@ export const breadcrumbsTokens = {
 } as const;
 
 export type BreadcrumbsTokensContract = typeof breadcrumbsTokens;
-export type BreadcrumbsVariant = keyof BreadcrumbsTokensContract["styles"];
+export type BreadcrumbsVariant = Exclude<keyof BreadcrumbsTokensContract["styles"], "base">;
 export type BreadcrumbsState = keyof BreadcrumbsTokensContract["styles"]["default"];

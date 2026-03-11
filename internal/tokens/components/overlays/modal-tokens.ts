@@ -44,9 +44,9 @@ const modalBaseStyle = {
 
 export const modalTokens = {
   styles: {
+    base: modalBaseStyle,
     sm: {
       closed: {
-        ...modalBaseStyle,
         panelWidth: "32rem",
         panelMaxHeight: "80dvh",
         opacity: "0",
@@ -59,7 +59,6 @@ export const modalTokens = {
         },
       },
       open: {
-        ...modalBaseStyle,
         panelWidth: "32rem",
         panelMaxHeight: "80dvh",
         opacity: "1",
@@ -72,7 +71,6 @@ export const modalTokens = {
         },
       },
       closing: {
-        ...modalBaseStyle,
         panelWidth: "32rem",
         panelMaxHeight: "80dvh",
         opacity: "0",
@@ -87,7 +85,6 @@ export const modalTokens = {
     },
     md: {
       closed: {
-        ...modalBaseStyle,
         panelWidth: "44rem",
         panelMaxHeight: "82dvh",
         opacity: "0",
@@ -100,7 +97,6 @@ export const modalTokens = {
         },
       },
       open: {
-        ...modalBaseStyle,
         panelWidth: "44rem",
         panelMaxHeight: "82dvh",
         opacity: "1",
@@ -113,7 +109,6 @@ export const modalTokens = {
         },
       },
       closing: {
-        ...modalBaseStyle,
         panelWidth: "44rem",
         panelMaxHeight: "82dvh",
         opacity: "0",
@@ -128,7 +123,6 @@ export const modalTokens = {
     },
     lg: {
       closed: {
-        ...modalBaseStyle,
         panelWidth: "60rem",
         panelMaxHeight: "86dvh",
         opacity: "0",
@@ -141,7 +135,6 @@ export const modalTokens = {
         },
       },
       open: {
-        ...modalBaseStyle,
         panelWidth: "60rem",
         panelMaxHeight: "86dvh",
         opacity: "1",
@@ -154,7 +147,6 @@ export const modalTokens = {
         },
       },
       closing: {
-        ...modalBaseStyle,
         panelWidth: "60rem",
         panelMaxHeight: "86dvh",
         opacity: "0",
@@ -169,7 +161,6 @@ export const modalTokens = {
     },
     fullscreen: {
       closed: {
-        ...modalBaseStyle,
         panelWidth: "100dvw",
         panelMaxHeight: "100dvh",
         panelRadius: tokens.global.baseStyle.radius.none,
@@ -183,7 +174,6 @@ export const modalTokens = {
         },
       },
       open: {
-        ...modalBaseStyle,
         panelWidth: "100dvw",
         panelMaxHeight: "100dvh",
         panelRadius: tokens.global.baseStyle.radius.none,
@@ -197,7 +187,6 @@ export const modalTokens = {
         },
       },
       closing: {
-        ...modalBaseStyle,
         panelWidth: "100dvw",
         panelMaxHeight: "100dvh",
         panelRadius: tokens.global.baseStyle.radius.none,
@@ -215,5 +204,5 @@ export const modalTokens = {
 } as const;
 
 export type ModalTokensContract = typeof modalTokens;
-export type ModalVariant = keyof ModalTokensContract["styles"];
+export type ModalVariant = Exclude<keyof ModalTokensContract["styles"], "base">;
 export type ModalState = keyof ModalTokensContract["styles"]["sm"];

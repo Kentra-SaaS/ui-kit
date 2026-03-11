@@ -19,7 +19,4 @@ export const gridStyleMap = createComponentStyleMapFromTokens({
   tokens: gridTokens,
   sizeSource: gridSizeSource,
   variantSource: gridTokens.variants,
-  sharedSource: {
-    display: gridTokens.styles.default.display,
-  },
 });

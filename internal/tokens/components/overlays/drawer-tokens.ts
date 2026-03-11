@@ -39,9 +39,9 @@ const drawerBaseStyle = {
 
 export const drawerTokens = {
   styles: {
+    base: drawerBaseStyle,
     left: {
       closed: {
-        ...drawerBaseStyle,
         panelWidth: "24rem",
         panelHeight: "100dvh",
         panelRadius: tokens.global.baseStyle.radius.none,
@@ -54,7 +54,6 @@ export const drawerTokens = {
         },
       },
       open: {
-        ...drawerBaseStyle,
         panelWidth: "24rem",
         panelHeight: "100dvh",
         panelRadius: tokens.global.baseStyle.radius.none,
@@ -67,7 +66,6 @@ export const drawerTokens = {
         },
       },
       closing: {
-        ...drawerBaseStyle,
         panelWidth: "24rem",
         panelHeight: "100dvh",
         panelRadius: tokens.global.baseStyle.radius.none,
@@ -82,7 +80,6 @@ export const drawerTokens = {
     },
     right: {
       closed: {
-        ...drawerBaseStyle,
         panelWidth: "24rem",
         panelHeight: "100dvh",
         panelRadius: tokens.global.baseStyle.radius.none,
@@ -95,7 +92,6 @@ export const drawerTokens = {
         },
       },
       open: {
-        ...drawerBaseStyle,
         panelWidth: "24rem",
         panelHeight: "100dvh",
         panelRadius: tokens.global.baseStyle.radius.none,
@@ -108,7 +104,6 @@ export const drawerTokens = {
         },
       },
       closing: {
-        ...drawerBaseStyle,
         panelWidth: "24rem",
         panelHeight: "100dvh",
         panelRadius: tokens.global.baseStyle.radius.none,
@@ -123,7 +118,6 @@ export const drawerTokens = {
     },
     bottom: {
       closed: {
-        ...drawerBaseStyle,
         panelWidth: "100dvw",
         panelHeight: "50dvh",
         panelRadius: tokens.global.baseStyle.radius.xl,
@@ -136,7 +130,6 @@ export const drawerTokens = {
         },
       },
       open: {
-        ...drawerBaseStyle,
         panelWidth: "100dvw",
         panelHeight: "50dvh",
         panelRadius: tokens.global.baseStyle.radius.xl,
@@ -149,7 +142,6 @@ export const drawerTokens = {
         },
       },
       closing: {
-        ...drawerBaseStyle,
         panelWidth: "100dvw",
         panelHeight: "50dvh",
         panelRadius: tokens.global.baseStyle.radius.xl,
@@ -166,5 +158,5 @@ export const drawerTokens = {
 } as const;
 
 export type DrawerTokensContract = typeof drawerTokens;
-export type DrawerVariant = keyof DrawerTokensContract["styles"];
+export type DrawerVariant = Exclude<keyof DrawerTokensContract["styles"], "base">;
 export type DrawerState = keyof DrawerTokensContract["styles"]["left"];

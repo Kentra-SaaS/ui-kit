@@ -23,6 +23,8 @@ export interface CreateComponentStyleMapFromTokensOptions {
   readonly aliasPrefix?: string;
   /** Optional explicit size source override. */
   readonly sizeSource?: TokenTree;
+  /** Optional explicit base source rendered on `.k-x`. */
+  readonly baseSource?: TokenTree;
   /** Optional explicit variant source override. */
   readonly variantSource?: TokenTree;
   /** Optional shared token source merged into all generated rules. */
@@ -35,7 +37,7 @@ export interface CreateComponentStyleMapFromTokensOptions {
   readonly stateSelectors?: Partial<Record<string, string>>;
 }
 
-const RESERVED_TOP_LEVEL_KEYS = new Set(["size", "styles", "variants"]);
+const RESERVED_TOP_LEVEL_KEYS = new Set(["size", "base", "styles", "variants"]);
 
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   typeof value === "object" && value !== null && !Array.isArray(value);
@@ -91,10 +93,29 @@ const inferSizeSource = (tokens: TokenTree): TokenTree | undefined => {
   return isRecord(sizeSource) ? sizeSource : undefined;
 };
 
+const inferBaseSource = (tokens: TokenTree): TokenTree | undefined => {
+  const explicitBaseSource = tokens.base;
+  if (isRecord(explicitBaseSource)) {
+    return explicitBaseSource;
+  }
+
+  const styleSource = tokens.styles;
+  if (!isRecord(styleSource)) {
+    return undefined;
+  }
+
+  const styleBaseSource = styleSource.base;
+  return isRecord(styleBaseSource) ? styleBaseSource : undefined;
+};
+
 const inferVariantSource = (tokens: TokenTree): TokenTree | undefined => {
   const styleSource = tokens.styles;
   if (isRecord(styleSource)) {
-    return styleSource;
+    const variants = Object.fromEntries(
+      Object.entries(styleSource).filter(([name]) => name !== "base"),
+    );
+
+    return Object.keys(variants).length > 0 ? variants : undefined;
   }
 
   const variantSource = tokens.variants;
@@ -135,6 +156,55 @@ const looksLikeStateMap = (source: Record<string, unknown>): boolean => {
   }
 
   return entries.length > 1;
+};
+
+const styleValueKey = (value: StyleValue): string =>
+  isTokenRef(value) ? `token:${value.var}` : `literal:${String(value)}`;
+
+const extractCommonVariantStateVars = (
+  variants: Record<string, Record<string, Vars>>,
+): Vars => {
+  const allStateVarMaps = Object.values(variants).flatMap((states) =>
+    Object.values(states),
+  );
+
+  if (allStateVarMaps.length === 0) {
+    return {} as Vars;
+  }
+
+  const [firstStateVars, ...otherStateVars] = allStateVarMaps;
+  const commonVars = { ...firstStateVars } as Record<string, StyleValue>;
+
+  for (const stateVars of otherStateVars) {
+    for (const [name, value] of Object.entries(commonVars)) {
+      const currentValue = stateVars[name as CssAlias];
+
+      if (currentValue === undefined || styleValueKey(currentValue) !== styleValueKey(value)) {
+        delete commonVars[name];
+      }
+    }
+  }
+
+  return commonVars as Vars;
+};
+
+const removeVarsFromVariants = (
+  variants: Record<string, Record<string, Vars>>,
+  varsToRemove: Vars,
+): void => {
+  if (Object.keys(varsToRemove).length === 0) {
+    return;
+  }
+
+  const namesToRemove = new Set(Object.keys(varsToRemove));
+
+  for (const states of Object.values(variants)) {
+    for (const stateVars of Object.values(states)) {
+      for (const varName of namesToRemove) {
+        delete (stateVars as Record<string, StyleValue>)[varName];
+      }
+    }
+  }
 };
 
 /**
@@ -226,6 +296,11 @@ export const createComponentStyleMapFromTokens = (
   options: CreateComponentStyleMapFromTokensOptions,
 ): ComponentStyleMap<string, string, string> => {
   const aliasPrefix = options.aliasPrefix ?? options.id;
+  const baseSource = options.baseSource ?? inferBaseSource(options.tokens);
+  const baseFromSource =
+    baseSource && Object.keys(baseSource).length > 0
+      ? flattenTokenVars(baseSource, aliasPrefix)
+      : undefined;
   const sharedSource = options.sharedSource ?? inferSharedSource(options.tokens);
   const sharedVars = flattenTokenVars(sharedSource, aliasPrefix);
 
@@ -234,13 +309,10 @@ export const createComponentStyleMapFromTokens = (
 
   if (sizeSource && Object.keys(sizeSource).length > 0) {
     for (const [size, sizeTokens] of Object.entries(sizeSource)) {
-      sizes[size] = {
-        ...sharedVars,
-        ...flattenTokenVars(sizeTokens, aliasPrefix),
-      };
+      sizes[size] = flattenTokenVars(sizeTokens, aliasPrefix);
     }
   } else {
-    sizes[options.defaultSize ?? "md"] = sharedVars;
+    sizes[options.defaultSize ?? "md"] = {} as Vars;
   }
 
   const variantSource = options.variantSource ?? inferVariantSource(options.tokens);
@@ -252,10 +324,7 @@ export const createComponentStyleMapFromTokens = (
         const states: Record<string, Vars> = {};
 
         for (const [state, stateTokens] of Object.entries(variantTokens)) {
-          states[state] = {
-            ...sharedVars,
-            ...flattenTokenVars(stateTokens, aliasPrefix),
-          };
+          states[state] = flattenTokenVars(stateTokens, aliasPrefix);
         }
 
         variants[variant] = states;
@@ -263,21 +332,28 @@ export const createComponentStyleMapFromTokens = (
       }
 
       variants[variant] = {
-        default: {
-          ...sharedVars,
-          ...flattenTokenVars(variantTokens, aliasPrefix),
-        },
+        default: flattenTokenVars(variantTokens, aliasPrefix),
       };
     }
   } else {
     variants[options.defaultVariant ?? "default"] = {
-      default: sharedVars,
+      default: {} as Vars,
     };
   }
+
+  const baseFromVariantStates = extractCommonVariantStateVars(variants);
+  removeVarsFromVariants(variants, baseFromVariantStates);
+
+  const baseVars = {
+    ...(sharedVars as Record<string, StyleValue>),
+    ...(baseFromVariantStates as Record<string, StyleValue>),
+    ...((baseFromSource ?? ({} as Vars)) as Record<string, StyleValue>),
+  } as Vars;
 
   return defineComponentStyleMap<string, string, string>({
     id: options.id,
     baseClass: options.baseClass,
+    base: Object.keys(baseVars).length > 0 ? baseVars : undefined,
     sizes,
     variants,
     stateSelectors: options.stateSelectors ?? defaultInteractiveStateSelectors,

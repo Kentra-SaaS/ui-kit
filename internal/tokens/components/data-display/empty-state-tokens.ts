@@ -28,9 +28,9 @@ const emptyStateBaseStyle = {
 
 export const emptyStateTokens = {
   styles: {
+    base: emptyStateBaseStyle,
     neutral: {
       default: {
-        ...emptyStateBaseStyle,
         colors: {
           bg: tokens.theme.colors.background.surface,
           border: tokens.theme.colors.border.subtle,
@@ -42,7 +42,6 @@ export const emptyStateTokens = {
     },
     noResults: {
       default: {
-        ...emptyStateBaseStyle,
         colors: {
           bg: tokens.theme.colors.background.surface,
           border: tokens.theme.colors.border.subtle,
@@ -54,7 +53,6 @@ export const emptyStateTokens = {
     },
     blocked: {
       default: {
-        ...emptyStateBaseStyle,
         colors: {
           bg: tokens.theme.colors.background.surface,
           border: tokens.theme.colors.state.warning.fg,
@@ -68,5 +66,5 @@ export const emptyStateTokens = {
 } as const;
 
 export type EmptyStateTokensContract = typeof emptyStateTokens;
-export type EmptyStateVariant = keyof EmptyStateTokensContract["styles"];
+export type EmptyStateVariant = Exclude<keyof EmptyStateTokensContract["styles"], "base">;
 export type EmptyStateState = keyof EmptyStateTokensContract["styles"]["neutral"];

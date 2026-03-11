@@ -37,9 +37,9 @@ const barSeriesPalette = {
 
 export const barChartTokens = {
   styles: {
+    base: barChartBaseStyle,
     vertical: {
       loading: {
-        ...barChartBaseStyle,
         orientation: "vertical",
         colors: {
           grid: tokens.theme.colors.border.subtle,
@@ -49,7 +49,6 @@ export const barChartTokens = {
         },
       },
       ready: {
-        ...barChartBaseStyle,
         orientation: "vertical",
         colors: {
           grid: tokens.theme.colors.border.subtle,
@@ -61,7 +60,6 @@ export const barChartTokens = {
         },
       },
       empty: {
-        ...barChartBaseStyle,
         orientation: "vertical",
         colors: {
           grid: tokens.theme.colors.border.subtle,
@@ -72,7 +70,6 @@ export const barChartTokens = {
         },
       },
       error: {
-        ...barChartBaseStyle,
         orientation: "vertical",
         colors: {
           grid: tokens.theme.colors.border.subtle,
@@ -85,7 +82,6 @@ export const barChartTokens = {
     },
     horizontal: {
       loading: {
-        ...barChartBaseStyle,
         orientation: "horizontal",
         colors: {
           grid: tokens.theme.colors.border.subtle,
@@ -95,7 +91,6 @@ export const barChartTokens = {
         },
       },
       ready: {
-        ...barChartBaseStyle,
         orientation: "horizontal",
         colors: {
           grid: tokens.theme.colors.border.subtle,
@@ -107,7 +102,6 @@ export const barChartTokens = {
         },
       },
       empty: {
-        ...barChartBaseStyle,
         orientation: "horizontal",
         colors: {
           grid: tokens.theme.colors.border.subtle,
@@ -118,7 +112,6 @@ export const barChartTokens = {
         },
       },
       error: {
-        ...barChartBaseStyle,
         orientation: "horizontal",
         colors: {
           grid: tokens.theme.colors.border.subtle,
@@ -131,7 +124,6 @@ export const barChartTokens = {
     },
     stacked: {
       loading: {
-        ...barChartBaseStyle,
         orientation: "vertical",
         stacked: true,
         colors: {
@@ -142,7 +134,6 @@ export const barChartTokens = {
         },
       },
       ready: {
-        ...barChartBaseStyle,
         orientation: "vertical",
         stacked: true,
         colors: {
@@ -155,7 +146,6 @@ export const barChartTokens = {
         },
       },
       empty: {
-        ...barChartBaseStyle,
         orientation: "vertical",
         stacked: true,
         colors: {
@@ -167,7 +157,6 @@ export const barChartTokens = {
         },
       },
       error: {
-        ...barChartBaseStyle,
         orientation: "vertical",
         stacked: true,
         colors: {
@@ -183,5 +172,5 @@ export const barChartTokens = {
 } as const;
 
 export type BarChartTokensContract = typeof barChartTokens;
-export type BarChartVariant = keyof BarChartTokensContract["styles"];
+export type BarChartVariant = Exclude<keyof BarChartTokensContract["styles"], "base">;
 export type BarChartState = keyof BarChartTokensContract["styles"]["vertical"];

@@ -63,13 +63,12 @@ export const iconButtonTokens = {
     },
   },
   styles: {
+    base: baseIconButtonStyle,
     primary: {
       default: {
-        ...baseIconButtonStyle,
         colors: primaryBaseColors,
       },
       hover: {
-        ...baseIconButtonStyle,
         colors: {
           bg: tokens.theme.colors.action.primary.bgHover,
           border: tokens.theme.colors.action.primary.bgHover,
@@ -77,7 +76,6 @@ export const iconButtonTokens = {
         },
       },
       focusVisible: {
-        ...baseIconButtonStyle,
         colors: {
           bg: tokens.theme.colors.action.primary.bg,
           border: tokens.theme.interactionState.focus.ring,
@@ -85,7 +83,6 @@ export const iconButtonTokens = {
         },
       },
       active: {
-        ...baseIconButtonStyle,
         colors: {
           bg: tokens.theme.colors.action.primary.bgActive,
           border: tokens.theme.colors.action.primary.bgActive,
@@ -93,7 +90,6 @@ export const iconButtonTokens = {
         },
       },
       disabled: {
-        ...baseIconButtonStyle,
         colors: {
           bg: tokens.theme.colors.action.primary.disabledBg,
           border: tokens.theme.colors.action.primary.disabledBg,
@@ -103,11 +99,9 @@ export const iconButtonTokens = {
     },
     secondary: {
       default: {
-        ...baseIconButtonStyle,
         colors: secondaryBaseColors,
       },
       hover: {
-        ...baseIconButtonStyle,
         colors: {
           bg: tokens.theme.colors.action.secondary.bgHover,
           border: tokens.theme.colors.action.secondary.border,
@@ -115,7 +109,6 @@ export const iconButtonTokens = {
         },
       },
       focusVisible: {
-        ...baseIconButtonStyle,
         colors: {
           bg: tokens.theme.colors.action.secondary.bg,
           border: tokens.theme.interactionState.focus.ring,
@@ -123,7 +116,6 @@ export const iconButtonTokens = {
         },
       },
       active: {
-        ...baseIconButtonStyle,
         colors: {
           bg: tokens.theme.colors.action.secondary.bgActive,
           border: tokens.theme.colors.action.secondary.border,
@@ -131,7 +123,6 @@ export const iconButtonTokens = {
         },
       },
       disabled: {
-        ...baseIconButtonStyle,
         colors: {
           bg: tokens.theme.colors.action.secondary.disabledBg,
           border: tokens.theme.colors.action.secondary.disabledBorder,
@@ -141,11 +132,9 @@ export const iconButtonTokens = {
     },
     danger: {
       default: {
-        ...baseIconButtonStyle,
         colors: dangerBaseColors,
       },
       hover: {
-        ...baseIconButtonStyle,
         colors: {
           bg: tokens.global.palette.danger.c500,
           border: tokens.global.palette.danger.c500,
@@ -153,7 +142,6 @@ export const iconButtonTokens = {
         },
       },
       focusVisible: {
-        ...baseIconButtonStyle,
         colors: {
           bg: tokens.global.palette.danger.c700,
           border: tokens.theme.interactionState.focus.ring,
@@ -161,7 +149,6 @@ export const iconButtonTokens = {
         },
       },
       active: {
-        ...baseIconButtonStyle,
         colors: {
           bg: tokens.global.palette.danger.c700,
           border: tokens.global.palette.danger.c700,
@@ -169,7 +156,6 @@ export const iconButtonTokens = {
         },
       },
       disabled: {
-        ...baseIconButtonStyle,
         colors: {
           bg: tokens.theme.interactionState.disabled.bg,
           border: tokens.theme.interactionState.disabled.border,
@@ -179,11 +165,9 @@ export const iconButtonTokens = {
     },
     tertiary: {
       default: {
-        ...baseIconButtonStyle,
         colors: tertiaryBaseColors,
       },
       hover: {
-        ...baseIconButtonStyle,
         colors: {
           bg: tokens.theme.interactionState.hoverOverlay,
           border: tokens.theme.colors.border.default,
@@ -191,7 +175,6 @@ export const iconButtonTokens = {
         },
       },
       focusVisible: {
-        ...baseIconButtonStyle,
         colors: {
           bg: tokens.theme.colors.background.surface,
           border: tokens.theme.interactionState.focus.ring,
@@ -199,7 +182,6 @@ export const iconButtonTokens = {
         },
       },
       active: {
-        ...baseIconButtonStyle,
         colors: {
           bg: tokens.theme.interactionState.activeOverlay,
           border: tokens.theme.colors.border.default,
@@ -207,7 +189,6 @@ export const iconButtonTokens = {
         },
       },
       disabled: {
-        ...baseIconButtonStyle,
         colors: {
           bg: tokens.theme.interactionState.disabled.bg,
           border: tokens.theme.interactionState.disabled.border,
@@ -220,5 +201,5 @@ export const iconButtonTokens = {
 
 export type IconButtonTokensContract = typeof iconButtonTokens;
 export type IconButtonSize = keyof IconButtonTokensContract["size"];
-export type IconButtonVariant = keyof IconButtonTokensContract["styles"];
+export type IconButtonVariant = Exclude<keyof IconButtonTokensContract["styles"], "base">;
 export type IconButtonState = keyof IconButtonTokensContract["styles"]["primary"];

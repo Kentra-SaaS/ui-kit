@@ -40,9 +40,9 @@ const baseKpiCardStyle = {
 
 export const kpiCardTokens = {
   styles: {
+    base: baseKpiCardStyle,
     default: {
       default: {
-        ...baseKpiCardStyle,
         size: {
           minHeight: tokens.global.baseStyle.space.step16,
           paddingX: tokens.global.baseStyle.space.step5,
@@ -57,7 +57,6 @@ export const kpiCardTokens = {
         },
       },
       loading: {
-        ...baseKpiCardStyle,
         size: {
           minHeight: tokens.global.baseStyle.space.step16,
           paddingX: tokens.global.baseStyle.space.step5,
@@ -73,7 +72,6 @@ export const kpiCardTokens = {
         },
       },
       empty: {
-        ...baseKpiCardStyle,
         size: {
           minHeight: tokens.global.baseStyle.space.step16,
           paddingX: tokens.global.baseStyle.space.step5,
@@ -90,7 +88,6 @@ export const kpiCardTokens = {
     },
     compact: {
       default: {
-        ...baseKpiCardStyle,
         size: {
           minHeight: tokens.global.baseStyle.space.step12,
           paddingX: tokens.global.baseStyle.space.step4,
@@ -113,7 +110,6 @@ export const kpiCardTokens = {
         },
       },
       loading: {
-        ...baseKpiCardStyle,
         size: {
           minHeight: tokens.global.baseStyle.space.step12,
           paddingX: tokens.global.baseStyle.space.step4,
@@ -137,7 +133,6 @@ export const kpiCardTokens = {
         },
       },
       empty: {
-        ...baseKpiCardStyle,
         size: {
           minHeight: tokens.global.baseStyle.space.step12,
           paddingX: tokens.global.baseStyle.space.step4,
@@ -162,7 +157,6 @@ export const kpiCardTokens = {
     },
     withTrend: {
       default: {
-        ...baseKpiCardStyle,
         size: {
           minHeight: tokens.global.baseStyle.space.step16,
           paddingX: tokens.global.baseStyle.space.step5,
@@ -182,7 +176,6 @@ export const kpiCardTokens = {
         },
       },
       loading: {
-        ...baseKpiCardStyle,
         size: {
           minHeight: tokens.global.baseStyle.space.step16,
           paddingX: tokens.global.baseStyle.space.step5,
@@ -203,7 +196,6 @@ export const kpiCardTokens = {
         },
       },
       empty: {
-        ...baseKpiCardStyle,
         size: {
           minHeight: tokens.global.baseStyle.space.step16,
           paddingX: tokens.global.baseStyle.space.step5,
@@ -227,5 +219,5 @@ export const kpiCardTokens = {
 } as const;
 
 export type KpiCardTokensContract = typeof kpiCardTokens;
-export type KpiCardVariant = keyof KpiCardTokensContract["styles"];
+export type KpiCardVariant = Exclude<keyof KpiCardTokensContract["styles"], "base">;
 export type KpiCardState = keyof KpiCardTokensContract["styles"]["default"];

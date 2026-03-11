@@ -22,9 +22,9 @@ const baseFieldStyle = {
 
 export const fieldTokens = {
   styles: {
+    base: baseFieldStyle,
     default: {
       default: {
-        ...baseFieldStyle,
         colors: {
           label: tokens.theme.colors.text.primary,
           hint: tokens.theme.colors.text.secondary,
@@ -33,7 +33,6 @@ export const fieldTokens = {
         },
       },
       required: {
-        ...baseFieldStyle,
         colors: {
           label: tokens.theme.colors.text.primary,
           hint: tokens.theme.colors.text.secondary,
@@ -42,7 +41,6 @@ export const fieldTokens = {
         },
       },
       error: {
-        ...baseFieldStyle,
         colors: {
           label: tokens.theme.colors.text.primary,
           hint: tokens.theme.colors.state.danger.fg,
@@ -51,7 +49,6 @@ export const fieldTokens = {
         },
       },
       disabled: {
-        ...baseFieldStyle,
         colors: {
           label: tokens.theme.interactionState.disabled.text,
           hint: tokens.theme.interactionState.disabled.text,
@@ -62,7 +59,6 @@ export const fieldTokens = {
     },
     inlineLabel: {
       default: {
-        ...baseFieldStyle,
         layout: {
           labelMinWidth: "11rem",
           align: "center",
@@ -76,7 +72,6 @@ export const fieldTokens = {
         },
       },
       required: {
-        ...baseFieldStyle,
         layout: {
           labelMinWidth: "11rem",
           align: "center",
@@ -90,7 +85,6 @@ export const fieldTokens = {
         },
       },
       error: {
-        ...baseFieldStyle,
         layout: {
           labelMinWidth: "11rem",
           align: "center",
@@ -104,7 +98,6 @@ export const fieldTokens = {
         },
       },
       disabled: {
-        ...baseFieldStyle,
         layout: {
           labelMinWidth: "11rem",
           align: "center",
@@ -122,5 +115,5 @@ export const fieldTokens = {
 } as const;
 
 export type FieldTokensContract = typeof fieldTokens;
-export type FieldVariant = keyof FieldTokensContract["styles"];
+export type FieldVariant = Exclude<keyof FieldTokensContract["styles"], "base">;
 export type FieldState = keyof FieldTokensContract["styles"]["default"];

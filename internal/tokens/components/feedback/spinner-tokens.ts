@@ -17,9 +17,9 @@ const spinnerBaseStyle = {
 
 export const spinnerTokens = {
   styles: {
+    base: spinnerBaseStyle,
     sm: {
       default: {
-        ...spinnerBaseStyle,
         size: tokens.global.icon.size.sm,
         colors: {
           indicator: tokens.theme.colors.action.primary.bg,
@@ -30,7 +30,6 @@ export const spinnerTokens = {
     },
     md: {
       default: {
-        ...spinnerBaseStyle,
         size: tokens.global.icon.size.md,
         colors: {
           indicator: tokens.theme.colors.action.primary.bg,
@@ -41,7 +40,6 @@ export const spinnerTokens = {
     },
     lg: {
       default: {
-        ...spinnerBaseStyle,
         size: tokens.global.icon.size.lg,
         colors: {
           indicator: tokens.theme.colors.action.primary.bg,
@@ -54,5 +52,5 @@ export const spinnerTokens = {
 } as const;
 
 export type SpinnerTokensContract = typeof spinnerTokens;
-export type SpinnerVariant = keyof SpinnerTokensContract["styles"];
+export type SpinnerVariant = Exclude<keyof SpinnerTokensContract["styles"], "base">;
 export type SpinnerState = keyof SpinnerTokensContract["styles"]["sm"];

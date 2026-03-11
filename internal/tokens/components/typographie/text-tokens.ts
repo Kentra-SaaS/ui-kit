@@ -7,8 +7,8 @@ const bodyTextBase = {
 
 export const textTokens = {
   styles: {
+    base: bodyTextBase,
     body: {
-      ...bodyTextBase,
       fontSize: tokens.global.typography.semantic.body.md.fontSize,
       lineHeight: tokens.global.typography.semantic.body.md.lineHeight,
       color: tokens.theme.colors.text.primary,
@@ -21,7 +21,6 @@ export const textTokens = {
       color: tokens.theme.colors.text.secondary,
     },
     muted: {
-      ...bodyTextBase,
       fontSize: tokens.global.typography.semantic.body.md.fontSize,
       lineHeight: tokens.global.typography.semantic.body.md.lineHeight,
       color: tokens.theme.colors.text.secondary,
@@ -37,4 +36,4 @@ export const textTokens = {
 } as const;
 
 export type TextTokensContract = typeof textTokens;
-export type TextVariant = keyof TextTokensContract["styles"];
+export type TextVariant = Exclude<keyof TextTokensContract["styles"], "base">;

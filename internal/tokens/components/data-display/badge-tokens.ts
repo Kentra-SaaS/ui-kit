@@ -31,9 +31,9 @@ const baseBadgeStyle = {
 
 export const badgeTokens = {
   styles: {
+    base: baseBadgeStyle,
     neutral: {
       default: {
-        ...baseBadgeStyle,
         colors: {
           bg: tokens.theme.colors.background.elevated,
           text: tokens.theme.colors.text.primary,
@@ -44,7 +44,6 @@ export const badgeTokens = {
     },
     info: {
       default: {
-        ...baseBadgeStyle,
         colors: {
           bg: tokens.theme.colors.state.info.bg,
           text: tokens.theme.colors.state.info.fg,
@@ -55,7 +54,6 @@ export const badgeTokens = {
     },
     success: {
       default: {
-        ...baseBadgeStyle,
         colors: {
           bg: tokens.theme.colors.state.success.bg,
           text: tokens.theme.colors.state.success.fg,
@@ -66,7 +64,6 @@ export const badgeTokens = {
     },
     warning: {
       default: {
-        ...baseBadgeStyle,
         colors: {
           bg: tokens.theme.colors.state.warning.bg,
           text: tokens.theme.colors.state.warning.fg,
@@ -77,7 +74,6 @@ export const badgeTokens = {
     },
     danger: {
       default: {
-        ...baseBadgeStyle,
         colors: {
           bg: tokens.theme.colors.state.danger.bg,
           text: tokens.theme.colors.state.danger.fg,
@@ -90,6 +86,6 @@ export const badgeTokens = {
 } as const;
 
 export type BadgeTokensContract = typeof badgeTokens;
-export type BadgeVariant = keyof BadgeTokensContract["styles"];
+export type BadgeVariant = Exclude<keyof BadgeTokensContract["styles"], "base">;
 export type BadgeState = keyof BadgeTokensContract["styles"]["neutral"];
-export type BadgeSize = keyof BadgeTokensContract["styles"]["neutral"]["default"]["size"];
+export type BadgeSize = keyof BadgeTokensContract["styles"]["base"]["size"];

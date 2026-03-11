@@ -34,7 +34,13 @@ export const applySelectorPattern = (baseSelector: string, pattern: string): str
 export const resolveStatePattern = (
   styleMap: ComponentStyleMap,
   state: string,
-): string => styleMap.stateSelectors?.[state] ?? `&.is-${toKebabCase(state)}`;
+): string => {
+  if (state === "default") {
+    return "&";
+  }
+
+  return styleMap.stateSelectors?.[state] ?? `&.is-${toKebabCase(state)}`;
+};
 
 /** Renders one CSS rule block from a selector and alias variable declarations. */
 export const renderRule = (selector: string, vars: Vars): string => {

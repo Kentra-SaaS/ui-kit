@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import {  componentStyleMaps, defineComponentStyleMap, generateComponentCss } from "../internal/style-maps";
+import { componentStyleMaps, defineComponentStyleMap, generateComponentCss } from "../internal/style-maps";
 import { buttonTokens } from "../internal/tokens/components";
 
 describe("style-map generator", () => {
@@ -16,8 +16,8 @@ describe("style-map generator", () => {
   it("resolves token refs to css var expressions", () => {
     const css = generateComponentCss(componentStyleMaps);
 
-    expect(css).toContain(`--k-btn-bg: ${buttonTokens.styles.primary.default.colors.bg.var};`);
-    expect(css).toContain(`--k-btn-text: ${buttonTokens.styles.primary.default.colors.text.var};`);
+    expect(css).toContain(`--k-btn-colors-bg: ${buttonTokens.styles.primary.default.colors.bg.var};`);
+    expect(css).toContain(`--k-btn-colors-text: ${buttonTokens.styles.primary.default.colors.text.var};`);
   });
 
   it("serializes literal values", () => {

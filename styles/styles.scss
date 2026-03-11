@@ -5,6 +5,7 @@
 @use "tokens/background";
 @use "tokens/icon-set";
 @use "tokens/typography";
+@use "generated/components.generated";
 
 @include base.declare-base-style-tokens();
 @include typography.declare-manrope-font-faces();

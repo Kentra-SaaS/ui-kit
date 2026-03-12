@@ -1,3 +1,4 @@
+import type { InputSignal } from "@angular/core";
 import type {
   KpiCardVariant,
   KpiCardState,
@@ -9,14 +10,17 @@ import type {
   KentraContentChildSlots,
 } from "../../../core/contracts";
 
-interface KentraKpiCardInputs extends KentraVariantInput<KpiCardVariant>, KentraStateInput<KpiCardState> {}
+interface KentraKpiCardInputs extends KentraVariantInput<KpiCardVariant>, KentraStateInput<KpiCardState> {
+  readonly meta: InputSignal<string | number | null>;
+  readonly trend: InputSignal<string | number | null>;
+}
 
 interface KentraKpiCardOutputs extends KentraClickOutput {}
 
+interface KentraKpiCardActionsSlot {}
+
 interface KentraKpiCardSlots extends KentraContentChildSlots<{
-  meta: unknown;
-  trend: unknown;
-  actions: unknown;
+  actions: KentraKpiCardActionsSlot;
 }> {}
 
 export interface KentraKpiCardContract extends KentraKpiCardInputs, KentraKpiCardOutputs, KentraKpiCardSlots {}

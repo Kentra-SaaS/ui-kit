@@ -1,3 +1,4 @@
+import type { InputSignal } from "@angular/core";
 import type {
   BreadcrumbsVariant,
   BreadcrumbsState,
@@ -10,12 +11,16 @@ import type {
   KentraContentChildrenSlots,
 } from "../../../core/contracts";
 
-interface KentraBreadcrumbsInputs extends KentraVariantInput<BreadcrumbsVariant>, KentraStateInput<BreadcrumbsState> {}
+interface KentraBreadcrumbsInputs extends KentraVariantInput<BreadcrumbsVariant>, KentraStateInput<BreadcrumbsState> {
+  readonly activeItemId: InputSignal<string | null>;
+}
 
 interface KentraBreadcrumbsOutputs extends KentraClickOutput, KentraSelectionChangedOutput<string> {}
 
+interface KentraBreadcrumbsItemsSlot {}
+
 interface KentraBreadcrumbsSlots extends KentraContentChildrenSlots<{
-  items: unknown;
+  items: KentraBreadcrumbsItemsSlot;
 }> {}
 
 export interface KentraBreadcrumbsContract extends KentraBreadcrumbsInputs, KentraBreadcrumbsOutputs, KentraBreadcrumbsSlots {}

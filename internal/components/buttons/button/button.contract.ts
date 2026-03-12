@@ -1,3 +1,4 @@
+import type { InputSignal } from "@angular/core";
 import type {
   ButtonVariant,
   ButtonSize,
@@ -8,15 +9,14 @@ import type {
   KentraSizeInput,
   KentraStateInput,
   KentraVariantInput,
-  KentraContentChildSlots,
 } from "../../../core/contracts";
 
-interface KentraButtonInputs extends KentraVariantInput<ButtonVariant>, KentraSizeInput<ButtonSize>, KentraStateInput<ButtonState> {}
+interface KentraButtonInputs extends KentraVariantInput<ButtonVariant>, KentraSizeInput<ButtonSize>, KentraStateInput<ButtonState> {
+  readonly startIcon: InputSignal<string | null>;
+  readonly endIcon: InputSignal<string | null>;
+}
 interface KentraButtonOutputs extends KentraClickOutput {}
 
-interface KentraButtonSlots extends KentraContentChildSlots<{
-  leadingIcon: unknown;
-  trailingIcon: unknown;
-}> {}
+interface KentraButtonSlots {}
 
 export interface KentraButtonContract extends KentraButtonInputs, KentraButtonOutputs, KentraButtonSlots {}

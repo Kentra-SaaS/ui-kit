@@ -1,3 +1,4 @@
+import type { InputSignal } from "@angular/core";
 import type {
   TextInputVariant,
   TextInputState,
@@ -8,16 +9,16 @@ import type {
   KentraStateInput,
   KentraValueChangedOutput,
   KentraVariantInput,
-  KentraContentChildSlots,
 } from "../../../core/contracts";
 
-interface KentraTextInputInputs extends KentraVariantInput<TextInputVariant>, KentraStateInput<TextInputState> {}
+interface KentraTextInputInputs extends KentraVariantInput<TextInputVariant>, KentraStateInput<TextInputState> {
+  readonly prefix: InputSignal<string | null>;
+  readonly suffix: InputSignal<string | null>;
+  readonly value: InputSignal<string>;
+}
 
 interface KentraTextInputOutputs extends KentraValueChangedOutput<string>, KentraFocusOutput, KentraBlurOutput {}
 
-interface KentraTextInputSlots extends KentraContentChildSlots<{
-  prefix: unknown;
-  suffix: unknown;
-}> {}
+interface KentraTextInputSlots {}
 
 export interface KentraTextInputContract extends KentraTextInputInputs, KentraTextInputOutputs, KentraTextInputSlots {}

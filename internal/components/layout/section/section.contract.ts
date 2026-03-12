@@ -1,3 +1,4 @@
+import type { InputSignal } from "@angular/core";
 import type {
   SectionVariant,
 } from "./section.tokens";
@@ -6,13 +7,16 @@ import type {
   KentraContentChildSlots,
 } from "../../../core/contracts";
 
-interface KentraSectionInputs extends KentraVariantInput<SectionVariant> {}
+interface KentraSectionInputs extends KentraVariantInput<SectionVariant> {
+  readonly header: InputSignal<string | null>;
+}
 
 interface KentraSectionOutputs {}
 
+interface KentraSectionActionsSlot {}
+
 interface KentraSectionSlots extends KentraContentChildSlots<{
-  header: unknown;
-  actions: unknown;
+  actions: KentraSectionActionsSlot;
 }> {}
 
 export interface KentraSectionContract extends KentraSectionInputs, KentraSectionOutputs, KentraSectionSlots {}

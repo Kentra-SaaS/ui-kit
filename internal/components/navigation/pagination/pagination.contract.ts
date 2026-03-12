@@ -1,3 +1,4 @@
+import type { InputSignal } from "@angular/core";
 import type {
   PaginationVariant,
   PaginationState,
@@ -8,7 +9,9 @@ import type {
   KentraVariantInput,
 } from "../../../core/contracts";
 
-interface KentraPaginationInputs extends KentraVariantInput<PaginationVariant>, KentraStateInput<PaginationState> {}
+interface KentraPaginationInputs extends KentraVariantInput<PaginationVariant>, KentraStateInput<PaginationState> {
+  readonly page: InputSignal<number>;
+}
 
 interface KentraPaginationOutputs extends KentraValueChangedOutput<number> {}
 

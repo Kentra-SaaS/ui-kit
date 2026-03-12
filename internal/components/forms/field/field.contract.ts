@@ -1,3 +1,4 @@
+import type { InputSignal } from "@angular/core";
 import type {
   FieldVariant,
   FieldState,
@@ -5,19 +6,18 @@ import type {
 import type {
   KentraStateInput,
   KentraVariantInput,
-  KentraContentChildSlots,
 } from "../../../core/contracts";
 
-interface KentraFieldInputs extends KentraVariantInput<FieldVariant>, KentraStateInput<FieldState> {}
+interface KentraFieldInputs extends KentraVariantInput<FieldVariant>, KentraStateInput<FieldState> {
+  readonly label: InputSignal<string | null>;
+  readonly hint: InputSignal<string | null>;
+  readonly errorText: InputSignal<string | null>;
+  readonly prefix: InputSignal<string | null>;
+  readonly suffix: InputSignal<string | null>;
+}
 
 interface KentraFieldOutputs {}
 
-interface KentraFieldSlots extends KentraContentChildSlots<{
-  label: unknown;
-  hint: unknown;
-  error: unknown;
-  prefix: unknown;
-  suffix: unknown;
-}> {}
+interface KentraFieldSlots {}
 
 export interface KentraFieldContract extends KentraFieldInputs, KentraFieldOutputs, KentraFieldSlots {}

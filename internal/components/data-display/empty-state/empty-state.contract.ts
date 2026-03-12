@@ -1,3 +1,4 @@
+import type { InputSignal } from "@angular/core";
 import type {
   EmptyStateVariant,
   EmptyStateState,
@@ -9,15 +10,18 @@ import type {
   KentraContentChildSlots,
 } from "../../../core/contracts";
 
-interface KentraEmptyStateInputs extends KentraVariantInput<EmptyStateVariant>, KentraStateInput<EmptyStateState> {}
+interface KentraEmptyStateInputs extends KentraVariantInput<EmptyStateVariant>, KentraStateInput<EmptyStateState> {
+  readonly icon: InputSignal<string | null>;
+  readonly title: InputSignal<string | null>;
+  readonly description: InputSignal<string | null>;
+}
 
 interface KentraEmptyStateOutputs extends KentraClickOutput {}
 
+interface KentraEmptyStateActionsSlot {}
+
 interface KentraEmptyStateSlots extends KentraContentChildSlots<{
-  icon: unknown;
-  title: unknown;
-  description: unknown;
-  actions: unknown;
+  actions: KentraEmptyStateActionsSlot;
 }> {}
 
 export interface KentraEmptyStateContract extends KentraEmptyStateInputs, KentraEmptyStateOutputs, KentraEmptyStateSlots {}

@@ -1,3 +1,4 @@
+import type { InputSignal } from "@angular/core";
 import type {
   LineChartVariant,
   LineChartState,
@@ -8,7 +9,9 @@ import type {
   KentraVariantInput,
 } from "../../../core/contracts";
 
-interface KentraLineChartInputs extends KentraVariantInput<LineChartVariant>, KentraStateInput<LineChartState> {}
+interface KentraLineChartInputs extends KentraVariantInput<LineChartVariant>, KentraStateInput<LineChartState> {
+  readonly selectedPointId: InputSignal<string | null>;
+}
 
 interface KentraLineChartOutputs extends KentraSelectionChangedOutput<string> {}
 

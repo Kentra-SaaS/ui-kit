@@ -14,9 +14,12 @@ interface KentraTooltipInputs extends KentraVariantInput<TooltipVariant>, Kentra
 
 interface KentraTooltipOutputs extends KentraOpenedOutput, KentraClosedOutput<void> {}
 
+interface KentraTooltipTriggerSlot {}
+interface KentraTooltipContentSlot {}
+
 interface KentraTooltipSlots extends KentraContentChildSlots<{
-  trigger: unknown;
-  content: unknown;
+  trigger: KentraTooltipTriggerSlot;
+  content: KentraTooltipContentSlot;
 }> {}
 
 export interface KentraTooltipContract extends KentraTooltipInputs, KentraTooltipOutputs, KentraTooltipSlots {}

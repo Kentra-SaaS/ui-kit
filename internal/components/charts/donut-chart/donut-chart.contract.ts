@@ -1,3 +1,4 @@
+import type { InputSignal } from "@angular/core";
 import type {
   DonutChartVariant,
   DonutChartState,
@@ -8,7 +9,9 @@ import type {
   KentraVariantInput,
 } from "../../../core/contracts";
 
-interface KentraDonutChartInputs extends KentraVariantInput<DonutChartVariant>, KentraStateInput<DonutChartState> {}
+interface KentraDonutChartInputs extends KentraVariantInput<DonutChartVariant>, KentraStateInput<DonutChartState> {
+  readonly selectedSliceId: InputSignal<string | null>;
+}
 
 interface KentraDonutChartOutputs extends KentraSelectionChangedOutput<string> {}
 

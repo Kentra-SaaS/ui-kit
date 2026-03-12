@@ -1,3 +1,4 @@
+import type { InputSignal } from "@angular/core";
 import type {
   DropdownMenuVariant,
   DropdownMenuState,
@@ -11,13 +12,18 @@ import type {
   KentraContentChildrenSlots,
 } from "../../../core/contracts";
 
-interface KentraDropdownMenuInputs extends KentraVariantInput<DropdownMenuVariant>, KentraStateInput<DropdownMenuState> {}
+interface KentraDropdownMenuInputs extends KentraVariantInput<DropdownMenuVariant>, KentraStateInput<DropdownMenuState> {
+  readonly activeItemId: InputSignal<string | null>;
+}
 
 interface KentraDropdownMenuOutputs extends KentraOpenedOutput, KentraClosedOutput<void>, KentraSelectionChangedOutput<string> {}
 
+interface KentraDropdownMenuGroupsSlot {}
+interface KentraDropdownMenuItemsSlot {}
+
 interface KentraDropdownMenuSlots extends KentraContentChildrenSlots<{
-  groups: unknown;
-  items: unknown;
+  groups: KentraDropdownMenuGroupsSlot;
+  items: KentraDropdownMenuItemsSlot;
 }> {}
 
 export interface KentraDropdownMenuContract extends KentraDropdownMenuInputs, KentraDropdownMenuOutputs, KentraDropdownMenuSlots {}

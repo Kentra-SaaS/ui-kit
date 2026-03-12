@@ -14,10 +14,14 @@ interface KentraDrawerInputs extends KentraVariantInput<DrawerVariant>, KentraSt
 
 interface KentraDrawerOutputs extends KentraOpenedOutput, KentraClosedOutput<void> {}
 
+interface KentraDrawerHeaderSlot {}
+interface KentraDrawerBodySlot {}
+interface KentraDrawerFooterSlot {}
+
 interface KentraDrawerSlots extends KentraContentChildSlots<{
-  header: unknown;
-  body: unknown;
-  footer: unknown;
+  header: KentraDrawerHeaderSlot;
+  body: KentraDrawerBodySlot;
+  footer: KentraDrawerFooterSlot;
 }> {}
 
 export interface KentraDrawerContract extends KentraDrawerInputs, KentraDrawerOutputs, KentraDrawerSlots {}

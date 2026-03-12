@@ -14,10 +14,14 @@ interface KentraModalInputs extends KentraVariantInput<ModalVariant>, KentraStat
 
 interface KentraModalOutputs extends KentraOpenedOutput, KentraClosedOutput<void> {}
 
+interface KentraModalHeaderSlot {}
+interface KentraModalBodySlot {}
+interface KentraModalFooterSlot {}
+
 interface KentraModalSlots extends KentraContentChildSlots<{
-  header: unknown;
-  body: unknown;
-  footer: unknown;
+  header: KentraModalHeaderSlot;
+  body: KentraModalBodySlot;
+  footer: KentraModalFooterSlot;
 }> {}
 
 export interface KentraModalContract extends KentraModalInputs, KentraModalOutputs, KentraModalSlots {}

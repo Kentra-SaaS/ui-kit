@@ -1,3 +1,4 @@
+import type { InputSignal } from "@angular/core";
 import type {
   SwitchVariant,
   SwitchState,
@@ -8,7 +9,9 @@ import type {
   KentraVariantInput,
 } from "../../../core/contracts";
 
-interface KentraSwitchInputs extends KentraVariantInput<SwitchVariant>, KentraStateInput<SwitchState> {}
+interface KentraSwitchInputs extends KentraVariantInput<SwitchVariant>, KentraStateInput<SwitchState> {
+  readonly checked: InputSignal<boolean>;
+}
 
 interface KentraSwitchOutputs extends KentraValueChangedOutput<boolean> {}
 

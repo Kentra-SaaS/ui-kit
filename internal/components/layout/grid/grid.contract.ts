@@ -12,8 +12,10 @@ interface KentraGridInputs extends KentraVariantInput<GridVariant>, KentraGapInp
 
 interface KentraGridOutputs {}
 
+interface KentraGridItemsSlot {}
+
 interface KentraGridSlots extends KentraContentChildrenSlots<{
-  items: unknown;
+  items: KentraGridItemsSlot;
 }> {}
 
 export interface KentraGridContract extends KentraGridInputs, KentraGridOutputs, KentraGridSlots {}

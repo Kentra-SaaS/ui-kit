@@ -1,3 +1,4 @@
+import type { InputSignal } from "@angular/core";
 import type {
   AlertVariant,
   AlertState,
@@ -9,14 +10,17 @@ import type {
   KentraContentChildSlots,
 } from "../../../core/contracts";
 
-interface KentraAlertInputs extends KentraVariantInput<AlertVariant>, KentraStateInput<AlertState> {}
+interface KentraAlertInputs extends KentraVariantInput<AlertVariant>, KentraStateInput<AlertState> {
+  readonly icon: InputSignal<string | null>;
+  readonly title: InputSignal<string | null>;
+}
 
 interface KentraAlertOutputs extends KentraClosedOutput<void> {}
 
+interface KentraAlertActionsSlot {}
+
 interface KentraAlertSlots extends KentraContentChildSlots<{
-  icon: unknown;
-  title: unknown;
-  actions: unknown;
+  actions: KentraAlertActionsSlot;
 }> {}
 
 export interface KentraAlertContract extends KentraAlertInputs, KentraAlertOutputs, KentraAlertSlots {}

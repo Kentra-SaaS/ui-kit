@@ -1,3 +1,4 @@
+import type { InputSignal } from "@angular/core";
 import type {
   ToastVariant,
   ToastState,
@@ -9,14 +10,17 @@ import type {
   KentraContentChildSlots,
 } from "../../../core/contracts";
 
-interface KentraToastInputs extends KentraVariantInput<ToastVariant>, KentraStateInput<ToastState> {}
+interface KentraToastInputs extends KentraVariantInput<ToastVariant>, KentraStateInput<ToastState> {
+  readonly icon: InputSignal<string | null>;
+  readonly title: InputSignal<string | null>;
+}
 
 interface KentraToastOutputs extends KentraClosedOutput<void> {}
 
+interface KentraToastActionsSlot {}
+
 interface KentraToastSlots extends KentraContentChildSlots<{
-  icon: unknown;
-  title: unknown;
-  actions: unknown;
+  actions: KentraToastActionsSlot;
 }> {}
 
 export interface KentraToastContract extends KentraToastInputs, KentraToastOutputs, KentraToastSlots {}

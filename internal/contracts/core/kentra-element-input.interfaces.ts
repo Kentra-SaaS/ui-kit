@@ -34,3 +34,38 @@ export interface KentraColorInput<Color extends string> {
 export interface KentraOrientationInput<Orientation extends string> {
   readonly orientation: InputSignal<Orientation>;
 }
+
+/**
+ * Style input contract for state-based components.
+ */
+export interface KentraStateInput<State extends string> {
+  readonly state: InputSignal<State>;
+}
+
+/**
+ * Style input contract for gap-based components.
+ */
+export interface KentraGapInput<Gap extends string> {
+  readonly gap: InputSignal<Gap>;
+}
+
+/**
+ * Style input contract for align-based components.
+ */
+export interface KentraAlignInput<Align extends string> {
+  readonly align: InputSignal<Align>;
+}
+
+/**
+ * Generic input contract for named values.
+ */
+export interface KentraNameInput<Name extends string = string> {
+  readonly name: InputSignal<Name>;
+}
+
+/**
+ * Generic input contract for weight-based values.
+ */
+export interface KentraWeightInput<Weight extends string> {
+  readonly weight: InputSignal<Weight>;
+}

@@ -1,8 +1,7 @@
 import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 
-import { generateComponentCss } from "../internal/style-maps";
-import { componentStyleMaps } from "../internal/style-maps";
+import { componentStyleMaps, generateComponentCss } from "../internal/core/style-maps";
 
 const projectRoot = process.cwd();
 const outputPath = resolve(projectRoot, "styles/generated/components.generated.scss");

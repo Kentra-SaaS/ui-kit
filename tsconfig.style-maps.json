@@ -11,7 +11,9 @@
   },
   "include": [
     "./scripts/generate-component-style-maps.ts",
-    "./internal/style-maps/**/*.ts",
-    "./internal/tokens/**/*.ts"
+    "./internal/core/style-maps/**/*.ts",
+    "./internal/core/tokens/**/*.ts",
+    "./internal/components/**/*.style-map.ts",
+    "./internal/components/**/*.tokens.ts"
   ]
 }

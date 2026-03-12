@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 
-import { componentStyleMaps, defineComponentStyleMap, generateComponentCss } from "../internal/style-maps";
-import { buttonTokens } from "../internal/tokens/components";
+import { componentStyleMaps, defineComponentStyleMap, generateComponentCss } from "../internal/core/style-maps";
+import { buttonTokens } from "../internal/components/buttons/button/button.tokens";
 
 describe("style-map generator", () => {
   it("renders selectors for registered component maps", () => {

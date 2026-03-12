@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { tokens } from "../internal/tokens/core";
+import { tokens } from "../internal/core/tokens";
 import { collectTokens } from "./token-test-utils";
 
 describe("components-bundle contract", () => {

@@ -12,4 +12,6 @@ interface KentraLinkInputs extends KentraVariantInput<LinkVariant>, KentraStateI
 
 interface KentraLinkOutputs extends KentraClickOutput {}
 
-export interface KentraLinkContract extends KentraLinkInputs, KentraLinkOutputs {}
+interface KentraLinkSlots {}
+
+export interface KentraLinkContract extends KentraLinkInputs, KentraLinkOutputs, KentraLinkSlots {}

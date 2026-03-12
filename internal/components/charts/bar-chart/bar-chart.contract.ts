@@ -12,4 +12,6 @@ interface KentraBarChartInputs extends KentraVariantInput<BarChartVariant>, Kent
 
 interface KentraBarChartOutputs extends KentraSelectionChangedOutput<string> {}
 
-export interface KentraBarChartContract extends KentraBarChartInputs, KentraBarChartOutputs {}
+interface KentraBarChartSlots {}
+
+export interface KentraBarChartContract extends KentraBarChartInputs, KentraBarChartOutputs, KentraBarChartSlots {}

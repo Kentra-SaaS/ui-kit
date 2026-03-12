@@ -9,4 +9,6 @@ interface KentraContainerInputs extends KentraSizeInput<ContainerSize> {}
 
 interface KentraContainerOutputs {}
 
-export interface KentraContainerContract extends KentraContainerInputs, KentraContainerOutputs {}
+interface KentraContainerSlots {}
+
+export interface KentraContainerContract extends KentraContainerInputs, KentraContainerOutputs, KentraContainerSlots {}

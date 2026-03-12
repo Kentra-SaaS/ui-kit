@@ -11,4 +11,6 @@ interface KentraDividerInputs extends KentraOrientationInput<DividerOrientation>
 
 interface KentraDividerOutputs {}
 
-export interface KentraDividerContract extends KentraDividerInputs, KentraDividerOutputs {}
+interface KentraDividerSlots {}
+
+export interface KentraDividerContract extends KentraDividerInputs, KentraDividerOutputs, KentraDividerSlots {}

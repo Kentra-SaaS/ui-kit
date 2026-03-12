@@ -12,4 +12,6 @@ interface KentraDonutChartInputs extends KentraVariantInput<DonutChartVariant>, 
 
 interface KentraDonutChartOutputs extends KentraSelectionChangedOutput<string> {}
 
-export interface KentraDonutChartContract extends KentraDonutChartInputs, KentraDonutChartOutputs {}
+interface KentraDonutChartSlots {}
+
+export interface KentraDonutChartContract extends KentraDonutChartInputs, KentraDonutChartOutputs, KentraDonutChartSlots {}

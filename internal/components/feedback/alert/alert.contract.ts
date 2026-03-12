@@ -6,10 +6,17 @@ import type {
   KentraClosedOutput,
   KentraStateInput,
   KentraVariantInput,
+  KentraContentChildSlots,
 } from "../../../core/contracts";
 
 interface KentraAlertInputs extends KentraVariantInput<AlertVariant>, KentraStateInput<AlertState> {}
 
 interface KentraAlertOutputs extends KentraClosedOutput<void> {}
 
-export interface KentraAlertContract extends KentraAlertInputs, KentraAlertOutputs {}
+interface KentraAlertSlots extends KentraContentChildSlots<{
+  icon: unknown;
+  title: unknown;
+  actions: unknown;
+}> {}
+
+export interface KentraAlertContract extends KentraAlertInputs, KentraAlertOutputs, KentraAlertSlots {}

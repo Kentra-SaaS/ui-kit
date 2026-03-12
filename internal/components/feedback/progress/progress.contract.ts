@@ -11,4 +11,6 @@ interface KentraProgressInputs extends KentraVariantInput<ProgressVariant>, Kent
 
 interface KentraProgressOutputs {}
 
-export interface KentraProgressContract extends KentraProgressInputs, KentraProgressOutputs {}
+interface KentraProgressSlots {}
+
+export interface KentraProgressContract extends KentraProgressInputs, KentraProgressOutputs, KentraProgressSlots {}

@@ -3,10 +3,16 @@ import type {
 } from "./section.tokens";
 import type {
   KentraVariantInput,
+  KentraContentChildSlots,
 } from "../../../core/contracts";
 
 interface KentraSectionInputs extends KentraVariantInput<SectionVariant> {}
 
 interface KentraSectionOutputs {}
 
-export interface KentraSectionContract extends KentraSectionInputs, KentraSectionOutputs {}
+interface KentraSectionSlots extends KentraContentChildSlots<{
+  header: unknown;
+  actions: unknown;
+}> {}
+
+export interface KentraSectionContract extends KentraSectionInputs, KentraSectionOutputs, KentraSectionSlots {}

@@ -9,4 +9,6 @@ interface KentraTextInputs extends KentraVariantInput<TextVariant> {}
 
 interface KentraTextOutputs {}
 
-export interface KentraTextContract extends KentraTextInputs, KentraTextOutputs {}
+interface KentraTextSlots {}
+
+export interface KentraTextContract extends KentraTextInputs, KentraTextOutputs, KentraTextSlots {}

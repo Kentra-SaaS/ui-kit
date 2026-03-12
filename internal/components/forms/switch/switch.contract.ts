@@ -12,4 +12,6 @@ interface KentraSwitchInputs extends KentraVariantInput<SwitchVariant>, KentraSt
 
 interface KentraSwitchOutputs extends KentraValueChangedOutput<boolean> {}
 
-export interface KentraSwitchContract extends KentraSwitchInputs, KentraSwitchOutputs {}
+interface KentraSwitchSlots {}
+
+export interface KentraSwitchContract extends KentraSwitchInputs, KentraSwitchOutputs, KentraSwitchSlots {}

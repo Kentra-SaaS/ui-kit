@@ -12,4 +12,6 @@ interface KentraPaginationInputs extends KentraVariantInput<PaginationVariant>, 
 
 interface KentraPaginationOutputs extends KentraValueChangedOutput<number> {}
 
-export interface KentraPaginationContract extends KentraPaginationInputs, KentraPaginationOutputs {}
+interface KentraPaginationSlots {}
+
+export interface KentraPaginationContract extends KentraPaginationInputs, KentraPaginationOutputs, KentraPaginationSlots {}

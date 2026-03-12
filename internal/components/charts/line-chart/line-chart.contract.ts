@@ -12,4 +12,6 @@ interface KentraLineChartInputs extends KentraVariantInput<LineChartVariant>, Ke
 
 interface KentraLineChartOutputs extends KentraSelectionChangedOutput<string> {}
 
-export interface KentraLineChartContract extends KentraLineChartInputs, KentraLineChartOutputs {}
+interface KentraLineChartSlots {}
+
+export interface KentraLineChartContract extends KentraLineChartInputs, KentraLineChartOutputs, KentraLineChartSlots {}

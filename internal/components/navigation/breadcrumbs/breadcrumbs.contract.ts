@@ -7,10 +7,15 @@ import type {
   KentraSelectionChangedOutput,
   KentraStateInput,
   KentraVariantInput,
+  KentraContentChildrenSlots,
 } from "../../../core/contracts";
 
 interface KentraBreadcrumbsInputs extends KentraVariantInput<BreadcrumbsVariant>, KentraStateInput<BreadcrumbsState> {}
 
 interface KentraBreadcrumbsOutputs extends KentraClickOutput, KentraSelectionChangedOutput<string> {}
 
-export interface KentraBreadcrumbsContract extends KentraBreadcrumbsInputs, KentraBreadcrumbsOutputs {}
+interface KentraBreadcrumbsSlots extends KentraContentChildrenSlots<{
+  items: unknown;
+}> {}
+
+export interface KentraBreadcrumbsContract extends KentraBreadcrumbsInputs, KentraBreadcrumbsOutputs, KentraBreadcrumbsSlots {}

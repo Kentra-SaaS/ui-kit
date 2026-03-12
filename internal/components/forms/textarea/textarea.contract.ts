@@ -8,10 +8,17 @@ import type {
   KentraStateInput,
   KentraValueChangedOutput,
   KentraVariantInput,
+  KentraContentChildSlots,
 } from "../../../core/contracts";
 
 interface KentraTextareaInputs extends KentraVariantInput<TextareaVariant>, KentraStateInput<TextareaState> {}
 
 interface KentraTextareaOutputs extends KentraValueChangedOutput<string>, KentraFocusOutput, KentraBlurOutput {}
 
-export interface KentraTextareaContract extends KentraTextareaInputs, KentraTextareaOutputs {}
+interface KentraTextareaSlots extends KentraContentChildSlots<{
+  hint: unknown;
+  counter: unknown;
+  error: unknown;
+}> {}
+
+export interface KentraTextareaContract extends KentraTextareaInputs, KentraTextareaOutputs, KentraTextareaSlots {}

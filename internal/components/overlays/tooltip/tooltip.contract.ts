@@ -7,10 +7,16 @@ import type {
   KentraOpenedOutput,
   KentraStateInput,
   KentraVariantInput,
+  KentraContentChildSlots,
 } from "../../../core/contracts";
 
 interface KentraTooltipInputs extends KentraVariantInput<TooltipVariant>, KentraStateInput<TooltipState> {}
 
 interface KentraTooltipOutputs extends KentraOpenedOutput, KentraClosedOutput<void> {}
 
-export interface KentraTooltipContract extends KentraTooltipInputs, KentraTooltipOutputs {}
+interface KentraTooltipSlots extends KentraContentChildSlots<{
+  trigger: unknown;
+  content: unknown;
+}> {}
+
+export interface KentraTooltipContract extends KentraTooltipInputs, KentraTooltipOutputs, KentraTooltipSlots {}

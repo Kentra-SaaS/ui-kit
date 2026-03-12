@@ -11,4 +11,6 @@ interface KentraSpinnerInputs extends KentraVariantInput<SpinnerVariant>, Kentra
 
 interface KentraSpinnerOutputs {}
 
-export interface KentraSpinnerContract extends KentraSpinnerInputs, KentraSpinnerOutputs {}
+interface KentraSpinnerSlots {}
+
+export interface KentraSpinnerContract extends KentraSpinnerInputs, KentraSpinnerOutputs, KentraSpinnerSlots {}

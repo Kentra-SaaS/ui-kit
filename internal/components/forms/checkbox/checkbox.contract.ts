@@ -12,4 +12,6 @@ interface KentraCheckboxInputs extends KentraVariantInput<CheckboxVariant>, Kent
 
 interface KentraCheckboxOutputs extends KentraValueChangedOutput<boolean> {}
 
-export interface KentraCheckboxContract extends KentraCheckboxInputs, KentraCheckboxOutputs {}
+interface KentraCheckboxSlots {}
+
+export interface KentraCheckboxContract extends KentraCheckboxInputs, KentraCheckboxOutputs, KentraCheckboxSlots {}

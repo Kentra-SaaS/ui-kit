@@ -13,4 +13,6 @@ interface KentraBadgeInputs extends KentraVariantInput<BadgeVariant>, KentraSize
 
 interface KentraBadgeOutputs {}
 
-export interface KentraBadgeContract extends KentraBadgeInputs, KentraBadgeOutputs {}
+interface KentraBadgeSlots {}
+
+export interface KentraBadgeContract extends KentraBadgeInputs, KentraBadgeOutputs, KentraBadgeSlots {}

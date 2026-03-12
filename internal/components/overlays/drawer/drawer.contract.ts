@@ -7,10 +7,17 @@ import type {
   KentraOpenedOutput,
   KentraStateInput,
   KentraVariantInput,
+  KentraContentChildSlots,
 } from "../../../core/contracts";
 
 interface KentraDrawerInputs extends KentraVariantInput<DrawerVariant>, KentraStateInput<DrawerState> {}
 
 interface KentraDrawerOutputs extends KentraOpenedOutput, KentraClosedOutput<void> {}
 
-export interface KentraDrawerContract extends KentraDrawerInputs, KentraDrawerOutputs {}
+interface KentraDrawerSlots extends KentraContentChildSlots<{
+  header: unknown;
+  body: unknown;
+  footer: unknown;
+}> {}
+
+export interface KentraDrawerContract extends KentraDrawerInputs, KentraDrawerOutputs, KentraDrawerSlots {}

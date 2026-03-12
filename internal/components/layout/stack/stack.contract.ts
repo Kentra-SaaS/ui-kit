@@ -11,4 +11,6 @@ interface KentraStackInputs extends KentraGapInput<StackGap>, KentraAlignInput<S
 
 interface KentraStackOutputs {}
 
-export interface KentraStackContract extends KentraStackInputs, KentraStackOutputs {}
+interface KentraStackSlots {}
+
+export interface KentraStackContract extends KentraStackInputs, KentraStackOutputs, KentraStackSlots {}

@@ -15,4 +15,6 @@ interface KentraIconInputs
 
 interface KentraIconOutputs extends KentraClickOutput {}
 
-export interface KentraIconContract extends KentraIconInputs, KentraIconOutputs {}
+interface KentraIconSlots {}
+
+export interface KentraIconContract extends KentraIconInputs, KentraIconOutputs, KentraIconSlots {}

@@ -9,4 +9,6 @@ interface KentraHeadingInputs extends KentraVariantInput<HeadingVariant> {}
 
 interface KentraHeadingOutputs {}
 
-export interface KentraHeadingContract extends KentraHeadingInputs, KentraHeadingOutputs {}
+interface KentraHeadingSlots {}
+
+export interface KentraHeadingContract extends KentraHeadingInputs, KentraHeadingOutputs, KentraHeadingSlots {}

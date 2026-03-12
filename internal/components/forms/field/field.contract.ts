@@ -5,10 +5,19 @@ import type {
 import type {
   KentraStateInput,
   KentraVariantInput,
+  KentraContentChildSlots,
 } from "../../../core/contracts";
 
 interface KentraFieldInputs extends KentraVariantInput<FieldVariant>, KentraStateInput<FieldState> {}
 
 interface KentraFieldOutputs {}
 
-export interface KentraFieldContract extends KentraFieldInputs, KentraFieldOutputs {}
+interface KentraFieldSlots extends KentraContentChildSlots<{
+  label: unknown;
+  hint: unknown;
+  error: unknown;
+  prefix: unknown;
+  suffix: unknown;
+}> {}
+
+export interface KentraFieldContract extends KentraFieldInputs, KentraFieldOutputs, KentraFieldSlots {}

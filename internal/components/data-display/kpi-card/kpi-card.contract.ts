@@ -6,10 +6,17 @@ import type {
   KentraClickOutput,
   KentraStateInput,
   KentraVariantInput,
+  KentraContentChildSlots,
 } from "../../../core/contracts";
 
 interface KentraKpiCardInputs extends KentraVariantInput<KpiCardVariant>, KentraStateInput<KpiCardState> {}
 
 interface KentraKpiCardOutputs extends KentraClickOutput {}
 
-export interface KentraKpiCardContract extends KentraKpiCardInputs, KentraKpiCardOutputs {}
+interface KentraKpiCardSlots extends KentraContentChildSlots<{
+  meta: unknown;
+  trend: unknown;
+  actions: unknown;
+}> {}
+
+export interface KentraKpiCardContract extends KentraKpiCardInputs, KentraKpiCardOutputs, KentraKpiCardSlots {}

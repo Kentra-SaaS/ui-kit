@@ -33,14 +33,21 @@ export const collectTokens = (source: unknown): TokenLike[] => {
   return tokens;
 };
 
-const listScssFiles = (directory: string): string[] => {
+const listScssFiles = (
+  directory: string,
+  ignoredDirectoryNames: ReadonlySet<string>,
+): string[] => {
   const files: string[] = [];
 
   for (const dirent of readdirSync(directory, { withFileTypes: true })) {
     const absolutePath = join(directory, dirent.name);
 
     if (dirent.isDirectory()) {
-      files.push(...listScssFiles(absolutePath));
+      if (ignoredDirectoryNames.has(dirent.name)) {
+        continue;
+      }
+
+      files.push(...listScssFiles(absolutePath, ignoredDirectoryNames));
       continue;
     }
 
@@ -55,8 +62,9 @@ const listScssFiles = (directory: string): string[] => {
 export const collectDeclaredCssVariables = (stylesDirectory: string): Set<string> => {
   const declarations = new Set<string>();
   const declarationRegex = /--k-[a-z0-9-]+(?=\s*:)/g;
+  const ignoredDirectoryNames = new Set<string>(["generated"]);
 
-  for (const filePath of listScssFiles(stylesDirectory)) {
+  for (const filePath of listScssFiles(stylesDirectory, ignoredDirectoryNames)) {
     const source = readFileSync(filePath, "utf8");
     const matches = source.match(declarationRegex) ?? [];
 

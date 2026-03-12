@@ -10,10 +10,6 @@
     "./dist/styles.css"
   ],
   "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/fesm2022/kentra-ui-kit.mjs"
-    },
     "./styles.css": "./dist/styles.css",
     "./layout": {
       "types": "./dist/layout/index.d.ts",
@@ -59,7 +55,8 @@
     "registry": "https://npm.pkg.github.com"
   },
   "scripts": {
-    "build:styles": "sass styles/styles.scss styles.css --no-source-map",
+    "build:maps": "tsc -p tsconfig.style-maps.json && node .cache/style-map-generator/scripts/generate-component-style-maps.js",
+    "build:styles": "npm run build:maps && sass styles/styles.scss styles.css --no-source-map",
     "build": "npm run build:styles && ng-packagr -p ng-package.json",
     "dev": "npm run build:styles && ng-packagr -p ng-package.json -w",
     "test": "npm run build:styles && vitest run",

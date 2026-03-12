@@ -38,3 +38,4 @@ Thumbs.db
 
 # Generated root styles for package build
 styles.css
+styles/generated/components.generated.scss

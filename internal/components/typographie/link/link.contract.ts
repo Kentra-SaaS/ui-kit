@@ -1,3 +1,4 @@
+import type { InputSignal } from "@angular/core";
 import type {
   LinkVariant,
   LinkState,
@@ -8,7 +9,15 @@ import type {
   KentraVariantInput,
 } from "../../../core/contracts";
 
-interface KentraLinkInputs extends KentraVariantInput<LinkVariant>, KentraStateInput<LinkState> {}
+interface KentraLinkInputs
+  extends KentraVariantInput<LinkVariant>,
+    KentraStateInput<LinkState> {
+  readonly href: InputSignal<string | null>;
+  readonly routerLink: InputSignal<string | unknown[] | null>;
+  readonly target: InputSignal<string | null>;
+  readonly rel: InputSignal<string | null>;
+  readonly disabled: InputSignal<boolean>;
+}
 
 interface KentraLinkOutputs extends KentraClickOutput {}
 

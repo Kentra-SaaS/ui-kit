@@ -10,8 +10,8 @@ describe("style-map generator", () => {
     expect(css).toContain(".k-button {");
     expect(css).toContain(".k-button--size-sm {");
     expect(css).toContain(".k-button--variant-primary {");
-    expect(css).toContain(".k-button--variant-primary:hover {");
-    expect(css).toContain(".k-button--variant-primary.is-disabled, .k-button--variant-primary:disabled {");
+    expect(css).toContain(".k-button--variant-primary:hover, .k-button--variant-primary.is-hover {");
+    expect(css).toContain(".k-button--variant-primary.is-disabled, .k-button--variant-primary:disabled, .k-button--variant-primary[aria-disabled='true'] {");
   });
 
   it("resolves token refs to css var expressions", () => {

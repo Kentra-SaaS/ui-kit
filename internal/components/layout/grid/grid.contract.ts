@@ -1,3 +1,4 @@
+import type { InputSignal } from "@angular/core";
 import type {
   GridVariant,
   GridGap,
@@ -5,17 +6,17 @@ import type {
 import type {
   KentraGapInput,
   KentraVariantInput,
-  KentraContentChildrenSlots,
 } from "../../../core/contracts";
 
-interface KentraGridInputs extends KentraVariantInput<GridVariant>, KentraGapInput<GridGap> {}
+interface KentraGridInputs
+  extends KentraVariantInput<GridVariant>,
+    KentraGapInput<GridGap> {
+  readonly columns: InputSignal<number | string | null>;
+  readonly minItemWidth: InputSignal<string | null>;
+}
 
 interface KentraGridOutputs {}
 
-interface KentraGridItemsSlot {}
-
-interface KentraGridSlots extends KentraContentChildrenSlots<{
-  items: KentraGridItemsSlot;
-}> {}
+interface KentraGridSlots {}
 
 export interface KentraGridContract extends KentraGridInputs, KentraGridOutputs, KentraGridSlots {}

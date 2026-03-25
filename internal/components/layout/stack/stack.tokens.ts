@@ -16,12 +16,17 @@ export const stackTokens = {
   styles: {
     base: {
       display: "flex",
+    },
+    vertical: {
       direction: "column",
     },
-    default: {},
+    horizontal: {
+      direction: "row",
+    },
   },
 } as const;
 
 export type StackTokensContract = typeof stackTokens;
 export type StackGap = keyof StackTokensContract["gap"];
 export type StackAlign = keyof StackTokensContract["align"];
+export type StackOrientation = Exclude<keyof StackTokensContract["styles"], "base">;

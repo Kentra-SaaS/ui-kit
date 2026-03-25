@@ -48,3 +48,4 @@ export const dividerTokens = {
 export type DividerTokensContract = typeof dividerTokens;
 export type DividerOrientation = Exclude<keyof DividerTokensContract["styles"], "base">;
 export type DividerVariant = keyof DividerTokensContract["styles"]["horizontal"];
+export type DividerSpacing = keyof DividerTokensContract["spacing"];

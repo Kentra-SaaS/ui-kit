@@ -1,8 +1,12 @@
 import { Directive, computed } from "@angular/core";
 import { toKebabCase } from "../style-maps";
 
-type StyleValues = Readonly<Record<string, string | null | undefined>>;
+type StyleValues = Readonly<Record<string, string | number | null | undefined>>;
 type StateValues = Readonly<Record<string, boolean | null | undefined>>;
+type CssVariableName = `--${string}`;
+type CssVars = Readonly<
+  Record<CssVariableName, string | number | null | undefined>
+>;
 
 /**
  * Generic component base that composes BEM-like modifier/state classes.
@@ -23,6 +27,10 @@ export abstract class KentraElementBase {
       .filter(Boolean)
       .join(" "),
   );
+  protected readonly hostClasses = this.classes;
+  protected readonly hostStyles = computed(() =>
+    this.buildInlineStyleDeclarations(this.cssVars()),
+  );
 
   /**
    * Maps style dimensions to class modifiers:
@@ -37,6 +45,14 @@ export abstract class KentraElementBase {
    * `{ disabled: true }` -> `is-disabled`
    */
   protected stateValues(): StateValues {
+    return {};
+  }
+
+  /**
+   * Maps dynamic host-level css variables:
+   * `{ "--k-stack-align": "var(--k-stack-align-center)" }`.
+   */
+  protected cssVars(): CssVars {
     return {};
   }
 
@@ -75,5 +91,24 @@ export abstract class KentraElementBase {
     }
 
     return classes;
+  }
+
+  private buildInlineStyleDeclarations(cssVars: CssVars): string | null {
+    const declarations: string[] = [];
+
+    for (const [name, value] of Object.entries(cssVars)) {
+      if (!name.startsWith("--") || value === null || value === undefined) {
+        continue;
+      }
+
+      const serializedValue = String(value).trim();
+      if (serializedValue.length === 0) {
+        continue;
+      }
+
+      declarations.push(`${name}: ${serializedValue};`);
+    }
+
+    return declarations.length > 0 ? declarations.join(" ") : null;
   }
 }

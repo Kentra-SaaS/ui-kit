@@ -19,11 +19,9 @@ import {
     "[style]": "hostStyles()",
   },
   template: `
-    @if (isParagraph()) {
-      <p class="content"><ng-content></ng-content></p>
-    } @else {
-      <span class="content"><ng-content></ng-content></span>
-    }
+    <span class="content" [class.content--paragraph]="isParagraph()">
+      <ng-content></ng-content>
+    </span>
   `,
   styles: `
     :host {
@@ -38,6 +36,10 @@ import {
       line-height: var(--k-text-line-height, inherit);
       font-weight: var(--k-text-font-weight, 400);
       color: inherit;
+    }
+
+    .content--paragraph {
+      display: block;
     }
   `,
 })

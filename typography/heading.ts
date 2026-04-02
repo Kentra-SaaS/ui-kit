@@ -11,37 +11,16 @@ import {
   KentraHeadingContract,
 } from "../internal";
 
-type HeadingTag = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
-
 @Component({
   selector: "k-heading",
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     "[class]": "hostClasses()",
     "[style]": "hostStyles()",
+    "role": "heading",
+    "[attr.aria-level]": "ariaLevel()",
   },
-  template: `
-    @switch (tagName()) {
-      @case ("h1") {
-        <h1 class="content"><ng-content></ng-content></h1>
-      }
-      @case ("h2") {
-        <h2 class="content"><ng-content></ng-content></h2>
-      }
-      @case ("h3") {
-        <h3 class="content"><ng-content></ng-content></h3>
-      }
-      @case ("h4") {
-        <h4 class="content"><ng-content></ng-content></h4>
-      }
-      @case ("h5") {
-        <h5 class="content"><ng-content></ng-content></h5>
-      }
-      @default {
-        <h6 class="content"><ng-content></ng-content></h6>
-      }
-    }
-  `,
+  template: `<span class="content"><ng-content></ng-content></span>`,
   styles: `
     :host {
       display: block;
@@ -75,7 +54,7 @@ export class KentraHeading
   implements KentraHeadingContract
 {
   readonly variant = input<HeadingVariant>("h2");
-  readonly tagName = computed<HeadingTag>(() => this.toHeadingTag(this.variant()));
+  readonly ariaLevel = computed(() => this.toHeadingLevel(this.variant()));
 
   protected readonly baseClass = headingStyleMap.baseClass;
 
@@ -85,7 +64,21 @@ export class KentraHeading
     };
   }
 
-  private toHeadingTag(variant: HeadingVariant): HeadingTag {
-    return variant === "display" ? "h1" : (variant as HeadingTag);
+  private toHeadingLevel(variant: HeadingVariant): number {
+    switch (variant) {
+      case "display":
+      case "h1":
+        return 1;
+      case "h2":
+        return 2;
+      case "h3":
+        return 3;
+      case "h4":
+        return 4;
+      case "h5":
+        return 5;
+      default:
+        return 6;
+    }
   }
 }

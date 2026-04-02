@@ -1,21 +1,24 @@
-import type { InputSignal } from "@angular/core";
+import type { InputSignal, ModelSignal } from "@angular/core";
 import type {
   TextareaVariant,
-  TextareaState,
 } from "./textarea.tokens";
 import type {
   KentraBlurOutput,
   KentraFocusOutput,
-  KentraStateInput,
   KentraValueChangedOutput,
   KentraVariantInput,
 } from "../../../core/contracts";
 
-interface KentraTextareaInputs extends KentraVariantInput<TextareaVariant>, KentraStateInput<TextareaState> {
-  readonly hint: InputSignal<string | null>;
-  readonly counter: InputSignal<string | number | null>;
-  readonly errorText: InputSignal<string | null>;
-  readonly value: InputSignal<string>;
+interface KentraTextareaInputs extends KentraVariantInput<TextareaVariant> {
+  readonly value: ModelSignal<string>;
+  readonly rows: InputSignal<number>;
+  readonly maxLength: InputSignal<number | undefined>;
+  readonly placeholder: InputSignal<string | null>;
+  readonly disabled: InputSignal<boolean>;
+  readonly readonly: InputSignal<boolean>;
+  readonly invalid: InputSignal<boolean>;
+  readonly required: InputSignal<boolean>;
+  readonly name: InputSignal<string>;
 }
 
 interface KentraTextareaOutputs extends KentraValueChangedOutput<string>, KentraFocusOutput, KentraBlurOutput {}

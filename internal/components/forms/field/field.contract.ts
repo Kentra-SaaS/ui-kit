@@ -1,19 +1,19 @@
 import type { InputSignal } from "@angular/core";
 import type {
   FieldVariant,
-  FieldState,
 } from "./field.tokens";
 import type {
-  KentraStateInput,
   KentraVariantInput,
 } from "../../../core/contracts";
 
-interface KentraFieldInputs extends KentraVariantInput<FieldVariant>, KentraStateInput<FieldState> {
+interface KentraFieldInputs extends KentraVariantInput<FieldVariant> {
   readonly label: InputSignal<string | null>;
   readonly hint: InputSignal<string | null>;
   readonly errorText: InputSignal<string | null>;
-  readonly prefix: InputSignal<string | null>;
-  readonly suffix: InputSignal<string | null>;
+  readonly forId: InputSignal<string | null>;
+  readonly required: InputSignal<boolean>;
+  readonly disabled: InputSignal<boolean>;
+  readonly invalid: InputSignal<boolean>;
 }
 
 interface KentraFieldOutputs {}

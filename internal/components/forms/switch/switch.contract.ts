@@ -1,16 +1,18 @@
-import type { InputSignal } from "@angular/core";
+import type { InputSignal, ModelSignal } from "@angular/core";
 import type {
   SwitchVariant,
-  SwitchState,
 } from "./switch.tokens";
 import type {
-  KentraStateInput,
   KentraValueChangedOutput,
   KentraVariantInput,
 } from "../../../core/contracts";
 
-interface KentraSwitchInputs extends KentraVariantInput<SwitchVariant>, KentraStateInput<SwitchState> {
-  readonly checked: InputSignal<boolean>;
+export type KentraSwitchLabelPosition = "start" | "end";
+
+interface KentraSwitchInputs extends KentraVariantInput<SwitchVariant> {
+  readonly checked: ModelSignal<boolean>;
+  readonly disabled: InputSignal<boolean>;
+  readonly labelPosition: InputSignal<KentraSwitchLabelPosition>;
 }
 
 interface KentraSwitchOutputs extends KentraValueChangedOutput<boolean> {}

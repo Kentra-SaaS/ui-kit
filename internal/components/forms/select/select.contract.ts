@@ -1,27 +1,36 @@
-import type { InputSignal } from "@angular/core";
+import type { InputSignal, ModelSignal } from "@angular/core";
 import type {
   SelectVariant,
-  SelectState,
 } from "./select.tokens";
 import type {
   KentraSelectionChangedOutput,
-  KentraStateInput,
   KentraVariantInput,
-  KentraContentChildrenSlots,
 } from "../../../core/contracts";
 
-interface KentraSelectInputs extends KentraVariantInput<SelectVariant>, KentraStateInput<SelectState> {
-  readonly value: InputSignal<string | null>;
+export interface KentraSelectOption {
+  readonly value: string;
+  readonly label: string;
+  readonly disabled?: boolean;
 }
 
-interface KentraSelectOutputs extends KentraSelectionChangedOutput<string> {}
+export interface KentraSelectOptionGroup {
+  readonly label: string;
+  readonly options: readonly KentraSelectOption[];
+}
 
-interface KentraSelectOptionGroupsSlot {}
-interface KentraSelectOptionsSlot {}
+interface KentraSelectInputs extends KentraVariantInput<SelectVariant> {
+  readonly value: ModelSignal<string | null>;
+  readonly options: InputSignal<readonly KentraSelectOption[]>;
+  readonly optionGroups: InputSignal<readonly KentraSelectOptionGroup[]>;
+  readonly placeholder: InputSignal<string | null>;
+  readonly disabled: InputSignal<boolean>;
+  readonly invalid: InputSignal<boolean>;
+  readonly required: InputSignal<boolean>;
+  readonly name: InputSignal<string>;
+}
 
-interface KentraSelectSlots extends KentraContentChildrenSlots<{
-  optionGroups: KentraSelectOptionGroupsSlot;
-  options: KentraSelectOptionsSlot;
-}> {}
+interface KentraSelectOutputs extends KentraSelectionChangedOutput<string | null> {}
+
+interface KentraSelectSlots {}
 
 export interface KentraSelectContract extends KentraSelectInputs, KentraSelectOutputs, KentraSelectSlots {}

@@ -96,7 +96,8 @@ import {
         opacity var(--k-btn-motion-duration, 0s) var(--k-btn-motion-easing, linear);
     }
 
-    .button:focus-visible {
+    .button:focus-visible,
+    :host(.is-focus-visible) .button {
       outline: 2px solid var(--k-btn-focus-outline-color, transparent);
       outline-offset: 2px;
       box-shadow:

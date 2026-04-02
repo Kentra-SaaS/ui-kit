@@ -25,7 +25,7 @@ describe("action components", () => {
     expect(css).toContain(".k-button--variant-danger {");
     expect(css).toContain(".k-button--variant-primary:hover, .k-button--variant-primary.is-hover {");
     expect(css).toContain(".k-button--variant-primary:active, .k-button--variant-primary.is-active {");
-    expect(css).toContain(".k-button--variant-primary:focus-within, .k-button--variant-primary.is-focus-visible {");
+    expect(css).toContain(".k-button--variant-primary:focus-within:not(.is-hover):not(.is-active):not(.is-loading):not(.is-disabled), .k-button--variant-primary.is-focus-visible {");
     expect(css).toContain(".k-button--variant-primary.is-disabled, .k-button--variant-primary:disabled, .k-button--variant-primary[aria-disabled='true'] {");
     expect(css).toContain(".k-button--variant-primary.is-loading {");
     expect(css).toContain("--k-btn-colors-bg: var(--k-color-action-primary-bg);");
@@ -43,7 +43,7 @@ describe("action components", () => {
     expect(css).toContain(".k-icon-button--variant-danger {");
     expect(css).toContain(".k-icon-button--variant-primary:hover, .k-icon-button--variant-primary.is-hover {");
     expect(css).toContain(".k-icon-button--variant-primary:active, .k-icon-button--variant-primary.is-active {");
-    expect(css).toContain(".k-icon-button--variant-primary:focus-within, .k-icon-button--variant-primary.is-focus-visible {");
+    expect(css).toContain(".k-icon-button--variant-primary:focus-within:not(.is-hover):not(.is-active):not(.is-disabled), .k-icon-button--variant-primary.is-focus-visible {");
     expect(css).toContain(".k-icon-button--variant-primary.is-disabled, .k-icon-button--variant-primary:disabled, .k-icon-button--variant-primary[aria-disabled='true'] {");
     expect(css).toContain("--k-icon-button-colors-icon: var(--k-color-action-primary-text);");
   });

@@ -114,12 +114,7 @@ export const buttonTokens = {
         },
       },
       focusVisible: {
-        colors: {
-          bg: tokens.theme.colors.action.primary.bg,
-          text: tokens.theme.colors.action.primary.text,
-          border: tokens.theme.colors.action.primary.bg,
-          icon: tokens.theme.colors.action.primary.text,
-        },
+        // Focus visuals are handled by outline/ring on the runtime element.
       },
       disabled: {
         colors: {
@@ -154,12 +149,7 @@ export const buttonTokens = {
         },
       },
       focusVisible: {
-        colors: {
-          bg: tokens.theme.colors.action.secondary.bg,
-          text: tokens.theme.colors.action.secondary.text,
-          border: tokens.theme.colors.action.secondary.border,
-          icon: tokens.theme.colors.action.secondary.text,
-        },
+        // Focus visuals are handled by outline/ring on the runtime element.
       },
       disabled: {
         colors: {
@@ -194,12 +184,7 @@ export const buttonTokens = {
         },
       },
       focusVisible: {
-        colors: {
-          bg: tokens.theme.colors.background.surface,
-          text: tokens.theme.colors.link.default,
-          border: tokens.theme.interactionState.focus.ring,
-          icon: tokens.theme.colors.link.default,
-        },
+        // Focus visuals are handled by outline/ring on the runtime element.
       },
       disabled: {
         colors: {
@@ -234,12 +219,7 @@ export const buttonTokens = {
         },
       },
       focusVisible: {
-        colors: {
-          bg: tokens.global.palette.danger.c700,
-          text: tokens.global.palette.neutral.c0,
-          border: tokens.theme.interactionState.focus.ring,
-          icon: tokens.global.palette.neutral.c0,
-        },
+        // Focus visuals are handled by outline/ring on the runtime element.
       },
       disabled: {
         colors: {

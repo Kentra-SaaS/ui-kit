@@ -52,6 +52,12 @@ describe("action quality gates", () => {
     expect(iconButtonSource).toContain("readonly size = input<IconButtonSize>(\"md\")");
     expect(iconButtonSource).toContain("readonly state = input<IconButtonState>(\"default\")");
     expect(iconButtonSource).toContain("readonly disabled = input<boolean>(false)");
+    expect(iconButtonSource).not.toContain("<ng-content>");
+    expect(iconButtonSource).toContain("line-height: 1;");
+    expect(iconButtonSource).toContain("appearance: none;");
+    expect(iconButtonSource).toContain("padding: 0;");
+    expect(iconButtonSource).toContain("pointer-events: none;");
+    expect(iconButtonSource).toContain("text-align: center;");
 
     // Button theme and states
     expect(css).toContain(".k-button--variant-primary {");
@@ -59,7 +65,7 @@ describe("action quality gates", () => {
     expect(css).toContain("--k-btn-colors-bg: var(--k-color-action-primary-bg);");
     expect(css).toContain("--k-btn-colors-text: var(--k-color-action-primary-text);");
     expect(css).toContain(".k-button--variant-primary:hover, .k-button--variant-primary.is-hover {");
-    expect(css).toContain(".k-button--variant-primary:focus-within, .k-button--variant-primary.is-focus-visible {");
+    expect(css).toContain(".k-button--variant-primary:focus-within:not(.is-hover):not(.is-active):not(.is-loading):not(.is-disabled), .k-button--variant-primary.is-focus-visible {");
     expect(css).toContain(".k-button--variant-primary:active, .k-button--variant-primary.is-active {");
     expect(css).toContain(".k-button--variant-primary.is-disabled, .k-button--variant-primary:disabled, .k-button--variant-primary[aria-disabled='true'] {");
     expect(css).toContain(".k-button--variant-primary.is-loading {");
@@ -70,8 +76,9 @@ describe("action quality gates", () => {
     expect(css).toContain("--k-icon-button-colors-bg: var(--k-color-action-primary-bg);");
     expect(css).toContain("--k-icon-button-colors-icon: var(--k-color-action-primary-text);");
     expect(css).toContain(".k-icon-button--variant-primary:hover, .k-icon-button--variant-primary.is-hover {");
-    expect(css).toContain(".k-icon-button--variant-primary:focus-within, .k-icon-button--variant-primary.is-focus-visible {");
+    expect(css).toContain(".k-icon-button--variant-primary:focus-within:not(.is-hover):not(.is-active):not(.is-disabled), .k-icon-button--variant-primary.is-focus-visible {");
     expect(css).toContain(".k-icon-button--variant-primary:active, .k-icon-button--variant-primary.is-active {");
     expect(css).toContain(".k-icon-button--variant-primary.is-disabled, .k-icon-button--variant-primary:disabled, .k-icon-button--variant-primary[aria-disabled='true'] {");
+    expect(css).toContain("--k-icon-button-icon-size: var(--k-space-6);");
   });
 });

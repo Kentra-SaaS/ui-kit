@@ -40,10 +40,6 @@ import {
     >
       @if (iconGlyph()) {
         <span class="k-icon icon" aria-hidden="true">{{ iconGlyph() }}</span>
-      } @else {
-        <span class="icon-slot" aria-hidden="true">
-          <ng-content></ng-content>
-        </span>
       }
     </button>
   `,
@@ -59,9 +55,12 @@ import {
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      appearance: none;
+      -webkit-appearance: none;
+      line-height: 1;
       min-inline-size: var(--k-icon-button-min-width, 2.5rem);
       min-block-size: var(--k-icon-button-min-height, 2.5rem);
-      padding: var(--k-icon-button-padding, var(--k-space-2));
+      padding: 0;
       border: var(--k-icon-button-border-width, 1px) solid
         var(--k-icon-button-colors-border, transparent);
       border-radius: var(--k-icon-button-border-radius, var(--k-radius-md));
@@ -80,7 +79,8 @@ import {
           var(--k-icon-button-motion-easing, linear);
     }
 
-    .button:focus-visible {
+    .button:focus-visible,
+    :host(.is-focus-visible) .button {
       outline: 2px solid var(--k-icon-button-focus-outline-color, transparent);
       outline-offset: 2px;
       box-shadow:
@@ -88,8 +88,7 @@ import {
         var(--k-icon-button-focus-shadow, none);
     }
 
-    .icon,
-    .icon-slot {
+    .icon {
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -97,8 +96,10 @@ import {
       block-size: var(--k-icon-button-icon-size, 1rem);
       font-size: var(--k-icon-button-icon-size, 1rem);
       line-height: 1;
+      text-align: center;
       color: inherit;
       flex: none;
+      pointer-events: none;
     }
 
     :host(.is-disabled) .button,

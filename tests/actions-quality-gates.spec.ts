@@ -52,12 +52,13 @@ describe("action quality gates", () => {
     expect(iconButtonSource).toContain("readonly size = input<IconButtonSize>(\"md\")");
     expect(iconButtonSource).toContain("readonly state = input<IconButtonState>(\"default\")");
     expect(iconButtonSource).toContain("readonly disabled = input<boolean>(false)");
+    expect(iconButtonSource).toContain("imports: [KentraIcon]");
+    expect(iconButtonSource).toContain("<k-icon class=\"icon\" [name]=\"glyph\" aria-hidden=\"true\"></k-icon>");
     expect(iconButtonSource).not.toContain("<ng-content>");
     expect(iconButtonSource).toContain("line-height: 1;");
     expect(iconButtonSource).toContain("appearance: none;");
     expect(iconButtonSource).toContain("padding: 0;");
     expect(iconButtonSource).toContain("pointer-events: none;");
-    expect(iconButtonSource).toContain("text-align: center;");
 
     // Button theme and states
     expect(css).toContain(".k-button--variant-primary {");

@@ -6,6 +6,7 @@ export const themeElevationTokens = {
     sm: token("--k-shadow-sm"),
     md: token("--k-shadow-md"),
     lg: token("--k-shadow-lg"),
+    sectionElevated: token("--k-shadow-section-elevated"),
     focus: token("--k-shadow-focus"),
   },
 } as const;

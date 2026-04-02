@@ -4,6 +4,7 @@ import type {
   IconButtonSize,
   IconButtonState,
 } from "./icon-button.tokens";
+import type { IconName } from "../../icons/icon";
 import type {
   KentraClickOutput,
   KentraSizeInput,
@@ -15,7 +16,7 @@ interface KentraIconButtonInputs
   extends KentraVariantInput<IconButtonVariant>,
     KentraSizeInput<IconButtonSize>,
     KentraStateInput<IconButtonState> {
-  readonly icon: InputSignal<string | null>;
+  readonly icon: InputSignal<IconName | null>;
   readonly ariaLabel: InputSignal<string | null>;
   readonly type: InputSignal<"button" | "submit" | "reset">;
   readonly disabled: InputSignal<boolean>;

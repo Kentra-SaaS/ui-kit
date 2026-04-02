@@ -6,17 +6,21 @@ import {
   output,
   signal,
 } from "@angular/core";
+import { KentraIcon } from "../icons/icon";
 import {
   ButtonSize,
   ButtonState,
   ButtonVariant,
   buttonStyleMap,
+  IconName,
   KentraButtonContract,
   KentraElementBase,
 } from "../internal";
 
 @Component({
   selector: "k-button",
+  standalone: true,
+  imports: [KentraIcon],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     "[class]": "hostClasses()",
@@ -43,18 +47,14 @@ import {
         <span class="spinner" aria-hidden="true"></span>
       }
 
-      @if (startIconGlyph()) {
-        <span class="k-icon icon icon-start" aria-hidden="true">
-          {{ startIconGlyph() }}
-        </span>
+      @if (startIconGlyph(); as startGlyph) {
+        <k-icon class="icon icon-start" [name]="startGlyph" aria-hidden="true"></k-icon>
       }
 
       <span class="label"><ng-content></ng-content></span>
 
-      @if (endIconGlyph()) {
-        <span class="k-icon icon icon-end" aria-hidden="true">
-          {{ endIconGlyph() }}
-        </span>
+      @if (endIconGlyph(); as endGlyph) {
+        <k-icon class="icon icon-end" [name]="endGlyph" aria-hidden="true"></k-icon>
       }
     </button>
   `,
@@ -113,13 +113,13 @@ import {
     }
 
     .icon {
+      --k-icon-font-size: var(--k-btn-icon-size, 1rem);
+      --k-icon-color: var(--k-btn-colors-icon, currentColor);
       display: inline-flex;
       align-items: center;
       justify-content: center;
       inline-size: var(--k-btn-icon-size, 1rem);
       block-size: var(--k-btn-icon-size, 1rem);
-      font-size: var(--k-btn-icon-size, 1rem);
-      color: var(--k-btn-colors-icon, currentColor);
       flex: none;
     }
 
@@ -181,12 +181,18 @@ export class KentraButton extends KentraElementBase implements KentraButtonContr
   readonly type = input<"button" | "submit" | "reset">("button");
   readonly disabled = input<boolean>(false);
   readonly loading = input<boolean>(false);
-  readonly startIcon = input<string | null>(null);
-  readonly endIcon = input<string | null>(null);
+  readonly startIcon = input<IconName | null>(null);
+  readonly endIcon = input<IconName | null>(null);
   readonly click = output<MouseEvent>();
 
-  readonly startIconGlyph = computed(() => this.normalizeText(this.startIcon()));
-  readonly endIconGlyph = computed(() => this.normalizeText(this.endIcon()));
+  readonly startIconGlyph = computed<IconName | null>(() => {
+    const icon = this.startIcon();
+    return icon === "" ? null : icon;
+  });
+  readonly endIconGlyph = computed<IconName | null>(() => {
+    const icon = this.endIcon();
+    return icon === "" ? null : icon;
+  });
   readonly effectiveState = computed<ButtonState>(() => {
     if (this.disabled()) {
       return "disabled";
@@ -277,14 +283,5 @@ export class KentraButton extends KentraElementBase implements KentraButtonContr
 
   private canDerivePressedState(): boolean {
     return this.state() === "default" && !this.disabled() && !this.loading();
-  }
-
-  private normalizeText(value: string | null): string | null {
-    if (value === null) {
-      return null;
-    }
-
-    const normalized = value.trim();
-    return normalized.length > 0 ? normalized : null;
   }
 }

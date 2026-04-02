@@ -10,6 +10,7 @@ import {
   viewChild,
 } from "@angular/core";
 import type { FormValueControl } from "@angular/forms/signals";
+import { KentraIcon } from "../icons/icon";
 import {
   KentraElementBase,
   KentraSelectContract,
@@ -29,6 +30,7 @@ type SelectionChangeEvent = {
 @Component({
   selector: "k-select",
   standalone: true,
+  imports: [KentraIcon],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     "[class]": "hostClasses()",
@@ -72,7 +74,7 @@ type SelectionChangeEvent = {
         }
       </select>
 
-      <span class="k-icon icon" aria-hidden="true">caret-down</span>
+      <k-icon class="icon" name="caret-down" aria-hidden="true"></k-icon>
     </div>
   `,
   styles: `
@@ -122,13 +124,15 @@ type SelectionChangeEvent = {
     }
 
     .icon {
+      --k-icon-font-size: var(--k-icon-size-sm);
+      --k-icon-color: var(--k-select-colors-icon, currentColor);
       position: absolute;
       top: 50%;
       right: var(--k-select-trigger-padding-x, var(--k-space-3));
       transform: translateY(-50%);
-      color: var(--k-select-colors-icon, currentColor);
+      inline-size: var(--k-icon-size-sm);
+      block-size: var(--k-icon-size-sm);
       pointer-events: none;
-      font-size: var(--k-icon-size-sm);
       line-height: 1;
     }
 

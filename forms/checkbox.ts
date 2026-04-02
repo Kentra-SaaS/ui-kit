@@ -10,10 +10,12 @@ import {
   viewChild,
 } from "@angular/core";
 import type { FormCheckboxControl } from "@angular/forms/signals";
+import { KentraIcon } from "../icons/icon";
 import {
   CheckboxState,
   CheckboxVariant,
   checkboxStyleMap,
+  IconName,
   KentraCheckboxContract,
   KentraElementBase,
 } from "../internal";
@@ -27,6 +29,7 @@ type ValueChangeEvent = {
 @Component({
   selector: "k-checkbox",
   standalone: true,
+  imports: [KentraIcon],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     "[class]": "hostClasses()",
@@ -51,7 +54,7 @@ type ValueChangeEvent = {
       />
 
       <span class="control" aria-hidden="true">
-        <span class="k-icon indicator">{{ indicatorGlyph() }}</span>
+        <k-icon class="indicator" [name]="indicatorGlyph()" aria-hidden="true"></k-icon>
       </span>
 
       <span class="label"><ng-content></ng-content></span>
@@ -114,10 +117,12 @@ type ValueChangeEvent = {
     }
 
     .indicator {
+      --k-icon-font-size: var(--k-checkbox-size-indicator, 0.875rem);
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-size: var(--k-checkbox-size-indicator, 0.875rem);
+      inline-size: var(--k-checkbox-size-indicator, 0.875rem);
+      block-size: var(--k-checkbox-size-indicator, 0.875rem);
       line-height: 1;
       opacity: 0;
       transform: scale(0.9);
@@ -184,7 +189,7 @@ export class KentraCheckbox
   readonly valueChanged = output<ValueChangeEvent>();
 
   readonly normalizedName = computed(() => this.normalizeText(this.name()));
-  readonly indicatorGlyph = computed(() => {
+  readonly indicatorGlyph = computed<IconName>(() => {
     if (this.indeterminate()) {
       return "minus";
     }

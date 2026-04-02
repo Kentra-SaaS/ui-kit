@@ -6,7 +6,9 @@ import {
   output,
   signal,
 } from "@angular/core";
+import { KentraIcon } from "../icons/icon";
 import {
+  IconName,
   IconButtonSize,
   IconButtonState,
   IconButtonVariant,
@@ -17,6 +19,8 @@ import {
 
 @Component({
   selector: "k-icon-button",
+  standalone: true,
+  imports: [KentraIcon],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     "[class]": "hostClasses()",
@@ -38,8 +42,8 @@ import {
       (keyup)="onKeyUp($event)"
       (blur)="clearPressedState()"
     >
-      @if (iconGlyph()) {
-        <span class="k-icon icon" aria-hidden="true">{{ iconGlyph() }}</span>
+      @if (iconGlyph(); as glyph) {
+        <k-icon class="icon" [name]="glyph" aria-hidden="true"></k-icon>
       }
     </button>
   `,
@@ -89,15 +93,14 @@ import {
     }
 
     .icon {
+      --k-icon-font-size: var(--k-icon-button-icon-size, 1rem);
+      --k-icon-color: currentColor;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       inline-size: var(--k-icon-button-icon-size, 1rem);
       block-size: var(--k-icon-button-icon-size, 1rem);
-      font-size: var(--k-icon-button-icon-size, 1rem);
       line-height: 1;
-      text-align: center;
-      color: inherit;
       flex: none;
       pointer-events: none;
     }
@@ -139,11 +142,14 @@ export class KentraIconButton
   readonly state = input<IconButtonState>("default");
   readonly type = input<"button" | "submit" | "reset">("button");
   readonly disabled = input<boolean>(false);
-  readonly icon = input<string | null>(null);
+  readonly icon = input<IconName | null>(null);
   readonly ariaLabel = input<string | null>(null);
   readonly click = output<MouseEvent>();
 
-  readonly iconGlyph = computed(() => this.normalizeText(this.icon()));
+  readonly iconGlyph = computed<IconName | null>(() => {
+    const icon = this.icon();
+    return icon === "" ? null : icon;
+  });
   readonly resolvedAriaLabel = computed(
     () => this.normalizeText(this.ariaLabel()) ?? this.iconGlyph(),
   );

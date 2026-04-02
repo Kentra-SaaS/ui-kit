@@ -63,10 +63,14 @@ describe("form quality gates", () => {
     expect(textareaSource).toContain("implements KentraTextareaContract, FormValueControl<string>, AfterViewInit");
     expect(textareaSource).toContain("readonly value = model<string>(\"\")");
     expect(selectSource).toContain("implements KentraSelectContract, FormValueControl<string | null>");
+    expect(selectSource).toContain("imports: [KentraIcon]");
     expect(selectSource).toContain("<select");
+    expect(selectSource).toContain("<k-icon class=\"icon\" name=\"caret-down\" aria-hidden=\"true\"></k-icon>");
     expect(checkboxSource).toContain("implements KentraCheckboxContract, FormCheckboxControl");
+    expect(checkboxSource).toContain("imports: [KentraIcon]");
     expect(checkboxSource).toContain("readonly checked = model(false)");
     expect(checkboxSource).toContain("appearance: none;");
+    expect(checkboxSource).toContain("<k-icon class=\"indicator\" [name]=\"indicatorGlyph()\" aria-hidden=\"true\"></k-icon>");
     expect(checkboxSource).toContain(".native:checked + .control .indicator");
     expect(checkboxSource).toContain(".native:indeterminate + .control .indicator");
     expect(radioGroupSource).toContain("implements KentraRadioGroupContract, FormValueControl<string | null>");

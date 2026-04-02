@@ -7,7 +7,7 @@ import {
 } from "../internal";
 
 @Component({
-  selector: containerStyleMap.baseClass,
+  selector: "k-container",
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     "[class]": "hostClasses()",

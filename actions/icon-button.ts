@@ -16,7 +16,7 @@ import {
 } from "../internal";
 
 @Component({
-  selector: iconButtonStyleMap.baseClass,
+  selector: "k-icon-button",
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     "[class]": "hostClasses()",

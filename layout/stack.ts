@@ -9,7 +9,7 @@ import {
 } from "../internal";
 
 @Component({
-  selector: stackStyleMap.baseClass,
+  selector: "k-stack",
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     "[class]": "hostClasses()",

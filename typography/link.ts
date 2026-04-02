@@ -15,7 +15,7 @@ import {
 } from "../internal";
 
 @Component({
-  selector: linkStyleMap.baseClass,
+  selector: "k-link",
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     "[class]": "hostClasses()",

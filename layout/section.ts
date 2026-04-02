@@ -13,7 +13,7 @@ import {
 } from "../internal";
 
 @Component({
-  selector: sectionStyleMap.baseClass,
+  selector: "k-section",
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     "[class]": "hostClasses()",

@@ -12,7 +12,7 @@ import {
 } from "../internal";
 
 @Component({
-  selector: gridStyleMap.baseClass,
+  selector: "k-grid",
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     "[class]": "hostClasses()",

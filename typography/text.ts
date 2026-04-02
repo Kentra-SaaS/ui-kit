@@ -12,7 +12,7 @@ import {
 } from "../internal";
 
 @Component({
-  selector: textStyleMap.baseClass,
+  selector: "k-text",
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     "[class]": "hostClasses()",

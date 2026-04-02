@@ -9,7 +9,7 @@ import {
 } from "../internal";
 
 @Component({
-  selector: dividerStyleMap.baseClass,
+  selector: "k-divider",
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     "[class]": "hostClasses()",

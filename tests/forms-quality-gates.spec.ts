@@ -80,7 +80,9 @@ describe("form quality gates", () => {
     expect(css).toContain("--k-field-colors-label: var(--k-color-text-primary);");
     expect(css).toContain(".k-text-input--variant-with-prefix {");
     expect(css).toContain("--k-text-input-colors-bg: var(--k-color-input-bg);");
+    expect(css).toContain("--k-text-input-colors-border: var(--k-color-input-readonly-border, var(--k-color-border-subtle));");
     expect(css).toContain(".k-textarea--variant-auto-resize {");
+    expect(css).toContain("--k-textarea-colors-border: var(--k-color-input-readonly-border, var(--k-color-border-subtle));");
     expect(css).toContain(".k-select--variant-compact {");
     expect(css).toContain(".k-checkbox--variant-indeterminate.is-checked {");
     expect(css).toContain(".k-radio-group--variant-horizontal {");

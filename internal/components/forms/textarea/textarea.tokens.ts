@@ -27,6 +27,9 @@ const baseTextareaStyle = {
   },
 } as const;
 
+const readonlyBorderColor =
+  "var(--k-color-input-readonly-border, var(--k-color-border-subtle))";
+
 export const textareaTokens = {
   styles: {
     base: baseTextareaStyle,
@@ -64,7 +67,7 @@ export const textareaTokens = {
         colors: {
           bg: tokens.theme.colors.background.elevated,
           text: tokens.theme.colors.text.secondary,
-          border: tokens.theme.colors.border.subtle,
+          border: readonlyBorderColor,
           placeholder: tokens.theme.colors.text.secondary,
         },
       },
@@ -116,7 +119,7 @@ export const textareaTokens = {
         colors: {
           bg: tokens.theme.colors.background.elevated,
           text: tokens.theme.colors.text.secondary,
-          border: tokens.theme.colors.border.subtle,
+          border: readonlyBorderColor,
           placeholder: tokens.theme.colors.text.secondary,
         },
       },

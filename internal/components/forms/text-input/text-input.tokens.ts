@@ -28,6 +28,9 @@ const baseTextInputStyle = {
   },
 } as const;
 
+const readonlyBorderColor =
+  "var(--k-color-input-readonly-border, var(--k-color-border-subtle))";
+
 export const textInputTokens = {
   styles: {
     base: baseTextInputStyle,
@@ -61,7 +64,7 @@ export const textInputTokens = {
         colors: {
           bg: tokens.theme.colors.background.elevated,
           text: tokens.theme.colors.text.secondary,
-          border: tokens.theme.colors.border.subtle,
+          border: readonlyBorderColor,
           placeholder: tokens.theme.colors.text.secondary,
         },
       },
@@ -127,7 +130,7 @@ export const textInputTokens = {
         colors: {
           bg: tokens.theme.colors.background.elevated,
           text: tokens.theme.colors.text.secondary,
-          border: tokens.theme.colors.border.subtle,
+          border: readonlyBorderColor,
           placeholder: tokens.theme.colors.text.secondary,
           prefix: tokens.theme.colors.text.secondary,
         },
@@ -200,7 +203,7 @@ export const textInputTokens = {
         colors: {
           bg: tokens.theme.colors.background.elevated,
           text: tokens.theme.colors.text.secondary,
-          border: tokens.theme.colors.border.subtle,
+          border: readonlyBorderColor,
           placeholder: tokens.theme.colors.text.secondary,
           suffix: tokens.theme.colors.text.secondary,
         },

@@ -46,6 +46,7 @@ describe("layout quality gates", () => {
 
   it("ensures theme and parameter adaptation are wired", () => {
     const css = generateComponentCss(componentStyleMaps);
+    const darkThemeSource = readProjectFile("styles/themes/dark.scss");
 
     // Container: size + theme surface
     expect(css).toContain(".k-container--size-sm {");
@@ -73,12 +74,19 @@ describe("layout quality gates", () => {
     expect(css).toContain(".k-section--variant-elevated {");
     expect(css).toContain(".k-section--variant-outlined {");
     expect(css).toContain("--k-section-colors-bg: var(--k-color-bg-surface);");
-    expect(css).toContain("--k-section-colors-border: var(--k-color-border-subtle);");
+    expect(css).toContain("--k-section-colors-border: var(--k-color-section-elevated-border, var(--k-color-border-subtle));");
+    expect(css).toContain("--k-section-shadow: var(--k-shadow-section-elevated, var(--k-shadow-md));");
 
     // Divider: orientation/state variants + semantic border colors
     expect(css).toContain(".k-divider--variant-horizontal.is-subtle {");
     expect(css).toContain(".k-divider--variant-vertical.is-strong {");
-    expect(css).toContain("--k-divider-color: var(--k-color-border-subtle);");
+    expect(css).toContain("--k-divider-color: var(--k-color-divider-subtle, var(--k-color-border-subtle));");
     expect(css).toContain("--k-divider-color: var(--k-color-border-strong);");
+
+    // Dark-mode refinements for readability and elevation contrast
+    expect(darkThemeSource).toContain("--k-color-input-readonly-border: var(--k-color-input-disabled-border);");
+    expect(darkThemeSource).toContain("--k-color-divider-subtle: var(--k-color-border-default);");
+    expect(darkThemeSource).toContain("--k-color-section-elevated-border: var(--k-color-border-default);");
+    expect(darkThemeSource).toContain("--k-shadow-section-elevated: var(--k-shadow-lg);");
   });
 });

@@ -50,20 +50,17 @@ import {
       line-height: var(--k-link-line-height, inherit);
       font-weight: var(--k-link-font-weight, 400);
       color: inherit;
-      text-decoration-line: underline;
-      text-decoration-color: var(--k-link-decoration-color, currentColor);
+      text-decoration: none;
       border-radius: var(--k-link-border-radius, 0);
-      transition:
-        color var(--k-link-motion-duration, 0s) var(--k-link-motion-easing, linear),
-        text-decoration-color var(--k-link-motion-duration, 0s)
-          var(--k-link-motion-easing, linear);
+      transition: color var(--k-link-motion-duration, 0s)
+        var(--k-link-motion-easing, linear);
       cursor: pointer;
     }
 
     .content:focus-visible {
-      outline: 2px solid var(--k-link-focus-ring-color, currentColor);
+      outline: 2px solid var(--k-link-color, currentColor);
       outline-offset: 2px;
-      box-shadow: var(--k-link-focus-shadow, none);
+      box-shadow: none;
     }
 
     :host(.is-disabled) .content,

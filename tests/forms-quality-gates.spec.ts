@@ -66,9 +66,14 @@ describe("form quality gates", () => {
     expect(selectSource).toContain("<select");
     expect(checkboxSource).toContain("implements KentraCheckboxContract, FormCheckboxControl");
     expect(checkboxSource).toContain("readonly checked = model(false)");
+    expect(checkboxSource).toContain("appearance: none;");
+    expect(checkboxSource).toContain(".native:checked + .control .indicator");
+    expect(checkboxSource).toContain(".native:indeterminate + .control .indicator");
     expect(radioGroupSource).toContain("implements KentraRadioGroupContract, FormValueControl<string | null>");
     expect(switchSource).toContain("implements KentraSwitchContract, FormCheckboxControl");
     expect(switchSource).toContain("readonly checked = model(false)");
+    expect(switchSource).toContain("appearance: none;");
+    expect(switchSource).toContain(".native:checked + .track .thumb");
 
     // Theme + parameter adaptation
     expect(css).toContain(".k-field--variant-default {");
@@ -80,5 +85,6 @@ describe("form quality gates", () => {
     expect(css).toContain(".k-checkbox--variant-indeterminate.is-checked {");
     expect(css).toContain(".k-radio-group--variant-horizontal {");
     expect(css).toContain(".k-switch--variant-compact.is-on {");
+    expect(css).toContain("--k-switch-colors-thumb: var(--k-color-border-default);");
   });
 });

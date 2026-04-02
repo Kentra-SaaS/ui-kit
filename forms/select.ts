@@ -72,7 +72,7 @@ type SelectionChangeEvent = {
         }
       </select>
 
-      <span class="icon" aria-hidden="true">v</span>
+      <span class="k-icon icon" aria-hidden="true">caret-down</span>
     </div>
   `,
   styles: `
@@ -128,8 +128,7 @@ type SelectionChangeEvent = {
       transform: translateY(-50%);
       color: var(--k-select-colors-icon, currentColor);
       pointer-events: none;
-      font-family: var(--k-select-typography-family, inherit);
-      font-size: 0.75rem;
+      font-size: var(--k-icon-size-sm);
       line-height: 1;
     }
 

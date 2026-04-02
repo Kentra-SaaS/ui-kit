@@ -76,6 +76,8 @@ type ValueChangeEvent = {
 
     .native {
       position: absolute;
+      appearance: none;
+      -webkit-appearance: none;
       inline-size: var(--k-switch-size-track-width, 2.75rem);
       block-size: var(--k-switch-size-track-height, 1.5rem);
       margin: 0;
@@ -115,12 +117,13 @@ type ValueChangeEvent = {
         var(--k-switch-motion-easing, linear);
     }
 
-    :host(.is-on) .thumb {
+    .native:checked + .track .thumb {
       transform: translateX(
         calc(
           var(--k-switch-size-track-width, 2.75rem) -
             var(--k-switch-size-thumb-size, 1.125rem) -
-            (var(--k-switch-size-padding, 1px) * 2)
+            (var(--k-switch-size-padding, 1px) * 2) -
+            (var(--k-switch-border-width, 1px) * 2)
         )
       );
     }
@@ -181,10 +184,6 @@ export class KentraSwitch
       return "disabled";
     }
 
-    if (this.isFocusVisible()) {
-      return "focusVisible";
-    }
-
     return this.checked() ? "on" : "off";
   });
 
@@ -195,8 +194,11 @@ export class KentraSwitch
   }
 
   protected override stateValues() {
+    const state = this.effectiveState();
+
     return {
-      [this.effectiveState()]: true,
+      [state]: true,
+      focusVisible: this.isFocusVisible() && state === "off",
     };
   }
 

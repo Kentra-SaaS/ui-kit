@@ -54,10 +54,10 @@ describe("form components", () => {
     expect(css).toContain(".k-select--variant-default.is-open {");
     expect(css).toContain(".k-select--variant-default:focus-within, .k-select--variant-default.is-focus-visible {");
     expect(css).toContain(".k-checkbox--variant-default.is-indeterminate {");
-    expect(css).toContain(".k-checkbox--variant-default:focus-within, .k-checkbox--variant-default.is-focus-visible {");
+    expect(css).toContain(".k-checkbox--variant-default:focus-within.is-unchecked, .k-checkbox--variant-default.is-focus-visible {");
     expect(css).toContain(".k-radio-group--variant-horizontal {");
     expect(css).toContain(".k-radio-group--variant-horizontal:focus-within, .k-radio-group--variant-horizontal.is-focus-visible {");
     expect(css).toContain(".k-switch--variant-compact.is-on {");
-    expect(css).toContain(".k-switch--variant-default:focus-within, .k-switch--variant-default.is-focus-visible {");
+    expect(css).toContain(".k-switch--variant-default:focus-within.is-off, .k-switch--variant-default.is-focus-visible {");
   });
 });

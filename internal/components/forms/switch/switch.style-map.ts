@@ -7,7 +7,7 @@ export const switchStyleMap = createComponentStyleMapFromTokens({
   tokens: switchTokens,
   stateSelectors: {
     default: "&",
-    focusVisible: "&:focus-within, &.is-focus-visible",
+    focusVisible: "&:focus-within.is-off, &.is-focus-visible",
     disabled: "&.is-disabled, &:disabled, &[aria-disabled='true']",
   },
 });

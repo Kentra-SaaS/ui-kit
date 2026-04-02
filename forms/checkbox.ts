@@ -51,7 +51,7 @@ type ValueChangeEvent = {
       />
 
       <span class="control" aria-hidden="true">
-        <span class="indicator">{{ indicatorGlyph() }}</span>
+        <span class="k-icon indicator">{{ indicatorGlyph() }}</span>
       </span>
 
       <span class="label"><ng-content></ng-content></span>
@@ -59,14 +59,15 @@ type ValueChangeEvent = {
   `,
   styles: `
     :host {
-      display: inline-block;
+      display: flex;
+      align-items: center;
       max-inline-size: 100%;
     }
 
     .root {
       position: relative;
       display: inline-flex;
-      align-items: flex-start;
+      align-items: center;
       gap: var(--k-checkbox-size-gap, var(--k-space-2));
       color: var(--k-checkbox-colors-label, currentColor);
       font-family: var(--k-checkbox-label-family, inherit);
@@ -79,6 +80,8 @@ type ValueChangeEvent = {
 
     .native {
       position: absolute;
+      appearance: none;
+      -webkit-appearance: none;
       inline-size: var(--k-checkbox-size-control, 1.25rem);
       block-size: var(--k-checkbox-size-control, 1.25rem);
       margin: 0;
@@ -111,6 +114,9 @@ type ValueChangeEvent = {
     }
 
     .indicator {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       font-size: var(--k-checkbox-size-indicator, 0.875rem);
       line-height: 1;
       opacity: 0;
@@ -126,8 +132,8 @@ type ValueChangeEvent = {
       min-inline-size: 0;
     }
 
-    :host(.is-checked) .indicator,
-    :host(.is-indeterminate) .indicator {
+    .native:checked + .control .indicator,
+    .native:indeterminate + .control .indicator {
       opacity: 1;
       transform: scale(1);
     }
@@ -180,10 +186,10 @@ export class KentraCheckbox
   readonly normalizedName = computed(() => this.normalizeText(this.name()));
   readonly indicatorGlyph = computed(() => {
     if (this.indeterminate()) {
-      return "-";
+      return "minus";
     }
 
-    return this.checked() ? "x" : "";
+    return this.checked() ? "check" : "";
   });
 
   protected readonly baseClass = checkboxStyleMap.baseClass;
@@ -200,10 +206,6 @@ export class KentraCheckbox
       return "error";
     }
 
-    if (this.isFocusVisible()) {
-      return "focusVisible";
-    }
-
     if (this.indeterminate()) {
       return "indeterminate";
     }
@@ -218,8 +220,11 @@ export class KentraCheckbox
   }
 
   protected override stateValues() {
+    const state = this.effectiveState();
+
     return {
-      [this.effectiveState()]: true,
+      [state]: true,
+      focusVisible: this.isFocusVisible() && state === "unchecked",
     };
   }
 

@@ -7,7 +7,7 @@ export const checkboxStyleMap = createComponentStyleMapFromTokens({
   tokens: checkboxTokens,
   stateSelectors: {
     default: "&",
-    focusVisible: "&:focus-within, &.is-focus-visible",
+    focusVisible: "&:focus-within.is-unchecked, &.is-focus-visible",
     disabled: "&.is-disabled, &:disabled, &[aria-disabled='true']",
   },
 });

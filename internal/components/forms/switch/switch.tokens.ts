@@ -30,7 +30,7 @@ export const switchTokens = {
         colors: {
           trackBg: tokens.theme.colors.input.bg,
           trackBorder: tokens.theme.colors.input.border,
-          thumb: tokens.theme.colors.background.surface,
+          thumb: tokens.theme.colors.border.default,
         },
       },
       on: {
@@ -56,7 +56,7 @@ export const switchTokens = {
         colors: {
           trackBg: tokens.theme.colors.input.bg,
           trackBorder: tokens.theme.interactionState.focus.ring,
-          thumb: tokens.theme.colors.background.surface,
+          thumb: tokens.theme.colors.border.default,
         },
       },
       disabled: {
@@ -85,7 +85,7 @@ export const switchTokens = {
         colors: {
           trackBg: tokens.theme.colors.input.bg,
           trackBorder: tokens.theme.colors.input.border,
-          thumb: tokens.theme.colors.background.surface,
+          thumb: tokens.theme.colors.border.default,
         },
       },
       on: {
@@ -111,7 +111,7 @@ export const switchTokens = {
         colors: {
           trackBg: tokens.theme.colors.input.bg,
           trackBorder: tokens.theme.interactionState.focus.ring,
-          thumb: tokens.theme.colors.background.surface,
+          thumb: tokens.theme.colors.border.default,
         },
       },
       disabled: {

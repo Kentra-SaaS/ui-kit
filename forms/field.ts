@@ -93,7 +93,7 @@ import {
     :host(.k-field--variant-inline-label) .row {
       grid-template-columns: minmax(
           0,
-          var(--k-field-layout-label-min-width, 11rem)
+          var(--k-field-layout-label-min-width, max-content)
         )
         minmax(0, 1fr);
       align-items: var(--k-field-layout-align, center);

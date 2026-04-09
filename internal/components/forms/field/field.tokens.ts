@@ -60,7 +60,7 @@ export const fieldTokens = {
     inlineLabel: {
       default: {
         layout: {
-          labelMinWidth: "11rem",
+          labelMinWidth: "max-content",
           align: "center",
           gap: tokens.global.baseStyle.space.step2,
         },
@@ -73,7 +73,7 @@ export const fieldTokens = {
       },
       required: {
         layout: {
-          labelMinWidth: "11rem",
+          labelMinWidth: "max-content",
           align: "center",
           gap: tokens.global.baseStyle.space.step2,
         },
@@ -86,7 +86,7 @@ export const fieldTokens = {
       },
       error: {
         layout: {
-          labelMinWidth: "11rem",
+          labelMinWidth: "max-content",
           align: "center",
           gap: tokens.global.baseStyle.space.step2,
         },
@@ -99,7 +99,7 @@ export const fieldTokens = {
       },
       disabled: {
         layout: {
-          labelMinWidth: "11rem",
+          labelMinWidth: "max-content",
           align: "center",
           gap: tokens.global.baseStyle.space.step2,
         },

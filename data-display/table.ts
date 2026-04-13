@@ -58,6 +58,11 @@ type NormalizedColumn = {
   readonly align: "start" | "center" | "end";
 };
 
+type RowSelectionStats = {
+  readonly total: number;
+  readonly selected: number;
+};
+
 @Component({
   selector: "k-table",
   standalone: true,
@@ -94,7 +99,7 @@ type NormalizedColumn = {
                 [class.is-sortable]="isColumnSortable(column)"
                 [class.align-center]="column.align === 'center'"
                 [class.align-end]="column.align === 'end'"
-                [attr.aria-sort]="sortAria(column.id)"
+                [attr.aria-sort]="sortAria(column)"
               >
                 @if (isColumnSortable(column)) {
                   <button class="sort-trigger" type="button" (click)="onSort(column)">
@@ -417,26 +422,14 @@ export class KentraTable extends KentraElementBase implements KentraTableContrac
   );
 
   readonly resolvedRows = computed<readonly ResolvedRow[]>(() => {
-    const rowKey = this.normalizeText(this.rowKey()) ?? "id";
-
-    return this.rows().map((row, index) => {
-      const candidateId = row[rowKey];
-      const resolvedId =
-        typeof candidateId === "string"
-          ? this.normalizeText(candidateId)
-          : candidateId !== undefined && candidateId !== null
-            ? String(candidateId)
-            : null;
-
-      return {
-        id: resolvedId ?? `row-${index}`,
-        data: row,
-      };
-    });
+    const rowKey = this.resolveRowKey();
+    return this.rows().map((row, index) => ({
+      id: this.resolveRowId(row, rowKey, index),
+      data: row,
+    }));
   });
-
-  readonly resolvedSelectedRowIds = computed<readonly string[]>(() =>
-    this.uncontrolledSelectedRowIds(),
+  readonly resolvedSelectedRowIdSet = computed(
+    () => new Set(this.uncontrolledSelectedRowIds()),
   );
 
   readonly activeSortColumnId = computed(() => this.uncontrolledSort()?.columnId ?? null);
@@ -511,30 +504,34 @@ export class KentraTable extends KentraElementBase implements KentraTableContrac
   });
 
   readonly allRowIds = computed(() => this.resolvedRows().map((row) => row.id));
-
-  readonly areAllRowsSelected = computed(() => {
+  readonly rowSelectionStats = computed<RowSelectionStats>(() => {
     const rowIds = this.allRowIds();
     if (rowIds.length === 0) {
-      return false;
+      return { total: 0, selected: 0 };
     }
 
-    const selection = new Set(this.resolvedSelectedRowIds());
-    return rowIds.every((rowId) => selection.has(rowId));
+    const selectedRowIds = this.resolvedSelectedRowIdSet();
+    let selected = 0;
+    for (const rowId of rowIds) {
+      if (selectedRowIds.has(rowId)) {
+        selected += 1;
+      }
+    }
+
+    return {
+      total: rowIds.length,
+      selected,
+    };
+  });
+
+  readonly areAllRowsSelected = computed(() => {
+    const { total, selected } = this.rowSelectionStats();
+    return total > 0 && selected === total;
   });
 
   readonly isRowSelectionMixed = computed(() => {
-    const rowIds = this.allRowIds();
-    if (rowIds.length === 0) {
-      return false;
-    }
-
-    const selection = new Set(this.resolvedSelectedRowIds());
-    const selectedCount = rowIds.reduce(
-      (count, rowId) => (selection.has(rowId) ? count + 1 : count),
-      0,
-    );
-
-    return selectedCount > 0 && selectedCount < rowIds.length;
+    const { total, selected } = this.rowSelectionStats();
+    return selected > 0 && selected < total;
   });
 
   readonly columnCount = computed(() =>
@@ -547,10 +544,6 @@ export class KentraTable extends KentraElementBase implements KentraTableContrac
 
   readonly isLoadingState = computed(() =>
     this.state() === "loading" || this.loading(),
-  );
-
-  readonly isEmptyState = computed(() =>
-    !this.isLoadingState() && this.visibleRows().length === 0,
   );
 
   readonly isRowClickable = computed(
@@ -566,7 +559,7 @@ export class KentraTable extends KentraElementBase implements KentraTableContrac
       return "loading";
     }
 
-    if (this.isEmptyState()) {
+    if (this.visibleRows().length === 0) {
       return "empty";
     }
 
@@ -582,8 +575,8 @@ export class KentraTable extends KentraElementBase implements KentraTableContrac
   private readonly uncontrolledSelectedRowIds = signal<readonly string[]>([]);
   private readonly uncontrolledSort = signal<KentraTableSortChangeValue>(null);
   private readonly uncontrolledPage = signal(1);
-  private readonly lastClickedRow = signal<KentraTableRowClickValue | null>(null);
-  private readonly lastSyncedExternalSelectionKey = signal<string | null>(null);
+  private lastClickedRow: KentraTableRowClickValue | null = null;
+  private lastSyncedExternalSelectionKey: string | null = null;
 
   constructor() {
     super();
@@ -599,11 +592,11 @@ export class KentraTable extends KentraElementBase implements KentraTableContrac
 
       const normalizedExternalSelection = this.normalizeSelection(externalSelection);
       const externalSelectionKey = this.selectionKey(normalizedExternalSelection);
-      if (this.lastSyncedExternalSelectionKey() === externalSelectionKey) {
+      if (this.lastSyncedExternalSelectionKey === externalSelectionKey) {
         return;
       }
 
-      this.lastSyncedExternalSelectionKey.set(externalSelectionKey);
+      this.lastSyncedExternalSelectionKey = externalSelectionKey;
       this.uncontrolledSelectedRowIds.set(normalizedExternalSelection);
     });
   }
@@ -624,17 +617,16 @@ export class KentraTable extends KentraElementBase implements KentraTableContrac
   }
 
   isRowSelected(rowId: string): boolean {
-    return this.resolvedSelectedRowIds().includes(rowId);
+    return this.resolvedSelectedRowIdSet().has(rowId);
   }
 
-  sortAria(columnId: string): "ascending" | "descending" | "none" | null {
-    const activeSort = this.uncontrolledSort();
-    const column = this.normalizedColumns().find((entry) => entry.id === columnId);
-    if (column === undefined || !this.isColumnSortable(column)) {
+  sortAria(column: NormalizedColumn): "ascending" | "descending" | "none" | null {
+    if (!this.isColumnSortable(column)) {
       return null;
     }
 
-    if (activeSort?.columnId !== columnId) {
+    const activeSort = this.uncontrolledSort();
+    if (activeSort?.columnId !== column.id) {
       return "none";
     }
 
@@ -646,13 +638,13 @@ export class KentraTable extends KentraElementBase implements KentraTableContrac
       return;
     }
 
-    const previousValue = this.lastClickedRow();
+    const previousValue = this.lastClickedRow;
     const nextValue: KentraTableRowClickValue = {
       rowId: row.id,
       row: row.data,
     };
 
-    this.lastClickedRow.set(nextValue);
+    this.lastClickedRow = nextValue;
     this.rowClicked.emit({
       value: nextValue,
       previousValue,
@@ -663,42 +655,19 @@ export class KentraTable extends KentraElementBase implements KentraTableContrac
   }
 
   onToggleRowSelection(rowId: string, event: Event): void {
-    if (!this.selectable() || this.isLoadingState()) {
-      return;
-    }
-
-    const target = event.target as HTMLInputElement | null;
-    if (target === null) {
-      return;
-    }
-
-    this.applyRowSelection(rowId, target.checked);
-    event.stopPropagation();
+    this.withSelectionCheckboxChecked(event, (checked) =>
+      this.applyRowSelection(rowId, checked),
+    );
   }
 
   onToggleSelectAll(event: Event): void {
-    if (!this.selectable() || this.isLoadingState()) {
-      return;
-    }
-
-    const target = event.target as HTMLInputElement | null;
-    if (target === null) {
-      return;
-    }
-
-    const previousSelection = this.resolvedSelectedRowIds();
-    const nextSelectionSet = new Set(previousSelection);
-
-    for (const rowId of this.allRowIds()) {
-      if (target.checked) {
-        nextSelectionSet.add(rowId);
-      } else {
-        nextSelectionSet.delete(rowId);
-      }
-    }
-
-    this.commitSelection([...nextSelectionSet], previousSelection);
-    event.stopPropagation();
+    this.withSelectionCheckboxChecked(event, (checked) => {
+      const previousSelection = this.uncontrolledSelectedRowIds();
+      this.commitSelection(
+        this.withAllRowsSelection(previousSelection, checked),
+        previousSelection,
+      );
+    });
   }
 
   onSort(column: { readonly id: string; readonly sortable: boolean }): void {
@@ -708,20 +677,7 @@ export class KentraTable extends KentraElementBase implements KentraTableContrac
 
     const previousSort = this.uncontrolledSort();
 
-    let nextSort: KentraTableSortChangeValue;
-    if (previousSort?.columnId !== column.id) {
-      nextSort = {
-        columnId: column.id,
-        direction: "asc",
-      };
-    } else if (previousSort.direction === "asc") {
-      nextSort = {
-        columnId: column.id,
-        direction: "desc",
-      };
-    } else {
-      nextSort = null;
-    }
+    const nextSort = this.resolveNextSort(previousSort, column.id);
 
     this.uncontrolledSort.set(nextSort);
     this.sortChanged.emit({
@@ -777,16 +733,11 @@ export class KentraTable extends KentraElementBase implements KentraTableContrac
   }
 
   private applyRowSelection(rowId: string, checked: boolean): void {
-    const previousSelection = this.resolvedSelectedRowIds();
-    const nextSelectionSet = new Set(previousSelection);
-
-    if (checked) {
-      nextSelectionSet.add(rowId);
-    } else {
-      nextSelectionSet.delete(rowId);
-    }
-
-    this.commitSelection([...nextSelectionSet], previousSelection);
+    const previousSelection = this.uncontrolledSelectedRowIds();
+    this.commitSelection(
+      this.withSingleRowSelection(previousSelection, rowId, checked),
+      previousSelection,
+    );
   }
 
   private commitSelection(nextSelection: readonly string[], previousSelection: readonly string[]): void {
@@ -852,8 +803,102 @@ export class KentraTable extends KentraElementBase implements KentraTableContrac
     return [...new Set(selection)];
   }
 
+  private canHandleSelectionInput(): boolean {
+    return this.selectable() && !this.isLoadingState();
+  }
+
+  private checkboxTargetFromEvent(event: Event): HTMLInputElement | null {
+    const target = event.target;
+    return target instanceof HTMLInputElement ? target : null;
+  }
+
+  private withSelectionCheckboxChecked(
+    event: Event,
+    callback: (checked: boolean) => void,
+  ): void {
+    if (!this.canHandleSelectionInput()) {
+      return;
+    }
+
+    const target = this.checkboxTargetFromEvent(event);
+    if (target === null) {
+      return;
+    }
+
+    callback(target.checked);
+    event.stopPropagation();
+  }
+
+  private withSingleRowSelection(
+    previousSelection: readonly string[],
+    rowId: string,
+    checked: boolean,
+  ): readonly string[] {
+    const nextSelectionSet = new Set(previousSelection);
+    if (checked) {
+      nextSelectionSet.add(rowId);
+    } else {
+      nextSelectionSet.delete(rowId);
+    }
+
+    return [...nextSelectionSet];
+  }
+
+  private withAllRowsSelection(
+    previousSelection: readonly string[],
+    checked: boolean,
+  ): readonly string[] {
+    const nextSelectionSet = new Set(previousSelection);
+    for (const rowId of this.allRowIds()) {
+      if (checked) {
+        nextSelectionSet.add(rowId);
+      } else {
+        nextSelectionSet.delete(rowId);
+      }
+    }
+
+    return [...nextSelectionSet];
+  }
+
+  private resolveNextSort(
+    previousSort: KentraTableSortChangeValue,
+    columnId: string,
+  ): KentraTableSortChangeValue {
+    if (previousSort?.columnId !== columnId) {
+      return {
+        columnId,
+        direction: "asc",
+      };
+    }
+
+    if (previousSort.direction === "asc") {
+      return {
+        columnId,
+        direction: "desc",
+      };
+    }
+
+    return null;
+  }
+
   private selectionKey(selection: readonly string[]): string {
     return [...selection].sort((left, right) => left.localeCompare(right)).join("::");
+  }
+
+  private resolveRowKey(): string {
+    return this.normalizeText(this.rowKey()) ?? "id";
+  }
+
+  private resolveRowId(row: KentraTableRow, rowKey: string, index: number): string {
+    const candidateId = row[rowKey];
+    const resolvedId =
+      typeof candidateId === "string"
+        ? this.normalizeText(candidateId)
+        : candidateId !== undefined && candidateId !== null
+          ? String(candidateId)
+          : null;
+
+    return resolvedId ?? `row-${index}`;
   }
 
   private normalizeText(value: string | null): string | null {

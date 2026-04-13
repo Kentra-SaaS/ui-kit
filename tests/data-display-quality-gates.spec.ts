@@ -101,7 +101,8 @@ describe("data-display quality gates", () => {
     expect(tableSource).toContain("readonly pageChanged = output<PageChangeEvent>()");
     expect(tableSource).toContain("onToggleSelectAll(event: Event)");
     expect(tableSource).toContain("onPageChange(nextPage: number)");
-    expect(tableSource).toContain("nextSort = null;");
+    expect(tableSource).toContain("private resolveNextSort(");
+    expect(tableSource).toContain("return null;");
     expect(tableSource).toContain(".row.is-clickable:hover:not(.is-selected)");
     expect(emptyStateSource).toContain("readonly actionLabel = input<string | null>(null)");
     expect(emptyStateSource).toContain("readonly click = output<MouseEvent>()");

@@ -55,8 +55,8 @@ export const emptyStateTokens = {
       default: {
         colors: {
           bg: tokens.theme.colors.background.surface,
-          border: tokens.theme.colors.state.warning.fg,
-          icon: tokens.theme.colors.state.warning.fg,
+          border: tokens.global.palette.accent.orange.c500,
+          icon: tokens.global.palette.accent.orange.c500,
           title: tokens.theme.colors.text.primary,
           description: tokens.theme.colors.text.secondary,
         },

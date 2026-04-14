@@ -44,7 +44,7 @@ export const dropdownMenuTokens = {
         scale: "0.98",
         colors: {
           panelBg: tokens.theme.colors.background.elevated,
-          panelBorder: tokens.theme.colors.border.subtle,
+          panelBorder: tokens.theme.colors.border.default,
           itemText: tokens.theme.colors.text.primary,
           itemBg: tokens.theme.colors.background.elevated,
           itemHoverBg: tokens.theme.interactionState.hoverOverlay,
@@ -55,7 +55,7 @@ export const dropdownMenuTokens = {
         scale: "1",
         colors: {
           panelBg: tokens.theme.colors.background.elevated,
-          panelBorder: tokens.theme.colors.border.subtle,
+          panelBorder: tokens.theme.colors.border.default,
           itemText: tokens.theme.colors.text.primary,
           itemBg: tokens.theme.colors.background.elevated,
           itemHoverBg: tokens.theme.interactionState.hoverOverlay,
@@ -66,7 +66,7 @@ export const dropdownMenuTokens = {
         scale: "1",
         colors: {
           panelBg: tokens.theme.colors.background.elevated,
-          panelBorder: tokens.theme.colors.border.subtle,
+          panelBorder: tokens.theme.colors.border.default,
           itemText: tokens.theme.colors.text.primary,
           itemBg: tokens.theme.colors.background.elevated,
           itemHoverBg: tokens.theme.interactionState.hoverOverlay,
@@ -77,8 +77,8 @@ export const dropdownMenuTokens = {
         opacity: "1",
         scale: "1",
         colors: {
-          panelBg: tokens.theme.colors.background.elevated,
-          panelBorder: tokens.theme.colors.border.subtle,
+          panelBg: tokens.theme.interactionState.disabled.bg,
+          panelBorder: tokens.theme.interactionState.disabled.border,
           itemText: tokens.theme.interactionState.disabled.text,
           itemBg: tokens.theme.interactionState.disabled.bg,
           itemHoverBg: tokens.theme.interactionState.disabled.bg,
@@ -93,7 +93,7 @@ export const dropdownMenuTokens = {
         scale: "0.98",
         colors: {
           panelBg: tokens.theme.colors.background.elevated,
-          panelBorder: tokens.theme.colors.border.subtle,
+          panelBorder: tokens.theme.colors.border.default,
           itemText: tokens.theme.colors.text.primary,
           itemBg: tokens.theme.colors.background.elevated,
           itemHoverBg: tokens.theme.interactionState.hoverOverlay,
@@ -106,7 +106,7 @@ export const dropdownMenuTokens = {
         scale: "1",
         colors: {
           panelBg: tokens.theme.colors.background.elevated,
-          panelBorder: tokens.theme.colors.border.subtle,
+          panelBorder: tokens.theme.colors.border.default,
           itemText: tokens.theme.colors.text.primary,
           itemBg: tokens.theme.colors.background.elevated,
           itemHoverBg: tokens.theme.interactionState.hoverOverlay,
@@ -119,7 +119,7 @@ export const dropdownMenuTokens = {
         scale: "1",
         colors: {
           panelBg: tokens.theme.colors.background.elevated,
-          panelBorder: tokens.theme.colors.border.subtle,
+          panelBorder: tokens.theme.colors.border.default,
           itemText: tokens.theme.colors.text.primary,
           itemBg: tokens.theme.colors.background.elevated,
           itemHoverBg: tokens.theme.interactionState.hoverOverlay,
@@ -132,8 +132,8 @@ export const dropdownMenuTokens = {
         opacity: "1",
         scale: "1",
         colors: {
-          panelBg: tokens.theme.colors.background.elevated,
-          panelBorder: tokens.theme.colors.border.subtle,
+          panelBg: tokens.theme.interactionState.disabled.bg,
+          panelBorder: tokens.theme.interactionState.disabled.border,
           itemText: tokens.theme.interactionState.disabled.text,
           itemBg: tokens.theme.interactionState.disabled.bg,
           itemHoverBg: tokens.theme.interactionState.disabled.bg,

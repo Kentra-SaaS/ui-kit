@@ -5,6 +5,7 @@ const donutChartBaseStyle = {
     cutoutDefault: "64%",
     cutoutWithCenterMetric: "72%",
     borderWidth: "2px",
+    maxSize: "20rem",
   },
   legend: {
     gap: tokens.global.baseStyle.space.step2,
@@ -13,15 +14,15 @@ const donutChartBaseStyle = {
   centerMetric: {
     value: {
       family: tokens.global.typography.family.heading,
-      fontSize: tokens.global.typography.semantic.h4.fontSize,
-      lineHeight: tokens.global.typography.semantic.h4.lineHeight,
+      fontSize: tokens.global.typography.semantic.h3.fontSize,
+      lineHeight: tokens.global.typography.semantic.h3.lineHeight,
       fontWeight: tokens.global.typography.semantic.heading.fontWeight,
     },
     label: {
       family: tokens.global.typography.family.base,
-      fontSize: tokens.global.typography.semantic.caption.fontSize,
-      lineHeight: tokens.global.typography.semantic.caption.lineHeight,
-      fontWeight: tokens.global.typography.semantic.body.fontWeight,
+      fontSize: tokens.global.typography.semantic.body.sm.fontSize,
+      lineHeight: tokens.global.typography.semantic.body.sm.lineHeight,
+      fontWeight: tokens.global.typography.semantic.label.fontWeight,
     },
   },
 } as const;

@@ -27,8 +27,17 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Run unit and quality-gate tests
+        run: npm run test
+
+      - name: Run type checks
+        run: npm run test:typecheck
+
       - name: Build package
         run: npm run build
+
+      - name: Validate package contents
+        run: npm run pack:dry
 
       - name: Check published version
         id: version_check

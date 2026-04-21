@@ -50,7 +50,7 @@ npm run dev
 npm run pack:dry
 
 # Publish package manually (CI uses this on master with version guard)
-npm run publish:ci
+npm run publish
 ```
 
 ## Styles
@@ -64,3 +64,23 @@ Global styles import in consumer applications:
 - Branch: `master`
 - Versioning: manual in `package.json`
 - CI publish guard: publish only when version does not already exist in registry
+
+## M1 Compliance (KIT-012)
+- Component scope and contracts are anchored in:
+  - `internal/components/**/**/*.contract.ts`
+  - Public entrypoints: `layout`, `typography`, `actions`, `forms`, `navigation`, `data-display`, `feedback`, `overlays`, `charts`
+- Theme baseline is enforced through:
+  - `tests/theme-quality-gates.spec.ts`
+- Accessibility baseline is enforced through:
+  - `tests/accessibility-quality-gates.spec.ts`
+- Release baseline is enforced through:
+  - `tests/release-quality-gates.spec.ts`
+  - `.github/workflows/release-ui-kit.yml` (`test`, `test:typecheck`, `build`, `pack:dry` before publish)
+
+Reproducible local verification:
+
+```bash
+npx vitest run tests/accessibility-quality-gates.spec.ts tests/theme-quality-gates.spec.ts tests/release-quality-gates.spec.ts
+npm run test:typecheck
+npm run build
+```

@@ -5,4 +5,5 @@ export const badgeStyleMap = createComponentStyleMapFromTokens({
   id: "badge",
   baseClass: "k-badge",
   tokens: badgeTokens,
+  sizeSource: badgeTokens.styles.base.size,
 });

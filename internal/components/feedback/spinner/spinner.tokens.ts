@@ -3,7 +3,7 @@ import { tokens } from "../../../core/tokens";
 const spinnerBaseStyle = {
   strokeWidth: tokens.global.baseStyle.borderWidth.default,
   motion: {
-    duration: tokens.global.baseStyle.motion.duration.slow,
+    duration: "1.2s",
     easing: tokens.global.baseStyle.motion.ease.standard,
   },
   label: {

@@ -1,3 +1,4 @@
+import type { InputSignal } from "@angular/core";
 import type {
   ModalVariant,
   ModalState,
@@ -7,21 +8,20 @@ import type {
   KentraOpenedOutput,
   KentraStateInput,
   KentraVariantInput,
-  KentraContentChildSlots,
 } from "../../../core/contracts";
 
-interface KentraModalInputs extends KentraVariantInput<ModalVariant>, KentraStateInput<ModalState> {}
+interface KentraModalInputs extends KentraVariantInput<ModalVariant>, KentraStateInput<ModalState> {
+  readonly id: InputSignal<string | null>;
+  readonly title: InputSignal<string | null>;
+  readonly description: InputSignal<string | null>;
+  readonly ariaLabel: InputSignal<string | null>;
+  readonly dismissible: InputSignal<boolean>;
+  readonly closeOnBackdrop: InputSignal<boolean>;
+  readonly closeOnEscape: InputSignal<boolean>;
+}
 
 interface KentraModalOutputs extends KentraOpenedOutput, KentraClosedOutput<void> {}
 
-interface KentraModalHeaderSlot {}
-interface KentraModalBodySlot {}
-interface KentraModalFooterSlot {}
-
-interface KentraModalSlots extends KentraContentChildSlots<{
-  header: KentraModalHeaderSlot;
-  body: KentraModalBodySlot;
-  footer: KentraModalFooterSlot;
-}> {}
+interface KentraModalSlots {}
 
 export interface KentraModalContract extends KentraModalInputs, KentraModalOutputs, KentraModalSlots {}

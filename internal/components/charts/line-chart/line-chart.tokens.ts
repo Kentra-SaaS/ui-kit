@@ -35,13 +35,15 @@ const lineSeriesPalette = {
   series05: tokens.global.palette.accent.orange.c500,
 } as const;
 
+const lineChartGridColor = tokens.theme.colors.border.default;
+
 export const lineChartTokens = {
   styles: {
     base: lineChartBaseStyle,
     default: {
       loading: {
         colors: {
-          grid: tokens.theme.colors.border.subtle,
+          grid: lineChartGridColor,
           axis: tokens.theme.colors.text.secondary,
           label: tokens.theme.colors.text.secondary,
           skeleton: tokens.theme.colors.border.subtle,
@@ -50,7 +52,7 @@ export const lineChartTokens = {
       ready: {
         interpolation: "linear",
         colors: {
-          grid: tokens.theme.colors.border.subtle,
+          grid: lineChartGridColor,
           axis: tokens.theme.colors.text.secondary,
           label: tokens.theme.colors.text.secondary,
           tooltipBg: tokens.theme.colors.background.inverse,
@@ -60,7 +62,7 @@ export const lineChartTokens = {
       },
       empty: {
         colors: {
-          grid: tokens.theme.colors.border.subtle,
+          grid: lineChartGridColor,
           axis: tokens.theme.colors.text.secondary,
           label: tokens.theme.colors.text.secondary,
           stateText: tokens.theme.colors.text.secondary,
@@ -69,7 +71,7 @@ export const lineChartTokens = {
       },
       error: {
         colors: {
-          grid: tokens.theme.colors.border.subtle,
+          grid: lineChartGridColor,
           axis: tokens.theme.colors.text.secondary,
           label: tokens.theme.colors.text.secondary,
           stateText: tokens.theme.colors.state.danger.fg,
@@ -80,7 +82,7 @@ export const lineChartTokens = {
     smooth: {
       loading: {
         colors: {
-          grid: tokens.theme.colors.border.subtle,
+          grid: lineChartGridColor,
           axis: tokens.theme.colors.text.secondary,
           label: tokens.theme.colors.text.secondary,
           skeleton: tokens.theme.colors.border.subtle,
@@ -90,7 +92,7 @@ export const lineChartTokens = {
         interpolation: "monotone",
         tension: "0.35",
         colors: {
-          grid: tokens.theme.colors.border.subtle,
+          grid: lineChartGridColor,
           axis: tokens.theme.colors.text.secondary,
           label: tokens.theme.colors.text.secondary,
           tooltipBg: tokens.theme.colors.background.inverse,
@@ -100,7 +102,7 @@ export const lineChartTokens = {
       },
       empty: {
         colors: {
-          grid: tokens.theme.colors.border.subtle,
+          grid: lineChartGridColor,
           axis: tokens.theme.colors.text.secondary,
           label: tokens.theme.colors.text.secondary,
           stateText: tokens.theme.colors.text.secondary,
@@ -109,7 +111,7 @@ export const lineChartTokens = {
       },
       error: {
         colors: {
-          grid: tokens.theme.colors.border.subtle,
+          grid: lineChartGridColor,
           axis: tokens.theme.colors.text.secondary,
           label: tokens.theme.colors.text.secondary,
           stateText: tokens.theme.colors.state.danger.fg,
@@ -120,7 +122,7 @@ export const lineChartTokens = {
     stepped: {
       loading: {
         colors: {
-          grid: tokens.theme.colors.border.subtle,
+          grid: lineChartGridColor,
           axis: tokens.theme.colors.text.secondary,
           label: tokens.theme.colors.text.secondary,
           skeleton: tokens.theme.colors.border.subtle,
@@ -130,7 +132,7 @@ export const lineChartTokens = {
         interpolation: "stepped",
         stepped: true,
         colors: {
-          grid: tokens.theme.colors.border.subtle,
+          grid: lineChartGridColor,
           axis: tokens.theme.colors.text.secondary,
           label: tokens.theme.colors.text.secondary,
           tooltipBg: tokens.theme.colors.background.inverse,
@@ -140,7 +142,7 @@ export const lineChartTokens = {
       },
       empty: {
         colors: {
-          grid: tokens.theme.colors.border.subtle,
+          grid: lineChartGridColor,
           axis: tokens.theme.colors.text.secondary,
           label: tokens.theme.colors.text.secondary,
           stateText: tokens.theme.colors.text.secondary,
@@ -149,7 +151,7 @@ export const lineChartTokens = {
       },
       error: {
         colors: {
-          grid: tokens.theme.colors.border.subtle,
+          grid: lineChartGridColor,
           axis: tokens.theme.colors.text.secondary,
           label: tokens.theme.colors.text.secondary,
           stateText: tokens.theme.colors.state.danger.fg,

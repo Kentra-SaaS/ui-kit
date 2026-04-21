@@ -11,6 +11,10 @@ import type {
 
 interface KentraPaginationInputs extends KentraVariantInput<PaginationVariant>, KentraStateInput<PaginationState> {
   readonly page: InputSignal<number>;
+  readonly pageSize: InputSignal<number>;
+  readonly total: InputSignal<number>;
+  readonly siblingCount: InputSignal<number>;
+  readonly disabled: InputSignal<boolean>;
 }
 
 interface KentraPaginationOutputs extends KentraValueChangedOutput<number> {}

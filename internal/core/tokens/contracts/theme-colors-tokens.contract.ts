@@ -46,10 +46,17 @@ export const themeColorTokens = {
     bg: token("--k-color-input-bg"),
     text: token("--k-color-input-text"),
     border: token("--k-color-input-border"),
+    readonlyBorder: token("--k-color-input-readonly-border"),
     placeholder: token("--k-color-input-placeholder"),
     disabledBg: token("--k-color-input-disabled-bg"),
     disabledText: token("--k-color-input-disabled-text"),
     disabledBorder: token("--k-color-input-disabled-border"),
+  },
+  divider: {
+    subtle: token("--k-color-divider-subtle"),
+  },
+  section: {
+    elevatedBorder: token("--k-color-section-elevated-border"),
   },
   overlay: {
     backdrop: token("--k-color-overlay-backdrop"),

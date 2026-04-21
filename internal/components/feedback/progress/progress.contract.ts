@@ -1,3 +1,4 @@
+import type { InputSignal } from "@angular/core";
 import type {
   ProgressVariant,
   ProgressState,
@@ -7,7 +8,11 @@ import type {
   KentraVariantInput,
 } from "../../../core/contracts";
 
-interface KentraProgressInputs extends KentraVariantInput<ProgressVariant>, KentraStateInput<ProgressState> {}
+interface KentraProgressInputs extends KentraVariantInput<ProgressVariant>, KentraStateInput<ProgressState> {
+  readonly value: InputSignal<number | null>;
+  readonly max: InputSignal<number>;
+  readonly label: InputSignal<string | null>;
+}
 
 interface KentraProgressOutputs {}
 

@@ -26,10 +26,11 @@ export const sectionTokens = {
     elevated: {
       colors: {
         bg: tokens.theme.colors.background.elevated,
-        border: tokens.theme.colors.border.subtle,
+        border:
+          "var(--k-color-section-elevated-border, var(--k-color-border-subtle))",
         text: tokens.theme.colors.text.primary,
       },
-      shadow: tokens.theme.elevation.shadow.md,
+      shadow: "var(--k-shadow-section-elevated, var(--k-shadow-md))",
     },
     outlined: {
       colors: {

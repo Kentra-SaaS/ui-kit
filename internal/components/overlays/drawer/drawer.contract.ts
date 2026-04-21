@@ -1,3 +1,4 @@
+import type { InputSignal } from "@angular/core";
 import type {
   DrawerVariant,
   DrawerState,
@@ -7,21 +8,19 @@ import type {
   KentraOpenedOutput,
   KentraStateInput,
   KentraVariantInput,
-  KentraContentChildSlots,
 } from "../../../core/contracts";
 
-interface KentraDrawerInputs extends KentraVariantInput<DrawerVariant>, KentraStateInput<DrawerState> {}
+interface KentraDrawerInputs extends KentraVariantInput<DrawerVariant>, KentraStateInput<DrawerState> {
+  readonly title: InputSignal<string | null>;
+  readonly description: InputSignal<string | null>;
+  readonly ariaLabel: InputSignal<string | null>;
+  readonly dismissible: InputSignal<boolean>;
+  readonly closeOnBackdrop: InputSignal<boolean>;
+  readonly closeOnEscape: InputSignal<boolean>;
+}
 
 interface KentraDrawerOutputs extends KentraOpenedOutput, KentraClosedOutput<void> {}
 
-interface KentraDrawerHeaderSlot {}
-interface KentraDrawerBodySlot {}
-interface KentraDrawerFooterSlot {}
-
-interface KentraDrawerSlots extends KentraContentChildSlots<{
-  header: KentraDrawerHeaderSlot;
-  body: KentraDrawerBodySlot;
-  footer: KentraDrawerFooterSlot;
-}> {}
+interface KentraDrawerSlots {}
 
 export interface KentraDrawerContract extends KentraDrawerInputs, KentraDrawerOutputs, KentraDrawerSlots {}

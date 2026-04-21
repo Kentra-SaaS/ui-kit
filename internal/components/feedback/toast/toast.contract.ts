@@ -3,24 +3,24 @@ import type {
   ToastVariant,
   ToastState,
 } from "./toast.tokens";
+import type { IconName } from "../../icons/icon";
 import type {
   KentraClosedOutput,
   KentraStateInput,
   KentraVariantInput,
-  KentraContentChildSlots,
 } from "../../../core/contracts";
 
 interface KentraToastInputs extends KentraVariantInput<ToastVariant>, KentraStateInput<ToastState> {
-  readonly icon: InputSignal<string | null>;
+  readonly icon: InputSignal<IconName | null>;
   readonly title: InputSignal<string | null>;
+  readonly message: InputSignal<string | null>;
+  readonly dismissible: InputSignal<boolean>;
+  readonly duration: InputSignal<number | null>;
+  readonly ariaLive: InputSignal<"polite" | "assertive" | null>;
 }
 
 interface KentraToastOutputs extends KentraClosedOutput<void> {}
 
-interface KentraToastActionsSlot {}
-
-interface KentraToastSlots extends KentraContentChildSlots<{
-  actions: KentraToastActionsSlot;
-}> {}
+interface KentraToastSlots {}
 
 export interface KentraToastContract extends KentraToastInputs, KentraToastOutputs, KentraToastSlots {}

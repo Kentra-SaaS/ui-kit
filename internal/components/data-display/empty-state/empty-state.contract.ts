@@ -3,25 +3,23 @@ import type {
   EmptyStateVariant,
   EmptyStateState,
 } from "./empty-state.tokens";
+import type { IconName } from "../../icons/icon";
 import type {
   KentraClickOutput,
   KentraStateInput,
   KentraVariantInput,
-  KentraContentChildSlots,
 } from "../../../core/contracts";
 
 interface KentraEmptyStateInputs extends KentraVariantInput<EmptyStateVariant>, KentraStateInput<EmptyStateState> {
-  readonly icon: InputSignal<string | null>;
+  readonly icon: InputSignal<IconName | null>;
   readonly title: InputSignal<string | null>;
   readonly description: InputSignal<string | null>;
+  readonly actionLabel: InputSignal<string | null>;
+  readonly disabled: InputSignal<boolean>;
 }
 
 interface KentraEmptyStateOutputs extends KentraClickOutput {}
 
-interface KentraEmptyStateActionsSlot {}
-
-interface KentraEmptyStateSlots extends KentraContentChildSlots<{
-  actions: KentraEmptyStateActionsSlot;
-}> {}
+interface KentraEmptyStateSlots {}
 
 export interface KentraEmptyStateContract extends KentraEmptyStateInputs, KentraEmptyStateOutputs, KentraEmptyStateSlots {}

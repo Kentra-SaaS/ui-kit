@@ -1,7 +1,7 @@
 import { tokens } from "../../../core/tokens";
 
 const subtleDividerStyle = {
-  color: tokens.theme.colors.border.subtle,
+  color: "var(--k-color-divider-subtle, var(--k-color-border-subtle))",
   thickness: tokens.global.baseStyle.borderWidth.thin,
 } as const;
 
@@ -48,3 +48,4 @@ export const dividerTokens = {
 export type DividerTokensContract = typeof dividerTokens;
 export type DividerOrientation = Exclude<keyof DividerTokensContract["styles"], "base">;
 export type DividerVariant = keyof DividerTokensContract["styles"]["horizontal"];
+export type DividerSpacing = keyof DividerTokensContract["spacing"];

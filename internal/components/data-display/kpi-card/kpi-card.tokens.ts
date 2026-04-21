@@ -68,7 +68,7 @@ export const kpiCardTokens = {
           label: tokens.theme.colors.text.secondary,
           value: tokens.theme.colors.text.secondary,
           delta: tokens.theme.colors.text.secondary,
-          skeleton: tokens.theme.colors.border.subtle,
+          skeleton: tokens.theme.colors.border.default,
         },
       },
       empty: {
@@ -129,7 +129,7 @@ export const kpiCardTokens = {
           label: tokens.theme.colors.text.secondary,
           value: tokens.theme.colors.text.secondary,
           delta: tokens.theme.colors.text.secondary,
-          skeleton: tokens.theme.colors.border.subtle,
+          skeleton: tokens.theme.colors.border.default,
         },
       },
       empty: {
@@ -192,7 +192,7 @@ export const kpiCardTokens = {
           label: tokens.theme.colors.text.secondary,
           value: tokens.theme.colors.text.secondary,
           delta: tokens.theme.colors.text.secondary,
-          skeleton: tokens.theme.colors.border.subtle,
+          skeleton: tokens.theme.colors.border.default,
         },
       },
       empty: {

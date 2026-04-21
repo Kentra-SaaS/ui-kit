@@ -41,7 +41,7 @@ export const progressTokens = {
     indeterminate: {
       default: {
         animation: {
-          duration: tokens.global.baseStyle.motion.duration.slow,
+          duration: "1.6s",
           easing: tokens.global.baseStyle.motion.ease.standard,
         },
         colors: {
@@ -52,7 +52,7 @@ export const progressTokens = {
       },
       paused: {
         animation: {
-          duration: tokens.global.baseStyle.motion.duration.slow,
+          duration: "1.6s",
           easing: tokens.global.baseStyle.motion.ease.standard,
           playState: "paused",
         },

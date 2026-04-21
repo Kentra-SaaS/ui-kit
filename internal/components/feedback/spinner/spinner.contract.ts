@@ -1,3 +1,4 @@
+import type { InputSignal } from "@angular/core";
 import type {
   SpinnerVariant,
   SpinnerState,
@@ -7,7 +8,9 @@ import type {
   KentraVariantInput,
 } from "../../../core/contracts";
 
-interface KentraSpinnerInputs extends KentraVariantInput<SpinnerVariant>, KentraStateInput<SpinnerState> {}
+interface KentraSpinnerInputs extends KentraVariantInput<SpinnerVariant>, KentraStateInput<SpinnerState> {
+  readonly label: InputSignal<string | null>;
+}
 
 interface KentraSpinnerOutputs {}
 

@@ -1,3 +1,4 @@
+import type { InputSignal } from "@angular/core";
 import type {
   TooltipVariant,
   TooltipState,
@@ -7,19 +8,16 @@ import type {
   KentraOpenedOutput,
   KentraStateInput,
   KentraVariantInput,
-  KentraContentChildSlots,
 } from "../../../core/contracts";
 
-interface KentraTooltipInputs extends KentraVariantInput<TooltipVariant>, KentraStateInput<TooltipState> {}
+interface KentraTooltipInputs extends KentraVariantInput<TooltipVariant>, KentraStateInput<TooltipState> {
+  readonly content: InputSignal<string | null>;
+  readonly disabled: InputSignal<boolean>;
+  readonly showArrow: InputSignal<boolean>;
+}
 
 interface KentraTooltipOutputs extends KentraOpenedOutput, KentraClosedOutput<void> {}
 
-interface KentraTooltipTriggerSlot {}
-interface KentraTooltipContentSlot {}
-
-interface KentraTooltipSlots extends KentraContentChildSlots<{
-  trigger: KentraTooltipTriggerSlot;
-  content: KentraTooltipContentSlot;
-}> {}
+interface KentraTooltipSlots {}
 
 export interface KentraTooltipContract extends KentraTooltipInputs, KentraTooltipOutputs, KentraTooltipSlots {}

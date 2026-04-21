@@ -6,4 +6,13 @@ export const buttonStyleMap = createComponentStyleMapFromTokens({
   baseClass: "k-button",
   aliasPrefix: "btn",
   tokens: buttonTokens,
+  stateSelectors: {
+    default: "&",
+    hover: "&:hover, &.is-hover",
+    active: "&:active, &.is-active",
+    focusVisible:
+      "&:focus-within:not(.is-hover):not(.is-active):not(.is-loading):not(.is-disabled), &.is-focus-visible",
+    disabled: "&.is-disabled, &:disabled, &[aria-disabled='true']",
+    loading: "&.is-loading",
+  },
 });

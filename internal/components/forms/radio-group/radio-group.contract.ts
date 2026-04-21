@@ -1,25 +1,29 @@
-import type { InputSignal } from "@angular/core";
+import type { InputSignal, ModelSignal } from "@angular/core";
 import type {
   RadioGroupVariant,
-  RadioGroupState,
 } from "./radio-group.tokens";
 import type {
   KentraSelectionChangedOutput,
-  KentraStateInput,
   KentraVariantInput,
-  KentraContentChildrenSlots,
 } from "../../../core/contracts";
 
-interface KentraRadioGroupInputs extends KentraVariantInput<RadioGroupVariant>, KentraStateInput<RadioGroupState> {
-  readonly value: InputSignal<string | null>;
+export interface KentraRadioOption {
+  readonly value: string;
+  readonly label: string;
+  readonly disabled?: boolean;
 }
 
-interface KentraRadioGroupOutputs extends KentraSelectionChangedOutput<string> {}
+interface KentraRadioGroupInputs extends KentraVariantInput<RadioGroupVariant> {
+  readonly value: ModelSignal<string | null>;
+  readonly options: InputSignal<readonly KentraRadioOption[]>;
+  readonly name: InputSignal<string>;
+  readonly disabled: InputSignal<boolean>;
+  readonly invalid: InputSignal<boolean>;
+  readonly required: InputSignal<boolean>;
+}
 
-interface KentraRadioGroupOptionsSlot {}
+interface KentraRadioGroupOutputs extends KentraSelectionChangedOutput<string | null> {}
 
-interface KentraRadioGroupSlots extends KentraContentChildrenSlots<{
-  options: KentraRadioGroupOptionsSlot;
-}> {}
+interface KentraRadioGroupSlots {}
 
 export interface KentraRadioGroupContract extends KentraRadioGroupInputs, KentraRadioGroupOutputs, KentraRadioGroupSlots {}

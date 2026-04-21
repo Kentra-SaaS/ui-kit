@@ -47,19 +47,19 @@ export const iconButtonTokens = {
       minHeight: tokens.global.baseStyle.space.step10,
       minWidth: tokens.global.baseStyle.space.step10,
       padding: tokens.global.baseStyle.space.step2,
-      iconSize: tokens.global.icon.size.sm,
+      iconSize: tokens.global.baseStyle.space.step5,
     },
     md: {
       minHeight: tokens.global.baseStyle.space.step12,
       minWidth: tokens.global.baseStyle.space.step12,
       padding: tokens.global.baseStyle.space.step3,
-      iconSize: tokens.global.icon.size.md,
+      iconSize: tokens.global.baseStyle.space.step6,
     },
     lg: {
       minHeight: tokens.global.baseStyle.space.step16,
       minWidth: tokens.global.baseStyle.space.step16,
       padding: tokens.global.baseStyle.space.step4,
-      iconSize: tokens.global.icon.size.lg,
+      iconSize: tokens.global.baseStyle.space.step8,
     },
   },
   styles: {
@@ -76,11 +76,7 @@ export const iconButtonTokens = {
         },
       },
       focusVisible: {
-        colors: {
-          bg: tokens.theme.colors.action.primary.bg,
-          border: tokens.theme.interactionState.focus.ring,
-          icon: tokens.theme.colors.action.primary.text,
-        },
+        // Focus visuals are handled by outline/ring on the runtime element.
       },
       active: {
         colors: {
@@ -109,11 +105,7 @@ export const iconButtonTokens = {
         },
       },
       focusVisible: {
-        colors: {
-          bg: tokens.theme.colors.action.secondary.bg,
-          border: tokens.theme.interactionState.focus.ring,
-          icon: tokens.theme.colors.action.secondary.text,
-        },
+        // Focus visuals are handled by outline/ring on the runtime element.
       },
       active: {
         colors: {
@@ -142,11 +134,7 @@ export const iconButtonTokens = {
         },
       },
       focusVisible: {
-        colors: {
-          bg: tokens.global.palette.danger.c700,
-          border: tokens.theme.interactionState.focus.ring,
-          icon: tokens.global.palette.neutral.c0,
-        },
+        // Focus visuals are handled by outline/ring on the runtime element.
       },
       active: {
         colors: {
@@ -175,11 +163,7 @@ export const iconButtonTokens = {
         },
       },
       focusVisible: {
-        colors: {
-          bg: tokens.theme.colors.background.surface,
-          border: tokens.theme.interactionState.focus.ring,
-          icon: tokens.theme.colors.link.default,
-        },
+        // Focus visuals are handled by outline/ring on the runtime element.
       },
       active: {
         colors: {

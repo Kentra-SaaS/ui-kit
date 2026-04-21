@@ -10,7 +10,7 @@
 @use "./light/elevation";
 @use "./light/app-background";
 
-:root,
+:root:not([data-theme]),
 [data-theme="light"] {
   color-scheme: light;
 

@@ -60,9 +60,9 @@ export const fieldTokens = {
     inlineLabel: {
       default: {
         layout: {
-          labelMinWidth: "11rem",
+          labelMinWidth: "max-content",
           align: "center",
-          gap: tokens.global.baseStyle.space.step4,
+          gap: tokens.global.baseStyle.space.step2,
         },
         colors: {
           label: tokens.theme.colors.text.primary,
@@ -73,9 +73,9 @@ export const fieldTokens = {
       },
       required: {
         layout: {
-          labelMinWidth: "11rem",
+          labelMinWidth: "max-content",
           align: "center",
-          gap: tokens.global.baseStyle.space.step4,
+          gap: tokens.global.baseStyle.space.step2,
         },
         colors: {
           label: tokens.theme.colors.text.primary,
@@ -86,9 +86,9 @@ export const fieldTokens = {
       },
       error: {
         layout: {
-          labelMinWidth: "11rem",
+          labelMinWidth: "max-content",
           align: "center",
-          gap: tokens.global.baseStyle.space.step4,
+          gap: tokens.global.baseStyle.space.step2,
         },
         colors: {
           label: tokens.theme.colors.text.primary,
@@ -99,9 +99,9 @@ export const fieldTokens = {
       },
       disabled: {
         layout: {
-          labelMinWidth: "11rem",
+          labelMinWidth: "max-content",
           align: "center",
-          gap: tokens.global.baseStyle.space.step4,
+          gap: tokens.global.baseStyle.space.step2,
         },
         colors: {
           label: tokens.theme.interactionState.disabled.text,

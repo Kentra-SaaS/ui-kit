@@ -43,7 +43,9 @@ const isRecord = (value: unknown): value is Record<string, unknown> =>
   typeof value === "object" && value !== null && !Array.isArray(value);
 
 const isTokenRef = (value: unknown): value is Extract<StyleValue, { css: string; var: string }> =>
-  isRecord(value) && typeof value.css === "string" && typeof value.var === "string";
+  isRecord(value) &&
+  typeof value["css"] === "string" &&
+  typeof value["var"] === "string";
 
 const isStyleValue = (value: unknown): value is StyleValue =>
   typeof value === "string" || typeof value === "number" || isTokenRef(value);
@@ -89,27 +91,27 @@ export const flattenTokenVars = (source: unknown, aliasPrefix: string): Vars => 
 };
 
 const inferSizeSource = (tokens: TokenTree): TokenTree | undefined => {
-  const sizeSource = tokens.size;
+  const sizeSource = tokens["size"];
   return isRecord(sizeSource) ? sizeSource : undefined;
 };
 
 const inferBaseSource = (tokens: TokenTree): TokenTree | undefined => {
-  const explicitBaseSource = tokens.base;
+  const explicitBaseSource = tokens["base"];
   if (isRecord(explicitBaseSource)) {
     return explicitBaseSource;
   }
 
-  const styleSource = tokens.styles;
+  const styleSource = tokens["styles"];
   if (!isRecord(styleSource)) {
     return undefined;
   }
 
-  const styleBaseSource = styleSource.base;
+  const styleBaseSource = styleSource["base"];
   return isRecord(styleBaseSource) ? styleBaseSource : undefined;
 };
 
 const inferVariantSource = (tokens: TokenTree): TokenTree | undefined => {
-  const styleSource = tokens.styles;
+  const styleSource = tokens["styles"];
   if (isRecord(styleSource)) {
     const variants = Object.fromEntries(
       Object.entries(styleSource).filter(([name]) => name !== "base"),
@@ -118,7 +120,7 @@ const inferVariantSource = (tokens: TokenTree): TokenTree | undefined => {
     return Object.keys(variants).length > 0 ? variants : undefined;
   }
 
-  const variantSource = tokens.variants;
+  const variantSource = tokens["variants"];
   return isRecord(variantSource) ? variantSource : undefined;
 };
 
@@ -159,7 +161,7 @@ const looksLikeStateMap = (source: Record<string, unknown>): boolean => {
 };
 
 const styleValueKey = (value: StyleValue): string =>
-  isTokenRef(value) ? `token:${value.var}` : `literal:${String(value)}`;
+  isTokenRef(value) ? `token:${value["var"]}` : `literal:${String(value)}`;
 
 const extractCommonVariantStateVars = (
   variants: Record<string, Record<string, Vars>>,

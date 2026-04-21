@@ -35,6 +35,8 @@ const barSeriesPalette = {
   series05: tokens.global.palette.accent.orange.c500,
 } as const;
 
+const barChartGridColor = tokens.theme.colors.border.default;
+
 export const barChartTokens = {
   styles: {
     base: barChartBaseStyle,
@@ -42,7 +44,7 @@ export const barChartTokens = {
       loading: {
         orientation: "vertical",
         colors: {
-          grid: tokens.theme.colors.border.subtle,
+          grid: barChartGridColor,
           axis: tokens.theme.colors.text.secondary,
           label: tokens.theme.colors.text.secondary,
           skeleton: tokens.theme.colors.border.subtle,
@@ -51,7 +53,7 @@ export const barChartTokens = {
       ready: {
         orientation: "vertical",
         colors: {
-          grid: tokens.theme.colors.border.subtle,
+          grid: barChartGridColor,
           axis: tokens.theme.colors.text.secondary,
           label: tokens.theme.colors.text.secondary,
           tooltipBg: tokens.theme.colors.background.inverse,
@@ -62,7 +64,7 @@ export const barChartTokens = {
       empty: {
         orientation: "vertical",
         colors: {
-          grid: tokens.theme.colors.border.subtle,
+          grid: barChartGridColor,
           axis: tokens.theme.colors.text.secondary,
           label: tokens.theme.colors.text.secondary,
           stateText: tokens.theme.colors.text.secondary,
@@ -72,7 +74,7 @@ export const barChartTokens = {
       error: {
         orientation: "vertical",
         colors: {
-          grid: tokens.theme.colors.border.subtle,
+          grid: barChartGridColor,
           axis: tokens.theme.colors.text.secondary,
           label: tokens.theme.colors.text.secondary,
           stateText: tokens.theme.colors.state.danger.fg,
@@ -84,7 +86,7 @@ export const barChartTokens = {
       loading: {
         orientation: "horizontal",
         colors: {
-          grid: tokens.theme.colors.border.subtle,
+          grid: barChartGridColor,
           axis: tokens.theme.colors.text.secondary,
           label: tokens.theme.colors.text.secondary,
           skeleton: tokens.theme.colors.border.subtle,
@@ -93,7 +95,7 @@ export const barChartTokens = {
       ready: {
         orientation: "horizontal",
         colors: {
-          grid: tokens.theme.colors.border.subtle,
+          grid: barChartGridColor,
           axis: tokens.theme.colors.text.secondary,
           label: tokens.theme.colors.text.secondary,
           tooltipBg: tokens.theme.colors.background.inverse,
@@ -104,7 +106,7 @@ export const barChartTokens = {
       empty: {
         orientation: "horizontal",
         colors: {
-          grid: tokens.theme.colors.border.subtle,
+          grid: barChartGridColor,
           axis: tokens.theme.colors.text.secondary,
           label: tokens.theme.colors.text.secondary,
           stateText: tokens.theme.colors.text.secondary,
@@ -114,7 +116,7 @@ export const barChartTokens = {
       error: {
         orientation: "horizontal",
         colors: {
-          grid: tokens.theme.colors.border.subtle,
+          grid: barChartGridColor,
           axis: tokens.theme.colors.text.secondary,
           label: tokens.theme.colors.text.secondary,
           stateText: tokens.theme.colors.state.danger.fg,
@@ -127,7 +129,7 @@ export const barChartTokens = {
         orientation: "vertical",
         stacked: true,
         colors: {
-          grid: tokens.theme.colors.border.subtle,
+          grid: barChartGridColor,
           axis: tokens.theme.colors.text.secondary,
           label: tokens.theme.colors.text.secondary,
           skeleton: tokens.theme.colors.border.subtle,
@@ -137,7 +139,7 @@ export const barChartTokens = {
         orientation: "vertical",
         stacked: true,
         colors: {
-          grid: tokens.theme.colors.border.subtle,
+          grid: barChartGridColor,
           axis: tokens.theme.colors.text.secondary,
           label: tokens.theme.colors.text.secondary,
           tooltipBg: tokens.theme.colors.background.inverse,
@@ -149,7 +151,7 @@ export const barChartTokens = {
         orientation: "vertical",
         stacked: true,
         colors: {
-          grid: tokens.theme.colors.border.subtle,
+          grid: barChartGridColor,
           axis: tokens.theme.colors.text.secondary,
           label: tokens.theme.colors.text.secondary,
           stateText: tokens.theme.colors.text.secondary,
@@ -160,7 +162,7 @@ export const barChartTokens = {
         orientation: "vertical",
         stacked: true,
         colors: {
-          grid: tokens.theme.colors.border.subtle,
+          grid: barChartGridColor,
           axis: tokens.theme.colors.text.secondary,
           label: tokens.theme.colors.text.secondary,
           stateText: tokens.theme.colors.state.danger.fg,

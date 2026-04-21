@@ -24,4 +24,10 @@
   @include overlay.apply-dark-overlay-colors();
   @include elevation.apply-dark-elevation-tokens();
   @include app-background.apply-dark-app-background-colors();
+
+  /* Dark-mode component refinements */
+  --k-color-input-readonly-border: var(--k-color-input-disabled-border);
+  --k-color-divider-subtle: var(--k-color-border-default);
+  --k-color-section-elevated-border: var(--k-color-border-default);
+  --k-shadow-section-elevated: var(--k-shadow-lg);
 }

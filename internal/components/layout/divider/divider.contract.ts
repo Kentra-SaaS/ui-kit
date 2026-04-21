@@ -1,5 +1,7 @@
+import type { InputSignal } from "@angular/core";
 import type {
   DividerOrientation,
+  DividerSpacing,
   DividerVariant,
 } from "./divider.tokens";
 import type {
@@ -7,7 +9,11 @@ import type {
   KentraVariantInput,
 } from "../../../core/contracts";
 
-interface KentraDividerInputs extends KentraOrientationInput<DividerOrientation>, KentraVariantInput<DividerVariant> {}
+interface KentraDividerInputs
+  extends KentraOrientationInput<DividerOrientation>,
+    KentraVariantInput<DividerVariant> {
+  readonly spacing: InputSignal<DividerSpacing>;
+}
 
 interface KentraDividerOutputs {}
 

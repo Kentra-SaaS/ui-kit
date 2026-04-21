@@ -24,7 +24,7 @@ export const applySelectorPattern = (baseSelector: string, pattern: string): str
     .split(",")
     .map((segment) => segment.trim())
     .filter((segment) => segment.length > 0)
-    .map((segment) => segment.replaceAll("&", baseSelector))
+    .map((segment) => segment.replace(/&/g, baseSelector))
     .join(", ");
 
 /**

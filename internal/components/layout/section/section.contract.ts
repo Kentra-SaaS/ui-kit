@@ -8,7 +8,8 @@ import type {
 } from "../../../core/contracts";
 
 interface KentraSectionInputs extends KentraVariantInput<SectionVariant> {
-  readonly header: InputSignal<string | null>;
+  readonly title: InputSignal<string | null>;
+  readonly description: InputSignal<string | null>;
 }
 
 interface KentraSectionOutputs {}

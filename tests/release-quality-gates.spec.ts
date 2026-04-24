@@ -44,4 +44,26 @@ describe("release quality gates", () => {
     expect(workflow).toContain("if: steps.version_check.outputs.exists == 'false'");
     expect(workflow).toContain("if: steps.version_check.outputs.exists == 'true'");
   });
+
+  it("keeps publish-to-release automation with tag + release + package link", () => {
+    const workflow = readProjectFile(".github/workflows/release-ui-kit.yml");
+
+    const publishStepIndex = workflow.indexOf("run: npm publish");
+    const packageUrlStepIndex = workflow.indexOf("id: package_url");
+    const releaseTagStepIndex = workflow.indexOf("id: release_tag");
+    const releaseStepIndex = workflow.indexOf("gh release create \"$TAG\"");
+
+    expect(workflow).toContain("contents: write");
+    expect(workflow).toContain("packages: write");
+    expect(workflow).toContain("gh api \"/orgs/${{ github.repository_owner }}/packages/npm/${ENCODED_NAME}\"");
+    expect(workflow).toContain("git push origin \"refs/tags/${TAG}\"");
+    expect(workflow).toContain("--verify-tag");
+    expect(workflow).toContain("--generate-notes");
+    expect(workflow).toContain("[GitHub Packages](${PACKAGE_URL})");
+    expect(workflow).toContain("Skip publish and release (version already exists)");
+
+    expect(packageUrlStepIndex).toBeGreaterThan(publishStepIndex);
+    expect(releaseTagStepIndex).toBeGreaterThan(packageUrlStepIndex);
+    expect(releaseStepIndex).toBeGreaterThan(releaseTagStepIndex);
+  });
 });

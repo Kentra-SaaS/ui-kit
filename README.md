@@ -72,6 +72,8 @@ Global styles import in consumer applications:
 - Branch: `master`
 - Versioning: manual in `package.json`
 - CI publish guard: publish only when version does not already exist in registry
+- After successful publish, CI creates Git tag `v<version>` and a GitHub Release.
+- Release notes include a link to the published GitHub Package entry.
 
 ## M1 Compliance (KIT-012)
 - Component scope and contracts are anchored in:

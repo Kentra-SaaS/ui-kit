@@ -104,3 +104,17 @@ npx vitest run tests/layer-consumption-quality-gates.spec.ts
 npm run test:typecheck
 npm run build
 ```
+
+## M1.2 Compliance (KIT-015)
+- SCSS foundation and theme-switching guardrails are enforced through:
+  - `tests/scss-foundation-quality-gates.spec.ts`
+  - `tests/theme-quality-gates.spec.ts`
+  - `tests/tokens-css-coverage.spec.ts`
+
+Reproducible local verification:
+
+```bash
+npx vitest run tests/scss-foundation-quality-gates.spec.ts tests/theme-quality-gates.spec.ts tests/tokens-css-coverage.spec.ts
+npm run test:typecheck
+npm run build
+```

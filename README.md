@@ -16,6 +16,7 @@ The package bundles root styles and infrastructure for categorized component ent
 - `@kentra/ui-kit/actions`
 - `@kentra/ui-kit/forms`
 - `@kentra/ui-kit/navigation`
+- `@kentra/ui-kit/patterns`
 - `@kentra/ui-kit/data-display`
 - `@kentra/ui-kit/feedback`
 - `@kentra/ui-kit/overlays`

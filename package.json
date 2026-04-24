@@ -35,6 +35,10 @@
       "types": "./dist/navigation/index.d.ts",
       "default": "./dist/fesm2022/kentra-ui-kit-navigation.mjs"
     },
+    "./patterns": {
+      "types": "./dist/patterns/index.d.ts",
+      "default": "./dist/fesm2022/kentra-ui-kit-patterns.mjs"
+    },
     "./data-display": {
       "types": "./dist/data-display/index.d.ts",
       "default": "./dist/fesm2022/kentra-ui-kit-data-display.mjs"

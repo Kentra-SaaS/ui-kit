@@ -6,18 +6,18 @@ import {
   output,
 } from "@angular/core";
 import {
+  formatPhosphorCodepointForCss,
   IconName,
   IconSize,
   IconWeight,
   iconStyleMap,
   KentraElementBase,
   KentraIconContract,
-} from "../internal";
-import {
-  formatPhosphorCodepointForCss,
   resolvePhosphorDuotoneCodes,
   resolvePhosphorLigatureName,
-} from "../internal/components/icons/icon/phosphor-icon.helpers";
+} from "../internal";
+
+export type { IconName, IconSize, IconWeight } from "../internal";
 
 @Component({
   selector: "k-icon",

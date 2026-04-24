@@ -14,6 +14,7 @@ The package bundles root styles and infrastructure for categorized component ent
 - `@kentra/ui-kit/layout`
 - `@kentra/ui-kit/typography`
 - `@kentra/ui-kit/actions`
+- `@kentra/ui-kit/icons`
 - `@kentra/ui-kit/forms`
 - `@kentra/ui-kit/navigation`
 - `@kentra/ui-kit/patterns`
@@ -21,6 +22,12 @@ The package bundles root styles and infrastructure for categorized component ent
 - `@kentra/ui-kit/feedback`
 - `@kentra/ui-kit/overlays`
 - `@kentra/ui-kit/charts`
+
+## Layer and Consumption Rules (KIT-014)
+- Allowed consumer imports are limited to the public entrypoints listed above.
+- No deep imports from `@kentra/ui-kit/internal`.
+- No local imports from `../internal` in consumer apps.
+- Domain modules compose UI from public primitives/patterns and never from UI-Kit internals.
 
 ## Internal (not public)
 - `tokens`
@@ -69,7 +76,7 @@ Global styles import in consumer applications:
 ## M1 Compliance (KIT-012)
 - Component scope and contracts are anchored in:
   - `internal/components/**/**/*.contract.ts`
-  - Public entrypoints: `layout`, `typography`, `actions`, `forms`, `navigation`, `data-display`, `feedback`, `overlays`, `charts`
+  - Public entrypoints: `layout`, `typography`, `actions`, `icons`, `forms`, `navigation`, `patterns`, `data-display`, `feedback`, `overlays`, `charts`
 - Theme baseline is enforced through:
   - `tests/theme-quality-gates.spec.ts`
 - Accessibility baseline is enforced through:
@@ -82,6 +89,18 @@ Reproducible local verification:
 
 ```bash
 npx vitest run tests/accessibility-quality-gates.spec.ts tests/theme-quality-gates.spec.ts tests/release-quality-gates.spec.ts
+npm run test:typecheck
+npm run build
+```
+
+## M1.1 Compliance (KIT-014)
+- Layer and public-consumption guardrails are enforced through:
+  - `tests/layer-consumption-quality-gates.spec.ts`
+
+Reproducible local verification:
+
+```bash
+npx vitest run tests/layer-consumption-quality-gates.spec.ts
 npm run test:typecheck
 npm run build
 ```

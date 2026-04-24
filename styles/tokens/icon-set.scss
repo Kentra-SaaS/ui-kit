@@ -1,0 +1,112 @@
+@mixin declare-phosphor-icon-font-face() {
+  @font-face {
+    font-family: "Phosphor";
+    src: url("./assets/icons/phosphor-regular.woff2") format("woff2");
+    font-style: normal;
+    font-weight: 400;
+    font-display: block;
+  }
+
+  @font-face {
+    font-family: "Phosphor-Thin";
+    src: url("./assets/icons/phosphor-thin.woff2") format("woff2");
+    font-style: normal;
+    font-weight: 400;
+    font-display: block;
+  }
+
+  @font-face {
+    font-family: "Phosphor-Light";
+    src: url("./assets/icons/phosphor-light.woff2") format("woff2");
+    font-style: normal;
+    font-weight: 400;
+    font-display: block;
+  }
+
+  @font-face {
+    font-family: "Phosphor-Bold";
+    src: url("./assets/icons/phosphor-bold.woff2") format("woff2");
+    font-style: normal;
+    font-weight: 400;
+    font-display: block;
+  }
+
+  @font-face {
+    font-family: "Phosphor-Fill";
+    src: url("./assets/icons/phosphor-fill.woff2") format("woff2");
+    font-style: normal;
+    font-weight: 400;
+    font-display: block;
+  }
+
+  @font-face {
+    font-family: "Phosphor-Duotone";
+    src: url("./assets/icons/phosphor-duotone.woff2") format("woff2");
+    font-style: normal;
+    font-weight: 400;
+    font-display: block;
+  }
+}
+
+@mixin declare-icon-set-tokens() {
+  :root {
+    --k-font-family-icon: "Phosphor";
+    --k-icon-size-sm: 1rem;
+    --k-icon-size-md: 1.25rem;
+    --k-icon-size-lg: 1.5rem;
+  }
+}
+
+@mixin apply-icon-foundation-class() {
+  .k-icon,
+  .ph,
+  .ph-thin,
+  .ph-light,
+  .ph-bold,
+  .ph-fill,
+  .ph-duotone {
+    font-family: var(--k-font-family-icon);
+    font-style: normal;
+    font-weight: var(--k-icon-font-weight, 400);
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 0;
+    text-transform: none;
+    font-feature-settings: "liga";
+    font-variant-ligatures: discretionary-ligatures;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .ph {
+    font-family: "Phosphor" !important;
+    font-weight: normal !important;
+  }
+
+  .ph-thin {
+    font-family: "Phosphor-Thin" !important;
+    font-weight: normal !important;
+  }
+
+  .ph-light {
+    font-family: "Phosphor-Light" !important;
+    font-weight: normal !important;
+  }
+
+  .ph-bold {
+    font-family: "Phosphor-Bold" !important;
+    font-weight: normal !important;
+  }
+
+  .ph-fill {
+    font-family: "Phosphor-Fill" !important;
+    font-weight: normal !important;
+  }
+
+  .ph-duotone {
+    font-family: "Phosphor-Duotone" !important;
+    font-weight: normal !important;
+  }
+}

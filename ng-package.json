@@ -1,0 +1,13 @@
+{
+  "dest": "dist",
+  "allowedNonPeerDependencies": [
+    "chart.js"
+  ],
+  "lib": {
+    "entryFile": "public-api.ts"
+  },
+  "assets": [
+    "styles.css",
+    "assets"
+  ]
+}

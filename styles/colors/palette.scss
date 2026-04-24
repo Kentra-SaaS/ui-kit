@@ -1,0 +1,60 @@
+:root {
+  /* Neutral scale */
+  --k-color-neutral-0: #ffffff;
+  --k-color-neutral-25: #f8fafc;
+  --k-color-neutral-50: #f1f5f9;
+  --k-color-neutral-100: #e2e8f0;
+  --k-color-neutral-200: #cbd5e1;
+  --k-color-neutral-300: #94a3b8;
+  --k-color-neutral-400: #64748b;
+  --k-color-neutral-500: #475569;
+  --k-color-neutral-600: #334155;
+  --k-color-neutral-700: #1e293b;
+  --k-color-neutral-800: #0f172a;
+  --k-color-neutral-900: #020617;
+
+  /* Brand blue scale (from landing/dashboard look) */
+  --k-color-brand-50: #f0f9ff;
+  --k-color-brand-100: #e0f2fe;
+  --k-color-brand-200: #bae6fd;
+  --k-color-brand-300: #7dd3fc;
+  --k-color-brand-400: #38bdf8;
+  --k-color-brand-500: #0ea5e9;
+  --k-color-brand-600: #0284c7;
+  --k-color-brand-700: #0369a1;
+  --k-color-brand-800: #075985;
+  --k-color-brand-900: #0c4a6e;
+
+  /* Secondary indigo scale (blue-adjacent, but clearly distinct from primary) */
+  --k-color-secondary-50: #eef2ff;
+  --k-color-secondary-100: #e0e7ff;
+  --k-color-secondary-200: #c7d2fe;
+  --k-color-secondary-300: #a5b4fc;
+  --k-color-secondary-400: #818cf8;
+  --k-color-secondary-500: #6366f1;
+  --k-color-secondary-600: #4f46e5;
+  --k-color-secondary-700: #4338ca;
+  --k-color-secondary-800: #3730a3;
+  --k-color-secondary-900: #312e81;
+
+  /* Semantic color families */
+  --k-color-success-100: #dcfce7;
+  --k-color-success-300: #86efac;
+  --k-color-success-500: #22c55e;
+  --k-color-success-700: #15803d;
+
+  --k-color-warning-100: #fef3c7;
+  --k-color-warning-300: #fcd34d;
+  --k-color-warning-500: #f59e0b;
+  --k-color-warning-700: #b45309;
+
+  --k-color-danger-100: #fee2e2;
+  --k-color-danger-300: #fca5a5;
+  --k-color-danger-500: #ef4444;
+  --k-color-danger-700: #b91c1c;
+
+  /* Warm incident accent used in dashboard-style cards */
+  --k-color-accent-orange-300: #fdba74;
+  --k-color-accent-orange-500: #f97316;
+  --k-color-accent-orange-700: #c2410c;
+}

@@ -1,0 +1,5 @@
+@mixin apply-light-text-colors() {
+  --k-color-text-primary: var(--k-color-neutral-900);
+  --k-color-text-secondary: var(--k-color-neutral-700);
+  --k-color-text-inverse: var(--k-color-neutral-0);
+}

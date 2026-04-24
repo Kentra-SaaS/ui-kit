@@ -1,0 +1,5 @@
+@mixin apply-light-link-colors() {
+  --k-color-link-default: var(--k-color-brand-600);
+  --k-color-link-hover: var(--k-color-brand-700);
+  --k-color-link-visited: var(--k-color-secondary-700);
+}

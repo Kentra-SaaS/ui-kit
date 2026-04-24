@@ -1,9 +1,0 @@
-{
-  "dest": "dist",
-  "lib": {
-    "entryFile": "public-api.ts"
-  },
-  "assets": [
-    "styles.css"
-  ]
-}

@@ -1,0 +1,19 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./.cache/style-map-generator",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "declaration": false,
+    "declarationMap": false,
+    "sourceMap": false,
+    "types": ["node"]
+  },
+  "include": [
+    "./scripts/generate-component-style-maps.ts",
+    "./internal/core/style-maps/**/*.ts",
+    "./internal/core/tokens/**/*.ts",
+    "./internal/components/**/*.style-map.ts",
+    "./internal/components/**/*.tokens.ts"
+  ]
+}

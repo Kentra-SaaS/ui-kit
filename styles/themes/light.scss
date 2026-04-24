@@ -1,0 +1,28 @@
+@use "./light/background";
+@use "./light/text";
+@use "./light/interaction-state";
+@use "./light/border";
+@use "./light/link";
+@use "./light/action";
+@use "./light/input";
+@use "./light/state";
+@use "./light/overlay";
+@use "./light/elevation";
+@use "./light/app-background";
+
+:root:not([data-theme]),
+[data-theme="light"] {
+  color-scheme: light;
+
+  @include background.apply-light-background-colors();
+  @include text.apply-light-text-colors();
+  @include interaction-state.apply-light-interaction-state-colors();
+  @include border.apply-light-border-colors();
+  @include link.apply-light-link-colors();
+  @include action.apply-light-action-colors();
+  @include input.apply-light-input-colors();
+  @include state.apply-light-state-colors();
+  @include overlay.apply-light-overlay-colors();
+  @include elevation.apply-light-elevation-tokens();
+  @include app-background.apply-light-app-background-colors();
+}

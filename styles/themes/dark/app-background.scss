@@ -1,0 +1,12 @@
+@mixin apply-dark-app-background-colors() {
+  --k-color-app-bg-base: #090f22;
+  --k-color-app-bg-glow-primary: rgb(14 165 233 / 26%);
+  --k-color-app-bg-glow-secondary: rgb(99 102 241 / 22%);
+  --k-color-app-bg-glow-tertiary: rgb(15 23 42 / 32%);
+  --k-color-app-bg-angle: rgb(125 211 252 / 9%);
+  --k-color-app-bg-grid-line: rgb(148 163 184 / 10%);
+  --k-color-app-bg-grid-fade: rgb(148 163 184 / 0%);
+  --k-color-app-bg-detail-line: rgb(125 211 252 / 14%);
+  --k-color-app-bg-vignette: rgb(2 6 23 / 62%);
+  --k-color-app-bg-noise: rgb(255 255 255 / 5%);
+}

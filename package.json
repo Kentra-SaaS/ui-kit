@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": false,
   "description": "Kentra Angular UI Kit",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Kentra-SaaS/ui-kit.git"
+  },
   "main": "dist/fesm2022/kentra-ui-kit.mjs",
   "module": "dist/fesm2022/kentra-ui-kit.mjs",
   "types": "dist/index.d.ts",

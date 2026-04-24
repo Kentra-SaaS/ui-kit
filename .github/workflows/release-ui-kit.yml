@@ -6,7 +6,7 @@ on:
       - master
 
 permissions:
-  contents: read
+  contents: write
   packages: write
 
 jobs:
@@ -62,6 +62,67 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npm publish
 
-      - name: Skip publish (version already exists)
+      - name: Resolve package URL
+        if: steps.version_check.outputs.exists == 'false'
+        id: package_url
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PKG_NAME="${{ steps.version_check.outputs.name }}"
+          ENCODED_NAME=$(node -e "console.log(encodeURIComponent(process.argv[1]))" "$PKG_NAME")
+          PACKAGE_URL=$(gh api "/orgs/${{ github.repository_owner }}/packages/npm/${ENCODED_NAME}" --jq '.html_url' 2>/dev/null || true)
+
+          if [ -z "$PACKAGE_URL" ] || [ "$PACKAGE_URL" = "null" ]; then
+            PACKAGE_URL="https://github.com/orgs/${{ github.repository_owner }}/packages?repo_name=${{ github.event.repository.name }}"
+          fi
+
+          echo "url=$PACKAGE_URL" >> "$GITHUB_OUTPUT"
+
+      - name: Create release tag
+        if: steps.version_check.outputs.exists == 'false'
+        id: release_tag
+        run: |
+          TAG="v${{ steps.version_check.outputs.version }}"
+
+          if git ls-remote --exit-code --tags origin "refs/tags/${TAG}" > /dev/null 2>&1; then
+            echo "Tag ${TAG} already exists."
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git tag "${TAG}" "${GITHUB_SHA}"
+            git push origin "refs/tags/${TAG}"
+          fi
+
+          echo "name=$TAG" >> "$GITHUB_OUTPUT"
+
+      - name: Create GitHub release
+        if: steps.version_check.outputs.exists == 'false'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG="${{ steps.release_tag.outputs.name }}"
+          VERSION="${{ steps.version_check.outputs.version }}"
+          PACKAGE_NAME="${{ steps.version_check.outputs.name }}"
+          PACKAGE_URL="${{ steps.package_url.outputs.url }}"
+
+          cat > release-notes.md <<EOF
+          ## Package
+          - \`${PACKAGE_NAME}@${VERSION}\`
+          - [GitHub Packages](${PACKAGE_URL})
+          - Registry: \`https://npm.pkg.github.com\`
+
+          Install:
+          \`\`\`bash
+          npm install ${PACKAGE_NAME}@${VERSION}
+          \`\`\`
+          EOF
+
+          gh release create "$TAG" \
+            --verify-tag \
+            --title "$TAG" \
+            --generate-notes \
+            --notes-file release-notes.md
+
+      - name: Skip publish and release (version already exists)
         if: steps.version_check.outputs.exists == 'true'
-        run: echo "${{ steps.version_check.outputs.name }}@${{ steps.version_check.outputs.version }} already exists. Publish skipped."
+        run: echo "${{ steps.version_check.outputs.name }}@${{ steps.version_check.outputs.version }} already exists. Publish and release skipped."

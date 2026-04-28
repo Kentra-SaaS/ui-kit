@@ -124,10 +124,13 @@ jobs:
       - name: Create release tag
         if: steps.version_check.outputs.exists == 'false'
         id: release_tag
+        shell: bash
         run: |
+          set -euo pipefail
           TAG="v${{ steps.version_check.outputs.version }}"
+          REMOTE_TAG_REF=$(git ls-remote --tags origin "refs/tags/${TAG}" || true)
 
-          if git ls-remote --exit-code --tags origin "refs/tags/${TAG}" > /dev/null 2>&1; then
+          if [ -n "$REMOTE_TAG_REF" ]; then
             echo "Tag ${TAG} already exists."
           else
             git config user.name "github-actions[bot]"

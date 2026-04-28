@@ -1,4 +1,4 @@
-name: Release @kentra/ui-kit
+name: Release @kentra-saas/ui-kit
 
 on:
   push:
@@ -37,7 +37,9 @@ jobs:
         run: npm run pack:dry
 
       - name: Pack package
-        run: npm pack --pack-destination .artifacts
+        run: |
+          mkdir -p .artifacts
+          npm pack --pack-destination .artifacts
 
       - name: Upload package artifact
         uses: actions/upload-artifact@v4

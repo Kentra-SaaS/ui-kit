@@ -5,27 +5,27 @@ This repository contains a single publishable Angular UI Kit package.
 The package bundles root styles and infrastructure for categorized component entry points.
 
 ## Package
-- Publishable package: `@kentra/ui-kit`
-- Registry: GitHub Packages (`@kentra` scope)
+- Publishable package: `@kentra-saas/ui-kit`
+- Registry: GitHub Packages (`@kentra-saas` scope)
 
 ## Public Imports
-- `@kentra/ui-kit`
-- `@kentra/ui-kit/styles.css`
-- `@kentra/ui-kit/layout`
-- `@kentra/ui-kit/typography`
-- `@kentra/ui-kit/actions`
-- `@kentra/ui-kit/icons`
-- `@kentra/ui-kit/forms`
-- `@kentra/ui-kit/navigation`
-- `@kentra/ui-kit/patterns`
-- `@kentra/ui-kit/data-display`
-- `@kentra/ui-kit/feedback`
-- `@kentra/ui-kit/overlays`
-- `@kentra/ui-kit/charts`
+- `@kentra-saas/ui-kit`
+- `@kentra-saas/ui-kit/styles.css`
+- `@kentra-saas/ui-kit/layout`
+- `@kentra-saas/ui-kit/typography`
+- `@kentra-saas/ui-kit/actions`
+- `@kentra-saas/ui-kit/icons`
+- `@kentra-saas/ui-kit/forms`
+- `@kentra-saas/ui-kit/navigation`
+- `@kentra-saas/ui-kit/patterns`
+- `@kentra-saas/ui-kit/data-display`
+- `@kentra-saas/ui-kit/feedback`
+- `@kentra-saas/ui-kit/overlays`
+- `@kentra-saas/ui-kit/charts`
 
 ## Layer and Consumption Rules (KIT-014)
 - Allowed consumer imports are limited to the public entrypoints listed above.
-- No deep imports from `@kentra/ui-kit/internal`.
+- No deep imports from `@kentra-saas/ui-kit/internal`.
 - No local imports from `../internal` in consumer apps.
 - Domain modules compose UI from public primitives/patterns and never from UI-Kit internals.
 
@@ -65,7 +65,7 @@ npm run publish
 Global styles import in consumer applications:
 
 ```scss
-@import "@kentra/ui-kit/styles.css";
+@import "@kentra-saas/ui-kit/styles.css";
 ```
 
 ## Release

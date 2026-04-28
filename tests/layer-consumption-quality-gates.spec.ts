@@ -123,13 +123,13 @@ describe("layer and consumption quality gates", () => {
     for (const exportKey of expectedPublicExports) {
       const importPath =
         exportKey === "./styles.css"
-          ? "@kentra/ui-kit/styles.css"
-          : `@kentra/ui-kit/${exportKey.replace("./", "")}`;
+          ? "@kentra-saas/ui-kit/styles.css"
+          : `@kentra-saas/ui-kit/${exportKey.replace("./", "")}`;
 
       expect(readme).toContain(`\`${importPath}\``);
     }
 
-    expect(readme).toContain("No deep imports from `@kentra/ui-kit/internal`");
+    expect(readme).toContain("No deep imports from `@kentra-saas/ui-kit/internal`");
     expect(readme).toContain("No local imports from `../internal` in consumer apps");
   });
 });

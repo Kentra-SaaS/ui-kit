@@ -19,7 +19,7 @@ describe("release quality gates", () => {
     const typecheckStepIndex = workflow.indexOf("run: npm run test:typecheck");
     const buildStepIndex = workflow.indexOf("run: npm run build");
     const packStepIndex = workflow.indexOf("run: npm run pack:dry");
-    const publishStepIndex = workflow.indexOf("run: npm publish");
+    const publishStepIndex = workflow.indexOf("name: Publish package");
 
     expect(installStepIndex).toBeGreaterThanOrEqual(0);
     expect(testStepIndex).toBeGreaterThanOrEqual(0);
@@ -45,16 +45,31 @@ describe("release quality gates", () => {
     expect(workflow).toContain("if: steps.version_check.outputs.exists == 'true'");
   });
 
+  it("uses Node 24-based GitHub Action majors in both workflows", () => {
+    const releaseWorkflow = readProjectFile(".github/workflows/release-ui-kit.yml");
+    const mrWorkflow = readProjectFile(".github/workflows/mr-check.yml");
+
+    expect(releaseWorkflow).toContain("uses: actions/checkout@v6");
+    expect(releaseWorkflow).toContain("uses: actions/setup-node@v6");
+    expect(releaseWorkflow).toContain("uses: actions/upload-artifact@v7");
+    expect(releaseWorkflow).toContain("uses: actions/download-artifact@v8");
+
+    expect(mrWorkflow).toContain("uses: actions/checkout@v6");
+    expect(mrWorkflow).toContain("uses: actions/setup-node@v6");
+  });
+
   it("keeps publish-to-release automation with tag + release + package link", () => {
     const workflow = readProjectFile(".github/workflows/release-ui-kit.yml");
 
-    const publishStepIndex = workflow.indexOf("run: npm publish");
+    const publishStepIndex = workflow.indexOf("name: Publish package");
     const packageUrlStepIndex = workflow.indexOf("id: package_url");
     const releaseTagStepIndex = workflow.indexOf("id: release_tag");
     const releaseStepIndex = workflow.indexOf("gh release create \"$TAG\"");
 
     expect(workflow).toContain("contents: write");
     expect(workflow).toContain("packages: write");
+    expect(workflow).toContain("TARBALL=$(find ./artifacts -maxdepth 1 -name '*.tgz' -print -quit)");
+    expect(workflow).toContain('npm publish "$TARBALL"');
     expect(workflow).toContain("gh api \"/orgs/${{ github.repository_owner }}/packages/npm/${ENCODED_NAME}\"");
     expect(workflow).toContain("git push origin \"refs/tags/${TAG}\"");
     expect(workflow).toContain("--verify-tag");

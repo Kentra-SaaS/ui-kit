@@ -113,7 +113,13 @@ jobs:
         run: |
           PKG_NAME="${{ steps.version_check.outputs.name }}"
           ENCODED_NAME=$(node -e "console.log(encodeURIComponent(process.argv[1]))" "$PKG_NAME")
-          PACKAGE_URL=$(gh api "/orgs/${{ github.repository_owner }}/packages/npm/${ENCODED_NAME}" --jq '.html_url' 2>/dev/null || true)
+          PACKAGE_URL=""
+
+          if PACKAGE_URL=$(gh api "/orgs/${{ github.repository_owner }}/packages/npm/${ENCODED_NAME}" --jq '.html_url' 2>/dev/null); then
+            :
+          else
+            PACKAGE_URL=""
+          fi
 
           if [ -z "$PACKAGE_URL" ] || [ "$PACKAGE_URL" = "null" ]; then
             PACKAGE_URL="https://github.com/orgs/${{ github.repository_owner }}/packages?repo_name=${{ github.event.repository.name }}"
@@ -145,12 +151,11 @@ jobs:
         if: steps.version_check.outputs.exists == 'false'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ steps.release_tag.outputs.name }}
+          VERSION: ${{ steps.version_check.outputs.version }}
+          PACKAGE_NAME: ${{ steps.version_check.outputs.name }}
+          PACKAGE_URL: ${{ steps.package_url.outputs.url }}
         run: |
-          TAG="${{ steps.release_tag.outputs.name }}"
-          VERSION="${{ steps.version_check.outputs.version }}"
-          PACKAGE_NAME="${{ steps.version_check.outputs.name }}"
-          PACKAGE_URL="${{ steps.package_url.outputs.url }}"
-
           cat > release-notes.md <<EOF
           ## Package
           - \`${PACKAGE_NAME}@${VERSION}\`

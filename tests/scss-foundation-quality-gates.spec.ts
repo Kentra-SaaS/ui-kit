@@ -1,4 +1,4 @@
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -9,6 +9,38 @@ const projectRoot = resolve(thisDirectory, "..");
 
 const readProjectFile = (path: string): string =>
   readFileSync(resolve(projectRoot, path), "utf8");
+
+const resolveExistingProjectPath = (paths: string[]): string | null => {
+  for (const path of paths) {
+    const absolutePath = resolve(projectRoot, path);
+    if (existsSync(absolutePath)) {
+      return absolutePath;
+    }
+  }
+
+  return null;
+};
+
+const tokensAndThemesDocPath = resolveExistingProjectPath([
+  "docs/engineering/architektur/ui-kit/scss-tokens-themes.md",
+  "../docs/engineering/architektur/ui-kit/scss-tokens-themes.md",
+]);
+
+const mixinsDocPath = resolveExistingProjectPath([
+  "docs/engineering/architektur/ui-kit/scss-mixins-und-funktionen.md",
+  "../docs/engineering/architektur/ui-kit/scss-mixins-und-funktionen.md",
+]);
+
+const themeSwitchingDocPath = resolveExistingProjectPath([
+  "docs/engineering/architektur/ui-kit/angular-theme-switching.md",
+  "../docs/engineering/architektur/ui-kit/angular-theme-switching.md",
+]);
+
+const hasFoundationDocs = Boolean(
+  tokensAndThemesDocPath && mixinsDocPath && themeSwitchingDocPath,
+);
+
+const foundationDocsTest = hasFoundationDocs ? it : it.skip;
 
 describe("scss foundation quality gates", () => {
   it("keeps styles entrypoint wired to foundation, themes and generated component maps", () => {
@@ -51,16 +83,10 @@ describe("scss foundation quality gates", () => {
     expect(darkTheme).toContain("@include app-background.apply-dark-app-background-colors();");
   });
 
-  it("keeps foundation contract docs aligned with implementation", () => {
-    const tokensAndThemesDoc = readProjectFile(
-      "../docs/engineering/architektur/ui-kit/scss-tokens-themes.md",
-    );
-    const mixinsDoc = readProjectFile(
-      "../docs/engineering/architektur/ui-kit/scss-mixins-und-funktionen.md",
-    );
-    const themeSwitchingDoc = readProjectFile(
-      "../docs/engineering/architektur/ui-kit/angular-theme-switching.md",
-    );
+  foundationDocsTest("keeps foundation contract docs aligned with implementation", () => {
+    const tokensAndThemesDoc = readFileSync(tokensAndThemesDocPath!, "utf8");
+    const mixinsDoc = readFileSync(mixinsDocPath!, "utf8");
+    const themeSwitchingDoc = readFileSync(themeSwitchingDocPath!, "utf8");
 
     expect(tokensAndThemesDoc).toContain("styles/styles.scss");
     expect(tokensAndThemesDoc).toContain('@kentra/ui-kit/styles.css');

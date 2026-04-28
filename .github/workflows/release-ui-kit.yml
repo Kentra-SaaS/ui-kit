@@ -5,12 +5,9 @@ on:
     branches:
       - master
 
-permissions:
-  contents: write
-  packages: write
-
 jobs:
-  release:
+  build:
+    name: Build and Test
     runs-on: ubuntu-latest
 
     steps:
@@ -39,6 +36,42 @@ jobs:
       - name: Validate package contents
         run: npm run pack:dry
 
+      - name: Pack package
+        run: npm pack --pack-destination .artifacts
+
+      - name: Upload package artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ui-kit-package
+          path: .artifacts/*.tgz
+          if-no-files-found: error
+
+  release:
+    name: Release if new Version
+    needs: build
+    runs-on: ubuntu-latest
+
+    permissions:
+      packages: write
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download package artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: ui-kit-package
+          path: .artifacts
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          registry-url: https://npm.pkg.github.com
+
       - name: Check published version
         id: version_check
         env:
@@ -60,7 +93,7 @@ jobs:
         if: steps.version_check.outputs.exists == 'false'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npm publish
+        run: npm publish .artifacts/*.tgz
 
       - name: Resolve package URL
         if: steps.version_check.outputs.exists == 'false'

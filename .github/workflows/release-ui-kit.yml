@@ -95,7 +95,15 @@ jobs:
         if: steps.version_check.outputs.exists == 'false'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npm publish artifacts/*.tgz
+        run: |
+          TARBALL=$(find ./artifacts -maxdepth 1 -name '*.tgz' -print -quit)
+
+          if [ -z "$TARBALL" ]; then
+            echo "No package tarball found in ./artifacts"
+            exit 1
+          fi
+
+          npm publish "$TARBALL"
 
       - name: Resolve package URL
         if: steps.version_check.outputs.exists == 'false'

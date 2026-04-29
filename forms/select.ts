@@ -10,7 +10,7 @@ import {
   viewChild,
 } from "@angular/core";
 import type { FormValueControl } from "@angular/forms/signals";
-import { KentraIcon } from "../icons/icon";
+import { KentraIcon } from "@kentra-saas/ui-kit/icons";
 import {
   KentraElementBase,
   KentraSelectContract,
@@ -19,7 +19,7 @@ import {
   SelectState,
   SelectVariant,
   selectStyleMap,
-} from "../internal";
+} from "@kentra-saas/ui-kit";
 
 type SelectionChangeEvent = {
   readonly value: string | null;

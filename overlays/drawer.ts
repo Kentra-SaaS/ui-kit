@@ -7,14 +7,14 @@ import {
   output,
   signal,
 } from "@angular/core";
-import { KentraIcon } from "../icons/icon";
+import { KentraIcon } from "@kentra-saas/ui-kit/icons";
 import {
   DrawerState,
   DrawerVariant,
   drawerStyleMap,
   KentraDrawerContract,
   KentraElementBase,
-} from "../internal";
+} from "@kentra-saas/ui-kit";
 
 let drawerInstanceCounter = 0;
 

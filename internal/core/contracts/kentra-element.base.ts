@@ -1,5 +1,5 @@
 import { Directive, computed } from "@angular/core";
-import { toKebabCase } from "../style-maps";
+import { toKebabCase } from "../style-maps/generator";
 
 type StyleValues = Readonly<Record<string, string | number | null | undefined>>;
 type StateValues = Readonly<Record<string, boolean | null | undefined>>;

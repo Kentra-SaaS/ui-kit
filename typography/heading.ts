@@ -9,7 +9,7 @@ import {
   headingStyleMap,
   KentraElementBase,
   KentraHeadingContract,
-} from "../internal";
+} from "@kentra-saas/ui-kit";
 
 @Component({
   selector: "k-heading",

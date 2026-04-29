@@ -11,7 +11,7 @@ import {
   filterBarPatternStyleMap,
   KentraElementBase,
   KentraFilterBarPatternContract,
-} from "../internal";
+} from "@kentra-saas/ui-kit";
 
 @Component({
   selector: "k-filter-bar-pattern",

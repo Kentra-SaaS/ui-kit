@@ -9,7 +9,7 @@ import {
   KentraTextContract,
   TextVariant,
   textStyleMap,
-} from "../internal";
+} from "@kentra-saas/ui-kit";
 
 @Component({
   selector: "k-text",

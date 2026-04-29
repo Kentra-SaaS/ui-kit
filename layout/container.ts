@@ -4,7 +4,7 @@ import {
   KentraContainerContract,
   KentraElementBase,
   containerStyleMap,
-} from "../internal";
+} from "@kentra-saas/ui-kit";
 
 @Component({
   selector: "k-container",

@@ -8,7 +8,7 @@ import {
   output,
   signal,
 } from "@angular/core";
-import { KentraIcon } from "../icons/icon";
+import { KentraIcon } from "@kentra-saas/ui-kit/icons";
 import { KentraModalService } from "./modal.service";
 import {
   KentraElementBase,
@@ -16,7 +16,7 @@ import {
   ModalState,
   ModalVariant,
   modalStyleMap,
-} from "../internal";
+} from "@kentra-saas/ui-kit";
 
 let modalInstanceCounter = 0;
 

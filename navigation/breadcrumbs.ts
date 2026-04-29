@@ -13,7 +13,7 @@ import {
   breadcrumbsStyleMap,
   KentraBreadcrumbsContract,
   KentraElementBase,
-} from "../internal";
+} from "@kentra-saas/ui-kit";
 
 type SelectionChangeEvent = {
   readonly value: string;

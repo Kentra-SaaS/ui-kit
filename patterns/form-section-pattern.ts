@@ -5,14 +5,14 @@ import {
   input,
 } from "@angular/core";
 
-import { KentraAlert } from "../feedback/alert";
+import { KentraAlert } from "@kentra-saas/ui-kit/feedback";
 import {
   FormSectionPatternState,
   FormSectionPatternVariant,
   formSectionPatternStyleMap,
   KentraElementBase,
   KentraFormSectionPatternContract,
-} from "../internal";
+} from "@kentra-saas/ui-kit";
 
 let formSectionPatternCounter = 0;
 

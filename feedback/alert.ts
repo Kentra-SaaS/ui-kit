@@ -5,7 +5,7 @@ import {
   input,
   output,
 } from "@angular/core";
-import { KentraIcon } from "../icons/icon";
+import { KentraIcon } from "@kentra-saas/ui-kit/icons";
 import {
   AlertState,
   AlertVariant,
@@ -13,7 +13,7 @@ import {
   IconName,
   KentraAlertContract,
   KentraElementBase,
-} from "../internal";
+} from "@kentra-saas/ui-kit";
 
 @Component({
   selector: "k-alert",

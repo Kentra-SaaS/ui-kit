@@ -24,7 +24,7 @@ import {
   donutChartStyleMap,
   KentraDonutChartContract,
   KentraElementBase,
-} from "../internal";
+} from "@kentra-saas/ui-kit";
 import type {
   KentraChartValueFormatter,
   KentraDonutChartSegment,

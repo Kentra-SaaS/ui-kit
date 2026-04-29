@@ -6,7 +6,7 @@ import {
   KentraDividerContract,
   KentraElementBase,
   dividerStyleMap,
-} from "../internal";
+} from "@kentra-saas/ui-kit";
 
 @Component({
   selector: "k-divider",

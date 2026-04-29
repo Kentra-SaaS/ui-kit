@@ -1,6 +1,6 @@
 import { Injectable, Signal, computed, signal } from "@angular/core";
 
-import { ModalState } from "../internal";
+import { ModalState } from "@kentra-saas/ui-kit";
 
 export interface KentraModalRegistryEntry {
   readonly id: string;

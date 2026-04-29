@@ -12,7 +12,7 @@ import {
   LinkState,
   LinkVariant,
   linkStyleMap,
-} from "../internal";
+} from "@kentra-saas/ui-kit";
 
 @Component({
   selector: "k-link",

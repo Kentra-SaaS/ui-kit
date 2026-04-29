@@ -10,7 +10,7 @@ import {
   KentraSectionContract,
   SectionVariant,
   sectionStyleMap,
-} from "../internal";
+} from "@kentra-saas/ui-kit";
 
 @Component({
   selector: "k-section",

@@ -6,7 +6,7 @@ import {
   output,
 } from "@angular/core";
 
-import { KentraTable } from "../data-display/table";
+import { KentraTable } from "@kentra-saas/ui-kit/data-display";
 import {
   KentraElementBase,
   KentraTableColumn,
@@ -19,7 +19,7 @@ import {
   tableWithToolbarPatternStyleMap,
   TableWithToolbarPatternState,
   TableWithToolbarPatternVariant,
-} from "../internal";
+} from "@kentra-saas/ui-kit";
 
 type SelectionChangeEvent = {
   readonly value: readonly string[];

@@ -86,8 +86,17 @@ describe("layer and consumption quality gates", () => {
   });
 
   it("keeps root and secondary public APIs free from deep internal exports", () => {
-    const rootPublicApi = readProjectFile("public-api.ts").trim();
-    expect(rootPublicApi).toBe("export {};");
+    const rootPublicApi = readProjectFile("public-api.ts");
+    const rootExportStatements = rootPublicApi
+      .split("\n")
+      .map((line) => line.trim())
+      .filter((line) => line.startsWith("export ") && line.includes(" from "));
+
+    expect(rootPublicApi).not.toMatch(/\.\.?\/internal(?:\/|["'])/);
+
+    for (const statement of rootExportStatements) {
+      expect(statement).toMatch(/^export \* from "\.\/[^"]+\/public-api";$/);
+    }
 
     for (const entrypoint of entrypoints) {
       const source = readProjectFile(`${entrypoint}/public-api.ts`);

@@ -5,9 +5,5 @@
   ],
   "lib": {
     "entryFile": "public-api.ts"
-  },
-  "assets": [
-    "styles.css",
-    "assets"
-  ]
+  }
 }

@@ -271,7 +271,8 @@ export class KentraBreadcrumbs
       return uncontrolledActiveItemId;
     }
 
-    const lastItem = this.normalizedItems().at(-1);
+    const items = this.normalizedItems();
+    const lastItem = items.length > 0 ? items[items.length - 1] : undefined;
     return lastItem?.id ?? null;
   });
   readonly visibleItems = computed<readonly BreadcrumbDisplayItem[]>(() => {

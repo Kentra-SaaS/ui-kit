@@ -1,67 +1,69 @@
 {
   "name": "@kentra-saas/ui-kit",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": false,
   "description": "Kentra Angular UI Kit",
   "repository": {
     "type": "git",
     "url": "https://github.com/Kentra-SaaS/ui-kit.git"
   },
-  "main": "dist/fesm2022/kentra-ui-kit.mjs",
-  "module": "dist/fesm2022/kentra-ui-kit.mjs",
-  "types": "dist/index.d.ts",
+  "main": "dist/fesm2022/kentra-saas-ui-kit.mjs",
+  "module": "dist/fesm2022/kentra-saas-ui-kit.mjs",
+  "types": "dist/types/kentra-saas-ui-kit.d.ts",
   "sideEffects": [
-    "./dist/styles.css"
+    "./styles.css"
   ],
   "exports": {
-    "./styles.css": "./dist/styles.css",
+    "./styles.css": "./styles.css",
     "./layout": {
-      "types": "./dist/layout/index.d.ts",
-      "default": "./dist/fesm2022/kentra-ui-kit-layout.mjs"
+      "types": "./dist/types/kentra-saas-ui-kit.d.ts",
+      "default": "./dist/fesm2022/kentra-saas-ui-kit.mjs"
     },
     "./typography": {
-      "types": "./dist/typography/index.d.ts",
-      "default": "./dist/fesm2022/kentra-ui-kit-typography.mjs"
+      "types": "./dist/types/kentra-saas-ui-kit.d.ts",
+      "default": "./dist/fesm2022/kentra-saas-ui-kit.mjs"
     },
     "./actions": {
-      "types": "./dist/actions/index.d.ts",
-      "default": "./dist/fesm2022/kentra-ui-kit-actions.mjs"
+      "types": "./dist/types/kentra-saas-ui-kit.d.ts",
+      "default": "./dist/fesm2022/kentra-saas-ui-kit.mjs"
     },
     "./icons": {
-      "types": "./dist/icons/index.d.ts",
-      "default": "./dist/fesm2022/kentra-ui-kit-icons.mjs"
+      "types": "./dist/types/kentra-saas-ui-kit.d.ts",
+      "default": "./dist/fesm2022/kentra-saas-ui-kit.mjs"
     },
     "./forms": {
-      "types": "./dist/forms/index.d.ts",
-      "default": "./dist/fesm2022/kentra-ui-kit-forms.mjs"
+      "types": "./dist/types/kentra-saas-ui-kit.d.ts",
+      "default": "./dist/fesm2022/kentra-saas-ui-kit.mjs"
     },
     "./navigation": {
-      "types": "./dist/navigation/index.d.ts",
-      "default": "./dist/fesm2022/kentra-ui-kit-navigation.mjs"
+      "types": "./dist/types/kentra-saas-ui-kit.d.ts",
+      "default": "./dist/fesm2022/kentra-saas-ui-kit.mjs"
     },
     "./patterns": {
-      "types": "./dist/patterns/index.d.ts",
-      "default": "./dist/fesm2022/kentra-ui-kit-patterns.mjs"
+      "types": "./dist/types/kentra-saas-ui-kit.d.ts",
+      "default": "./dist/fesm2022/kentra-saas-ui-kit.mjs"
     },
     "./data-display": {
-      "types": "./dist/data-display/index.d.ts",
-      "default": "./dist/fesm2022/kentra-ui-kit-data-display.mjs"
+      "types": "./dist/types/kentra-saas-ui-kit.d.ts",
+      "default": "./dist/fesm2022/kentra-saas-ui-kit.mjs"
     },
     "./feedback": {
-      "types": "./dist/feedback/index.d.ts",
-      "default": "./dist/fesm2022/kentra-ui-kit-feedback.mjs"
+      "types": "./dist/types/kentra-saas-ui-kit.d.ts",
+      "default": "./dist/fesm2022/kentra-saas-ui-kit.mjs"
     },
     "./overlays": {
-      "types": "./dist/overlays/index.d.ts",
-      "default": "./dist/fesm2022/kentra-ui-kit-overlays.mjs"
+      "types": "./dist/types/kentra-saas-ui-kit.d.ts",
+      "default": "./dist/fesm2022/kentra-saas-ui-kit.mjs"
     },
     "./charts": {
-      "types": "./dist/charts/index.d.ts",
-      "default": "./dist/fesm2022/kentra-ui-kit-charts.mjs"
+      "types": "./dist/types/kentra-saas-ui-kit.d.ts",
+      "default": "./dist/fesm2022/kentra-saas-ui-kit.mjs"
     }
   },
   "files": [
-    "dist"
+    "dist",
+    "styles.css",
+    "assets"
   ],
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"

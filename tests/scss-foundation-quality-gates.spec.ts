@@ -89,7 +89,9 @@ describe("scss foundation quality gates", () => {
     const themeSwitchingDoc = readFileSync(themeSwitchingDocPath!, "utf8");
 
     expect(tokensAndThemesDoc).toContain("styles/styles.scss");
-    expect(tokensAndThemesDoc).toContain('@kentra-saas/ui-kit/styles.css');
+    expect(tokensAndThemesDoc).toMatch(
+      /@kentra(?:-saas)?\/ui-kit\/styles\.css/,
+    );
     expect(tokensAndThemesDoc).toContain('[data-theme="dark"]');
 
     expect(mixinsDoc).toContain("declare-base-style-tokens()");

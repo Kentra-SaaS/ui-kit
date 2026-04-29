@@ -10,7 +10,7 @@ import {
   SpinnerState,
   SpinnerVariant,
   spinnerStyleMap,
-} from "../internal";
+} from "@kentra-saas/ui-kit";
 
 @Component({
   selector: "k-spinner",

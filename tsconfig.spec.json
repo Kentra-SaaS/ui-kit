@@ -1,8 +1,24 @@
 {
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
+    "baseUrl": ".",
     "outDir": "./dist/out-tsc/spec",
-    "types": ["node", "vitest/globals"]
+    "rootDir": ".",
+    "types": ["node", "vitest/globals"],
+    "paths": {
+      "@kentra-saas/ui-kit": ["./public-api.ts"],
+      "@kentra-saas/ui-kit/actions": ["./actions/public-api.ts"],
+      "@kentra-saas/ui-kit/charts": ["./charts/public-api.ts"],
+      "@kentra-saas/ui-kit/data-display": ["./data-display/public-api.ts"],
+      "@kentra-saas/ui-kit/feedback": ["./feedback/public-api.ts"],
+      "@kentra-saas/ui-kit/forms": ["./forms/public-api.ts"],
+      "@kentra-saas/ui-kit/icons": ["./icons/public-api.ts"],
+      "@kentra-saas/ui-kit/layout": ["./layout/public-api.ts"],
+      "@kentra-saas/ui-kit/navigation": ["./navigation/public-api.ts"],
+      "@kentra-saas/ui-kit/overlays": ["./overlays/public-api.ts"],
+      "@kentra-saas/ui-kit/patterns": ["./patterns/public-api.ts"],
+      "@kentra-saas/ui-kit/typography": ["./typography/public-api.ts"]
+    }
   },
   "include": ["**/*.spec.ts", "./vitest.config.ts"]
 }

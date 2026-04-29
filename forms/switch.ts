@@ -17,7 +17,7 @@ import {
   SwitchState,
   SwitchVariant,
   switchStyleMap,
-} from "../internal";
+} from "@kentra-saas/ui-kit";
 
 type ValueChangeEvent = {
   readonly value: boolean;

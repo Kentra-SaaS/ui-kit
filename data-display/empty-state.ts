@@ -5,7 +5,7 @@ import {
   input,
   output,
 } from "@angular/core";
-import { KentraIcon } from "../icons/icon";
+import { KentraIcon } from "@kentra-saas/ui-kit/icons";
 import {
   EmptyStateState,
   EmptyStateVariant,
@@ -13,7 +13,7 @@ import {
   KentraElementBase,
   KentraEmptyStateContract,
   emptyStateStyleMap,
-} from "../internal";
+} from "@kentra-saas/ui-kit";
 
 @Component({
   selector: "k-empty-state",

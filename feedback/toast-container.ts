@@ -6,7 +6,7 @@ import {
   input,
 } from "@angular/core";
 
-import { KentraElementBase } from "../internal";
+import { KentraElementBase } from "@kentra-saas/ui-kit";
 import { KentraToast } from "./toast";
 import {
   KentraManagedToast,

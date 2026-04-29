@@ -17,7 +17,7 @@ import {
   TextareaState,
   TextareaVariant,
   textareaStyleMap,
-} from "../internal";
+} from "@kentra-saas/ui-kit";
 
 type ValueChangeEvent = {
   readonly value: string;

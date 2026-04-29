@@ -9,7 +9,7 @@ import {
   KentraElementBase,
   KentraGridContract,
   gridStyleMap,
-} from "../internal";
+} from "@kentra-saas/ui-kit";
 
 @Component({
   selector: "k-grid",

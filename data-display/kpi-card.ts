@@ -11,7 +11,7 @@ import {
   KpiCardState,
   KpiCardVariant,
   kpiCardStyleMap,
-} from "../internal";
+} from "@kentra-saas/ui-kit";
 
 @Component({
   selector: "k-kpi-card",

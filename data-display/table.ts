@@ -7,7 +7,7 @@ import {
   output,
   signal,
 } from "@angular/core";
-import { KentraPagination } from "../navigation/pagination";
+import { KentraPagination } from "@kentra-saas/ui-kit/navigation";
 import {
   KentraElementBase,
   KentraTableColumn,
@@ -19,7 +19,7 @@ import {
   TableState,
   TableVariant,
   tableStyleMap,
-} from "../internal";
+} from "@kentra-saas/ui-kit";
 
 type SelectionChangeEvent = {
   readonly value: readonly string[];

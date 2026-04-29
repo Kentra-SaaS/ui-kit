@@ -26,7 +26,7 @@ import {
   LineChartState,
   LineChartVariant,
   lineChartStyleMap,
-} from "../internal";
+} from "@kentra-saas/ui-kit";
 import type {
   KentraChartValueFormatter,
   KentraLineChartSeries,

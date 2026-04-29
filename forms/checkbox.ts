@@ -10,7 +10,7 @@ import {
   viewChild,
 } from "@angular/core";
 import type { FormCheckboxControl } from "@angular/forms/signals";
-import { KentraIcon } from "../icons/icon";
+import { KentraIcon } from "@kentra-saas/ui-kit/icons";
 import {
   CheckboxState,
   CheckboxVariant,
@@ -18,7 +18,7 @@ import {
   IconName,
   KentraCheckboxContract,
   KentraElementBase,
-} from "../internal";
+} from "@kentra-saas/ui-kit";
 
 type ValueChangeEvent = {
   readonly value: boolean;

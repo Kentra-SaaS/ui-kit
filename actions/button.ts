@@ -6,7 +6,7 @@ import {
   output,
   signal,
 } from "@angular/core";
-import { KentraIcon } from "../icons/icon";
+import { KentraIcon } from "@kentra-saas/ui-kit/icons";
 import {
   ButtonSize,
   ButtonState,
@@ -15,7 +15,7 @@ import {
   IconName,
   KentraButtonContract,
   KentraElementBase,
-} from "../internal";
+} from "@kentra-saas/ui-kit";
 
 @Component({
   selector: "k-button",

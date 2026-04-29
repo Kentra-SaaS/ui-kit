@@ -15,9 +15,9 @@ import {
   KentraIconContract,
   resolvePhosphorDuotoneCodes,
   resolvePhosphorLigatureName,
-} from "../internal";
+} from "@kentra-saas/ui-kit";
 
-export type { IconName, IconSize, IconWeight } from "../internal";
+export type { IconName, IconSize, IconWeight } from "@kentra-saas/ui-kit";
 
 @Component({
   selector: "k-icon",

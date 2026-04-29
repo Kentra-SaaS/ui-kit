@@ -1,6 +1,6 @@
 {
   "name": "@kentra-saas/ui-kit",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": false,
   "description": "Kentra Angular UI Kit",
   "repository": {
@@ -14,50 +14,54 @@
     "./styles.css"
   ],
   "exports": {
+    ".": {
+      "types": "./dist/types/kentra-saas-ui-kit.d.ts",
+      "default": "./dist/fesm2022/kentra-saas-ui-kit.mjs"
+    },
     "./styles.css": "./styles.css",
     "./layout": {
-      "types": "./dist/types/kentra-saas-ui-kit.d.ts",
-      "default": "./dist/fesm2022/kentra-saas-ui-kit.mjs"
+      "types": "./dist/types/kentra-saas-ui-kit-layout.d.ts",
+      "default": "./dist/fesm2022/kentra-saas-ui-kit-layout.mjs"
     },
     "./typography": {
-      "types": "./dist/types/kentra-saas-ui-kit.d.ts",
-      "default": "./dist/fesm2022/kentra-saas-ui-kit.mjs"
+      "types": "./dist/types/kentra-saas-ui-kit-typography.d.ts",
+      "default": "./dist/fesm2022/kentra-saas-ui-kit-typography.mjs"
     },
     "./actions": {
-      "types": "./dist/types/kentra-saas-ui-kit.d.ts",
-      "default": "./dist/fesm2022/kentra-saas-ui-kit.mjs"
+      "types": "./dist/types/kentra-saas-ui-kit-actions.d.ts",
+      "default": "./dist/fesm2022/kentra-saas-ui-kit-actions.mjs"
     },
     "./icons": {
-      "types": "./dist/types/kentra-saas-ui-kit.d.ts",
-      "default": "./dist/fesm2022/kentra-saas-ui-kit.mjs"
+      "types": "./dist/types/kentra-saas-ui-kit-icons.d.ts",
+      "default": "./dist/fesm2022/kentra-saas-ui-kit-icons.mjs"
     },
     "./forms": {
-      "types": "./dist/types/kentra-saas-ui-kit.d.ts",
-      "default": "./dist/fesm2022/kentra-saas-ui-kit.mjs"
+      "types": "./dist/types/kentra-saas-ui-kit-forms.d.ts",
+      "default": "./dist/fesm2022/kentra-saas-ui-kit-forms.mjs"
     },
     "./navigation": {
-      "types": "./dist/types/kentra-saas-ui-kit.d.ts",
-      "default": "./dist/fesm2022/kentra-saas-ui-kit.mjs"
+      "types": "./dist/types/kentra-saas-ui-kit-navigation.d.ts",
+      "default": "./dist/fesm2022/kentra-saas-ui-kit-navigation.mjs"
     },
     "./patterns": {
-      "types": "./dist/types/kentra-saas-ui-kit.d.ts",
-      "default": "./dist/fesm2022/kentra-saas-ui-kit.mjs"
+      "types": "./dist/types/kentra-saas-ui-kit-patterns.d.ts",
+      "default": "./dist/fesm2022/kentra-saas-ui-kit-patterns.mjs"
     },
     "./data-display": {
-      "types": "./dist/types/kentra-saas-ui-kit.d.ts",
-      "default": "./dist/fesm2022/kentra-saas-ui-kit.mjs"
+      "types": "./dist/types/kentra-saas-ui-kit-data-display.d.ts",
+      "default": "./dist/fesm2022/kentra-saas-ui-kit-data-display.mjs"
     },
     "./feedback": {
-      "types": "./dist/types/kentra-saas-ui-kit.d.ts",
-      "default": "./dist/fesm2022/kentra-saas-ui-kit.mjs"
+      "types": "./dist/types/kentra-saas-ui-kit-feedback.d.ts",
+      "default": "./dist/fesm2022/kentra-saas-ui-kit-feedback.mjs"
     },
     "./overlays": {
-      "types": "./dist/types/kentra-saas-ui-kit.d.ts",
-      "default": "./dist/fesm2022/kentra-saas-ui-kit.mjs"
+      "types": "./dist/types/kentra-saas-ui-kit-overlays.d.ts",
+      "default": "./dist/fesm2022/kentra-saas-ui-kit-overlays.mjs"
     },
     "./charts": {
-      "types": "./dist/types/kentra-saas-ui-kit.d.ts",
-      "default": "./dist/fesm2022/kentra-saas-ui-kit.mjs"
+      "types": "./dist/types/kentra-saas-ui-kit-charts.d.ts",
+      "default": "./dist/fesm2022/kentra-saas-ui-kit-charts.mjs"
     }
   },
   "files": [

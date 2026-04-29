@@ -13,7 +13,7 @@ import {
   TooltipState,
   TooltipVariant,
   tooltipStyleMap,
-} from "../internal";
+} from "@kentra-saas/ui-kit";
 
 let tooltipInstanceCounter = 0;
 

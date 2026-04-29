@@ -17,7 +17,7 @@ import {
   RadioGroupState,
   RadioGroupVariant,
   radioGroupStyleMap,
-} from "../internal";
+} from "@kentra-saas/ui-kit";
 
 type SelectionChangeEvent = {
   readonly value: string | null;

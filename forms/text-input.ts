@@ -17,7 +17,7 @@ import {
   TextInputState,
   TextInputVariant,
   textInputStyleMap,
-} from "../internal";
+} from "@kentra-saas/ui-kit";
 
 type ValueChangeEvent = {
   readonly value: string;

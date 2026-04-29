@@ -12,7 +12,7 @@ import {
   PaginationState,
   PaginationVariant,
   paginationStyleMap,
-} from "../internal";
+} from "@kentra-saas/ui-kit";
 
 type ValueChangeEvent = {
   readonly value: number;

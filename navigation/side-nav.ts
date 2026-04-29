@@ -7,7 +7,7 @@ import {
   signal,
 } from "@angular/core";
 import { RouterLink } from "@angular/router";
-import { KentraIcon } from "../icons/icon";
+import { KentraIcon } from "@kentra-saas/ui-kit/icons";
 import {
   IconName,
   KentraElementBase,
@@ -15,7 +15,7 @@ import {
   SideNavState,
   SideNavVariant,
   sideNavStyleMap,
-} from "../internal";
+} from "@kentra-saas/ui-kit";
 
 type SelectionChangeEvent = {
   readonly value: string;

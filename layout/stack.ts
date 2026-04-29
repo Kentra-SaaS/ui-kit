@@ -6,7 +6,7 @@ import {
   StackGap,
   StackOrientation,
   stackStyleMap,
-} from "../internal";
+} from "@kentra-saas/ui-kit";
 
 @Component({
   selector: "k-stack",

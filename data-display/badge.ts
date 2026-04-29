@@ -4,7 +4,7 @@ import {
   computed,
   input,
 } from "@angular/core";
-import { KentraIcon } from "../icons/icon";
+import { KentraIcon } from "@kentra-saas/ui-kit/icons";
 import {
   BadgeSize,
   BadgeState,
@@ -13,7 +13,7 @@ import {
   KentraBadgeContract,
   KentraElementBase,
   badgeStyleMap,
-} from "../internal";
+} from "@kentra-saas/ui-kit";
 
 @Component({
   selector: "k-badge",

@@ -10,7 +10,7 @@ import {
   ProgressState,
   ProgressVariant,
   progressStyleMap,
-} from "../internal";
+} from "@kentra-saas/ui-kit";
 
 @Component({
   selector: "k-progress",

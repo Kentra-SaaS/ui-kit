@@ -3,7 +3,7 @@ import {
   IconName,
   ToastState,
   ToastVariant,
-} from "../internal";
+} from "@kentra-saas/ui-kit";
 
 export type KentraToastPlacement =
   | "top-left"

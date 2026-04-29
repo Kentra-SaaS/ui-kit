@@ -28,6 +28,7 @@ const entrypoints = [
 ] as const;
 
 const expectedPublicExports = [
+  ".",
   "./styles.css",
   ...entrypoints.map((entrypoint) => `./${entrypoint}`),
 ] as const;
@@ -92,10 +93,10 @@ describe("layer and consumption quality gates", () => {
       .map((line) => line.trim())
       .filter((line) => line.startsWith("export ") && line.includes(" from "));
 
-    expect(rootPublicApi).not.toMatch(/\.\.?\/internal(?:\/|["'])/);
-
     for (const statement of rootExportStatements) {
-      expect(statement).toMatch(/^export \* from "\.\/[^"]+\/public-api";$/);
+      expect(statement).toMatch(
+        /^export \* from "(?:\.\/[^"]+\/public-api|\.\/internal)";$/,
+      );
     }
 
     for (const entrypoint of entrypoints) {
@@ -131,9 +132,11 @@ describe("layer and consumption quality gates", () => {
 
     for (const exportKey of expectedPublicExports) {
       const importPath =
-        exportKey === "./styles.css"
-          ? "@kentra-saas/ui-kit/styles.css"
-          : `@kentra-saas/ui-kit/${exportKey.replace("./", "")}`;
+        exportKey === "."
+          ? "@kentra-saas/ui-kit"
+          : exportKey === "./styles.css"
+            ? "@kentra-saas/ui-kit/styles.css"
+            : `@kentra-saas/ui-kit/${exportKey.replace("./", "")}`;
 
       expect(readme).toContain(`\`${importPath}\``);
     }

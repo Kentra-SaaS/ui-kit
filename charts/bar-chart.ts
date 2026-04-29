@@ -25,7 +25,7 @@ import {
   barChartStyleMap,
   KentraBarChartContract,
   KentraElementBase,
-} from "../internal";
+} from "@kentra-saas/ui-kit";
 import type {
   KentraBarChartSeries,
   KentraChartValueFormatter,

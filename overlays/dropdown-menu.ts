@@ -9,7 +9,7 @@ import {
   signal,
   viewChild,
 } from "@angular/core";
-import { KentraIcon } from "../icons/icon";
+import { KentraIcon } from "@kentra-saas/ui-kit/icons";
 import {
   DropdownMenuState,
   DropdownMenuVariant,
@@ -18,7 +18,7 @@ import {
   KentraDropdownMenuGroup,
   KentraDropdownMenuItem,
   KentraElementBase,
-} from "../internal";
+} from "@kentra-saas/ui-kit";
 
 type SelectionChangeEvent = {
   readonly value: string;

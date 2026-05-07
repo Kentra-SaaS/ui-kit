@@ -1,6 +1,6 @@
 {
   "name": "@kentra-saas/ui-kit",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "private": false,
   "description": "Kentra Angular UI Kit",
   "repository": {
@@ -19,6 +19,7 @@
       "default": "./dist/fesm2022/kentra-saas-ui-kit.mjs"
     },
     "./styles.css": "./styles.css",
+    "./responsive.scss": "./styles/responsive.scss",
     "./layout": {
       "types": "./dist/types/kentra-saas-ui-kit-layout.d.ts",
       "default": "./dist/fesm2022/kentra-saas-ui-kit-layout.mjs"
@@ -67,6 +68,8 @@
   "files": [
     "dist",
     "styles.css",
+    "styles/responsive.scss",
+    "styles/tokens/breakpoints.scss",
     "assets"
   ],
   "publishConfig": {

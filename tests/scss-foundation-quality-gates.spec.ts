@@ -68,6 +68,9 @@ describe("scss foundation quality gates", () => {
 
   it("keeps responsive breakpoint mixins and runtime tokens stable", () => {
     const breakpointSource = readProjectFile("styles/tokens/breakpoints.scss");
+    const responsiveEntry = readProjectFile("styles/responsive.scss");
+
+    expect(responsiveEntry).toContain('@forward "tokens/breakpoints";');
 
     expect(breakpointSource).toContain("xs: 0rem");
     expect(breakpointSource).toContain("sm: 30rem");

@@ -11,6 +11,7 @@ The package bundles root styles and infrastructure for categorized component ent
 ## Public Imports
 - `@kentra-saas/ui-kit`
 - `@kentra-saas/ui-kit/styles.css`
+- `@kentra-saas/ui-kit/responsive.scss`
 - `@kentra-saas/ui-kit/layout`
 - `@kentra-saas/ui-kit/typography`
 - `@kentra-saas/ui-kit/actions`
@@ -66,6 +67,16 @@ Global styles import in consumer applications:
 
 ```scss
 @import "@kentra-saas/ui-kit/styles.css";
+```
+
+Responsive mixins import in component styles:
+
+```scss
+@use "@kentra-saas/ui-kit/responsive.scss" as responsive;
+
+@include responsive.k-screen-down(md) {
+  // mobile and small tablet styles
+}
 ```
 
 ## Release

@@ -5,12 +5,14 @@ import { componentStyleMaps, generateComponentCss } from "../internal/core/style
 import {
   KentraButton,
   KentraIconButton,
+  KentraThemeSwitch,
 } from "../actions/public-api";
 
 describe("action components", () => {
   it("exports all action components from the actions entrypoint", () => {
     expect(typeof KentraButton).toBe("function");
     expect(typeof KentraIconButton).toBe("function");
+    expect(typeof KentraThemeSwitch).toBe("function");
   });
 
   it("maps button variants, sizes and states to dedicated runtime variables", () => {
@@ -46,5 +48,20 @@ describe("action components", () => {
     expect(css).toContain(".k-icon-button--variant-primary:focus-within:not(.is-hover):not(.is-active):not(.is-disabled), .k-icon-button--variant-primary.is-focus-visible {");
     expect(css).toContain(".k-icon-button--variant-primary.is-disabled, .k-icon-button--variant-primary:disabled, .k-icon-button--variant-primary[aria-disabled='true'] {");
     expect(css).toContain("--k-icon-button-colors-icon: var(--k-color-action-primary-text);");
+  });
+
+  it("maps theme-switch sizes, variants and states to dedicated runtime variables", () => {
+    const css = generateComponentCss(componentStyleMaps);
+
+    expect(css).toContain(".k-theme-switch--size-sm {");
+    expect(css).toContain(".k-theme-switch--size-md {");
+    expect(css).toContain(".k-theme-switch--size-lg {");
+    expect(css).toContain(".k-theme-switch--variant-default {");
+    expect(css).toContain(".k-theme-switch--variant-default.is-on {");
+    expect(css).toContain(".k-theme-switch--variant-default:hover, .k-theme-switch--variant-default.is-hover {");
+    expect(css).toContain(".k-theme-switch--variant-default:active, .k-theme-switch--variant-default.is-active {");
+    expect(css).toContain(".k-theme-switch--variant-default.is-disabled, .k-theme-switch--variant-default:disabled, .k-theme-switch--variant-default[aria-disabled='true'] {");
+    expect(css).toContain("--k-theme-switch-colors-bg: var(--k-color-bg-surface);");
+    expect(css).toContain("--k-theme-switch-colors-thumb-icon: var(--k-color-text-primary);");
   });
 });

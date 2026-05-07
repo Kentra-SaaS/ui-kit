@@ -2,6 +2,7 @@ import type { ComponentStyleMap } from "./types";
 import {
   buttonStyleMap,
   iconButtonStyleMap,
+  themeSwitchStyleMap,
   iconStyleMap,
   barChartStyleMap,
   chartContainerStyleMap,
@@ -46,6 +47,7 @@ import {
 export const componentStyleMaps = [
   buttonStyleMap,
   iconButtonStyleMap,
+  themeSwitchStyleMap,
   iconStyleMap,
   barChartStyleMap,
   chartContainerStyleMap,

@@ -16,29 +16,36 @@ describe("action quality gates", () => {
   it("ensures responsive strategy for desktop, tablet and mobile", () => {
     const buttonSource = readProjectFile("actions/button.ts");
     const iconButtonSource = readProjectFile("actions/icon-button.ts");
+    const themeSwitchSource = readProjectFile("actions/theme-switch.ts");
 
     // Desktop baseline
     expect(buttonSource).toContain(":host {");
     expect(buttonSource).toContain(".button {");
     expect(iconButtonSource).toContain(":host {");
     expect(iconButtonSource).toContain(".button {");
+    expect(themeSwitchSource).toContain(":host {");
+    expect(themeSwitchSource).toContain(".button {");
 
     // Tablet and mobile adaptations
     expect(buttonSource).toContain("@media (max-width: 64rem)");
     expect(buttonSource).toContain("@media (max-width: 48rem)");
     expect(iconButtonSource).toContain("@media (max-width: 64rem)");
     expect(iconButtonSource).toContain("@media (max-width: 48rem)");
+    expect(themeSwitchSource).toContain("@media (max-width: 64rem)");
+    expect(themeSwitchSource).toContain("@media (max-width: 48rem)");
 
     // Touch-target safe mobile floor
     expect(buttonSource).toContain("min-block-size: max(var(--k-btn-min-height, 2.5rem), 2.75rem);");
     expect(iconButtonSource).toContain("min-inline-size: max(var(--k-icon-button-min-width, 2.5rem), 2.75rem);");
     expect(iconButtonSource).toContain("min-block-size: max(var(--k-icon-button-min-height, 2.5rem), 2.75rem);");
+    expect(themeSwitchSource).toContain("min-block-size: max(var(--k-theme-switch-track-height, 2.5rem), 2.75rem);");
   });
 
   it("ensures theme and parameter adaptation are wired", () => {
     const css = generateComponentCss(componentStyleMaps);
     const buttonSource = readProjectFile("actions/button.ts");
     const iconButtonSource = readProjectFile("actions/icon-button.ts");
+    const themeSwitchSource = readProjectFile("actions/theme-switch.ts");
 
     // Button parameter API
     expect(buttonSource).toContain("readonly variant = input<ButtonVariant>(\"primary\")");
@@ -59,6 +66,18 @@ describe("action quality gates", () => {
     expect(iconButtonSource).toContain("appearance: none;");
     expect(iconButtonSource).toContain("padding: 0;");
     expect(iconButtonSource).toContain("pointer-events: none;");
+
+    // ThemeSwitch parameter API
+    expect(themeSwitchSource).toContain("readonly variant = input<ThemeSwitchVariant>(\"default\")");
+    expect(themeSwitchSource).toContain("readonly size = input<ThemeSwitchSize>(\"md\")");
+    expect(themeSwitchSource).toContain("readonly theme = model<ThemeSwitchTheme>(\"light\")");
+    expect(themeSwitchSource).toContain("readonly disabled = input<boolean>(false)");
+    expect(themeSwitchSource).toContain("readonly themeChanged = output<ThemeChangeEvent>()");
+    expect(themeSwitchSource).toContain("imports: [KentraIcon]");
+    expect(themeSwitchSource).toContain("role=\"switch\"");
+    expect(themeSwitchSource).toContain("[attr.aria-checked]=\"isDarkTheme()\"");
+    expect(themeSwitchSource).toContain("<k-icon name=\"sun\" aria-hidden=\"true\"></k-icon>");
+    expect(themeSwitchSource).toContain("<k-icon name=\"moon\" aria-hidden=\"true\"></k-icon>");
 
     // Button theme and states
     expect(css).toContain(".k-button--variant-primary {");
@@ -81,5 +100,15 @@ describe("action quality gates", () => {
     expect(css).toContain(".k-icon-button--variant-primary:active, .k-icon-button--variant-primary.is-active {");
     expect(css).toContain(".k-icon-button--variant-primary.is-disabled, .k-icon-button--variant-primary:disabled, .k-icon-button--variant-primary[aria-disabled='true'] {");
     expect(css).toContain("--k-icon-button-icon-size: var(--k-space-6);");
+
+    // ThemeSwitch theme and states
+    expect(css).toContain(".k-theme-switch--variant-default {");
+    expect(css).toContain(".k-theme-switch--variant-default.is-on {");
+    expect(css).toContain("--k-theme-switch-colors-bg: var(--k-color-bg-surface);");
+    expect(css).toContain("--k-theme-switch-colors-border: var(--k-color-border-subtle);");
+    expect(css).toContain("--k-theme-switch-colors-thumb-bg: var(--k-color-bg-elevated);");
+    expect(css).toContain("--k-theme-switch-colors-thumb-icon: var(--k-color-text-primary);");
+    expect(css).toContain(".k-theme-switch--variant-default:focus-within:not(.is-hover):not(.is-active):not(.is-disabled), .k-theme-switch--variant-default.is-focus-visible {");
+    expect(css).toContain(".k-theme-switch--variant-default.is-disabled, .k-theme-switch--variant-default:disabled, .k-theme-switch--variant-default[aria-disabled='true'] {");
   });
 });

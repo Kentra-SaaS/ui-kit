@@ -30,6 +30,7 @@ const entrypoints = [
 const expectedPublicExports = [
   ".",
   "./styles.css",
+  "./responsive.scss",
   ...entrypoints.map((entrypoint) => `./${entrypoint}`),
 ] as const;
 

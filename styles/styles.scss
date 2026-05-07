@@ -3,11 +3,13 @@
 @use "themes/light";
 @use "tokens/base";
 @use "tokens/background";
+@use "tokens/breakpoints";
 @use "tokens/icon-set";
 @use "tokens/typography";
 @use "generated/components.generated";
 
 @include base.declare-base-style-tokens();
+@include breakpoints.declare-breakpoint-tokens();
 @include typography.declare-manrope-font-faces();
 @include typography.declare-typography-tokens();
 

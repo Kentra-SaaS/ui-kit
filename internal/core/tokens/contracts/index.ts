@@ -1,5 +1,6 @@
 export * from "./token-types";
 export * from "./base-style-tokens.contract";
+export * from "./breakpoint-tokens.contract";
 export * from "./typography-tokens.contract";
 export * from "./icon-tokens.contract";
 export * from "./color-palette-tokens.contract";

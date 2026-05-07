@@ -51,17 +51,36 @@ describe("scss foundation quality gates", () => {
     expect(stylesEntry).toContain('@use "themes/dark";');
     expect(stylesEntry).toContain('@use "tokens/base";');
     expect(stylesEntry).toContain('@use "tokens/background";');
+    expect(stylesEntry).toContain('@use "tokens/breakpoints";');
     expect(stylesEntry).toContain('@use "tokens/icon-set";');
     expect(stylesEntry).toContain('@use "tokens/typography";');
     expect(stylesEntry).toContain('@use "generated/components.generated";');
 
     expect(stylesEntry).toContain("@include base.declare-base-style-tokens();");
+    expect(stylesEntry).toContain("@include breakpoints.declare-breakpoint-tokens();");
     expect(stylesEntry).toContain("@include typography.declare-manrope-font-faces();");
     expect(stylesEntry).toContain("@include typography.declare-typography-tokens();");
     expect(stylesEntry).toContain("@include icon-set.declare-phosphor-icon-font-face();");
     expect(stylesEntry).toContain("@include icon-set.declare-icon-set-tokens();");
     expect(stylesEntry).toContain("@include icon-set.apply-icon-foundation-class();");
     expect(stylesEntry).toContain("@include background.app-background();");
+  });
+
+  it("keeps responsive breakpoint mixins and runtime tokens stable", () => {
+    const breakpointSource = readProjectFile("styles/tokens/breakpoints.scss");
+
+    expect(breakpointSource).toContain("xs: 0rem");
+    expect(breakpointSource).toContain("sm: 30rem");
+    expect(breakpointSource).toContain("md: 48rem");
+    expect(breakpointSource).toContain("lg: 64rem");
+    expect(breakpointSource).toContain("xl: 80rem");
+    expect(breakpointSource).toContain("2xl: 96rem");
+    expect(breakpointSource).toContain("@mixin k-screen-up($name)");
+    expect(breakpointSource).toContain("@mixin k-screen-down($name)");
+    expect(breakpointSource).toContain("@mixin k-screen-between($from, $to)");
+    expect(breakpointSource).toContain("@mixin k-screen-only($name)");
+    expect(breakpointSource).toContain("@mixin declare-breakpoint-tokens()");
+    expect(breakpointSource).toContain("--k-breakpoint-lg: #{k-breakpoint(lg)};");
   });
 
   it("keeps theme switching selectors and light/dark contracts stable", () => {

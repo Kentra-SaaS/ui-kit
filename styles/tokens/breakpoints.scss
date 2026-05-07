@@ -1,0 +1,69 @@
+@use "sass:list";
+@use "sass:map";
+
+$k-breakpoints: (
+  xs: 0rem,
+  sm: 30rem,
+  md: 48rem,
+  lg: 64rem,
+  xl: 80rem,
+  2xl: 96rem
+) !default;
+
+@function k-breakpoint($name) {
+  $value: map.get($k-breakpoints, $name);
+
+  @if $value == null {
+    @error "Unknown Kentra breakpoint `#{$name}`. Available breakpoints: #{map.keys($k-breakpoints)}.";
+  }
+
+  @return $value;
+}
+
+@mixin k-screen-up($name) {
+  @media (min-width: k-breakpoint($name)) {
+    @content;
+  }
+}
+
+@mixin k-screen-down($name) {
+  @media (max-width: calc(k-breakpoint($name) - 0.02px)) {
+    @content;
+  }
+}
+
+@mixin k-screen-between($from, $to) {
+  @media (min-width: k-breakpoint($from)) and (max-width: calc(k-breakpoint($to) - 0.02px)) {
+    @content;
+  }
+}
+
+@mixin k-screen-only($name) {
+  $keys: map-keys($k-breakpoints);
+  $index: list.index($keys, $name);
+
+  @if $index == null {
+    @error "Unknown Kentra breakpoint `#{$name}`. Available breakpoints: #{$keys}.";
+  }
+
+  @if $index == length($keys) {
+    @include k-screen-up($name) {
+      @content;
+    }
+  } @else {
+    @include k-screen-between($name, list.nth($keys, $index + 1)) {
+      @content;
+    }
+  }
+}
+
+@mixin declare-breakpoint-tokens() {
+  :root {
+    --k-breakpoint-xs: #{k-breakpoint(xs)};
+    --k-breakpoint-sm: #{k-breakpoint(sm)};
+    --k-breakpoint-md: #{k-breakpoint(md)};
+    --k-breakpoint-lg: #{k-breakpoint(lg)};
+    --k-breakpoint-xl: #{k-breakpoint(xl)};
+    --k-breakpoint-2xl: #{k-breakpoint(2xl)};
+  }
+}

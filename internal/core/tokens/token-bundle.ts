@@ -1,6 +1,7 @@
 import {
   appBackgroundTokens,
   baseStyleTokens,
+  breakpointTokens,
   colorPaletteTokens,
   iconTokens,
   interactionStateTokens,
@@ -9,6 +10,7 @@ import {
   typographyTokens,
   type AppBackgroundTokensContract,
   type BaseStyleTokensContract,
+  type BreakpointTokensContract,
   type ColorPaletteTokensContract,
   type IconTokensContract,
   type InteractionStateTokensContract,
@@ -19,6 +21,7 @@ import {
 
 export interface GlobalTokensContract {
   readonly baseStyle: BaseStyleTokensContract;
+  readonly breakpoint: BreakpointTokensContract;
   readonly typography: TypographyTokensContract;
   readonly icon: IconTokensContract;
   readonly palette: ColorPaletteTokensContract;
@@ -33,6 +36,7 @@ export interface ThemeTokensContract {
 
 export const globalTokens = {
   baseStyle: baseStyleTokens,
+  breakpoint: breakpointTokens,
   typography: typographyTokens,
   icon: iconTokens,
   palette: colorPaletteTokens,

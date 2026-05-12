@@ -58,6 +58,9 @@ export const themeColorTokens = {
   section: {
     elevatedBorder: token("--k-color-section-elevated-border"),
   },
+  card: {
+    elevatedBorder: token("--k-color-card-elevated-border"),
+  },
   overlay: {
     backdrop: token("--k-color-overlay-backdrop"),
   },

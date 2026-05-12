@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import { componentStyleMaps, generateComponentCss } from "../internal/core/style-maps";
 import {
+  KentraCard,
   KentraContainer,
   KentraDivider,
   KentraGrid,
@@ -11,6 +12,7 @@ import {
 
 describe("layout components", () => {
   it("exports all layout components from the layout entrypoint", () => {
+    expect(typeof KentraCard).toBe("function");
     expect(typeof KentraContainer).toBe("function");
     expect(typeof KentraStack).toBe("function");
     expect(typeof KentraGrid).toBe("function");
@@ -75,5 +77,18 @@ describe("layout components", () => {
     expect(css).toContain(".k-section--variant-elevated {");
     expect(css).toContain(".k-section--variant-outlined {");
     expect(css).toContain("--k-section-colors-bg: var(--k-color-bg-surface);");
+  });
+
+  it("maps card variants and sizes to dedicated runtime variables", () => {
+    const css = generateComponentCss(componentStyleMaps);
+
+    expect(css).toContain(".k-card--size-sm {");
+    expect(css).toContain(".k-card--size-md {");
+    expect(css).toContain(".k-card--size-lg {");
+    expect(css).toContain(".k-card--variant-default {");
+    expect(css).toContain(".k-card--variant-elevated {");
+    expect(css).toContain(".k-card--variant-outlined {");
+    expect(css).toContain("--k-card-colors-bg: var(--k-color-bg-surface);");
+    expect(css).toContain("--k-card-shadow: var(--k-shadow-xs);");
   });
 });

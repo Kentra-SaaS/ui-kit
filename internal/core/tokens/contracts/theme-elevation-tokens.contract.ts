@@ -7,6 +7,7 @@ export const themeElevationTokens = {
     md: token("--k-shadow-md"),
     lg: token("--k-shadow-lg"),
     sectionElevated: token("--k-shadow-section-elevated"),
+    cardElevated: token("--k-shadow-card-elevated"),
     focus: token("--k-shadow-focus"),
   },
 } as const;

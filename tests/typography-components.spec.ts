@@ -35,6 +35,11 @@ describe("typography components", () => {
     expect(css).toContain(".k-text--variant-strong {");
     expect(css).toContain("--k-text-color: var(--k-color-text-primary);");
     expect(css).toContain("--k-text-color: var(--k-color-text-secondary);");
+    expect(css).toContain(`.k-text--variant-muted {
+  --k-text-font-size: var(--k-typography-body-md-font-size);
+  --k-text-line-height: var(--k-typography-body-md-line-height);
+  --k-text-color: var(--k-color-text-secondary);
+}`);
   });
 
   it("maps link variants and states to dedicated runtime variables", () => {

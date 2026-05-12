@@ -14,6 +14,7 @@ const readProjectFile = (path: string): string =>
 
 describe("layout quality gates", () => {
   it("ensures responsive strategies for desktop, tablet and mobile", () => {
+    const cardSource = readProjectFile("layout/card.ts");
     const containerSource = readProjectFile("layout/container.ts");
     const stackSource = readProjectFile("layout/stack.ts");
     const gridSource = readProjectFile("layout/grid.ts");
@@ -21,6 +22,7 @@ describe("layout quality gates", () => {
     const dividerSource = readProjectFile("layout/divider.ts");
 
     // Desktop baseline
+    expect(cardSource).toContain(":host {");
     expect(containerSource).toContain(":host {");
     expect(stackSource).toContain(":host {");
     expect(gridSource).toContain(":host {");
@@ -28,6 +30,8 @@ describe("layout quality gates", () => {
     expect(dividerSource).toContain(":host {");
 
     // Tablet/mobile adaptations
+    expect(cardSource).toContain("@media (max-width: 48rem)");
+    expect(cardSource).toContain("--k-card-padding-xmobile");
     expect(containerSource).toContain("@media (max-width: 48rem)");
     expect(containerSource).toContain("--k-container-padding-xmobile");
     expect(sectionSource).toContain("@media (max-width: 48rem)");
@@ -47,6 +51,17 @@ describe("layout quality gates", () => {
   it("ensures theme and parameter adaptation are wired", () => {
     const css = generateComponentCss(componentStyleMaps);
     const darkThemeSource = readProjectFile("styles/themes/dark.scss");
+
+    // Card: size + variant surfaces
+    expect(css).toContain(".k-card--size-sm {");
+    expect(css).toContain(".k-card--size-md {");
+    expect(css).toContain(".k-card--size-lg {");
+    expect(css).toContain(".k-card--variant-default {");
+    expect(css).toContain(".k-card--variant-elevated {");
+    expect(css).toContain(".k-card--variant-outlined {");
+    expect(css).toContain("--k-card-colors-bg: var(--k-color-bg-surface);");
+    expect(css).toContain("--k-card-colors-border: var(--k-color-card-elevated-border, var(--k-color-border-subtle));");
+    expect(css).toContain("--k-card-shadow: var(--k-shadow-card-elevated, var(--k-shadow-md));");
 
     // Container: size + theme surface
     expect(css).toContain(".k-container--size-sm {");
@@ -88,5 +103,7 @@ describe("layout quality gates", () => {
     expect(darkThemeSource).toContain("--k-color-divider-subtle: var(--k-color-border-default);");
     expect(darkThemeSource).toContain("--k-color-section-elevated-border: var(--k-color-border-default);");
     expect(darkThemeSource).toContain("--k-shadow-section-elevated: var(--k-shadow-lg);");
+    expect(darkThemeSource).toContain("--k-color-card-elevated-border: var(--k-color-border-default);");
+    expect(darkThemeSource).toContain("--k-shadow-card-elevated: var(--k-shadow-lg);");
   });
 });

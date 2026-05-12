@@ -23,7 +23,7 @@ export const textTokens = {
     muted: {
       fontSize: tokens.global.typography.semantic.body.md.fontSize,
       lineHeight: tokens.global.typography.semantic.body.md.lineHeight,
-      color: tokens.theme.colors.text.primary,
+      color: tokens.theme.colors.text.secondary,
     },
     strong: {
       family: tokens.global.typography.family.base,

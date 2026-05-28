@@ -38,6 +38,7 @@ type ValueChangeEvent = {
     <textarea
       #controlElement
       class="control"
+      [attr.id]="normalizedId()"
       [value]="value()"
       [rows]="normalizedRows()"
       [attr.maxlength]="maxLengthAttr()"
@@ -47,6 +48,7 @@ type ValueChangeEvent = {
       [disabled]="disabled()"
       [required]="required()"
       [attr.aria-invalid]="invalid() ? 'true' : null"
+      [attr.aria-describedby]="normalizedAriaDescribedBy()"
       (input)="onInput($event)"
       (focus)="onFocus($event)"
       (blur)="onBlur($event)"
@@ -130,7 +132,9 @@ export class KentraTextarea
   readonly readonly = input<boolean>(false);
   readonly invalid = input<boolean>(false);
   readonly required = input<boolean>(false);
+  readonly id = input<string | null>(null);
   readonly name = input<string>("");
+  readonly ariaDescribedBy = input<string | null>(null);
   readonly touched = model(false);
   readonly valueChanged = output<ValueChangeEvent>();
   readonly focused = output<FocusEvent>();
@@ -138,7 +142,11 @@ export class KentraTextarea
 
   readonly normalizedRows = computed(() => Math.max(1, Math.floor(this.rows())));
   readonly maxLengthAttr = computed(() => this.toOptionalAttr(this.maxLength()));
+  readonly normalizedId = computed(() => this.normalizeText(this.id()));
   readonly normalizedName = computed(() => this.normalizeText(this.name()));
+  readonly normalizedAriaDescribedBy = computed(() =>
+    this.normalizeText(this.ariaDescribedBy()),
+  );
 
   protected readonly baseClass = textareaStyleMap.baseClass;
 

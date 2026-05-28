@@ -15,6 +15,8 @@ describe("accessibility quality gates", () => {
     const buttonSource = readProjectFile("actions/button.ts");
     const iconButtonSource = readProjectFile("actions/icon-button.ts");
     const fieldSource = readProjectFile("forms/field.ts");
+    const textInputSource = readProjectFile("forms/text-input.ts");
+    const textareaSource = readProjectFile("forms/textarea.ts");
     const checkboxSource = readProjectFile("forms/checkbox.ts");
     const switchSource = readProjectFile("forms/switch.ts");
     const selectSource = readProjectFile("forms/select.ts");
@@ -28,9 +30,15 @@ describe("accessibility quality gates", () => {
     expect(iconButtonSource).toContain("(keyup)=\"onKeyUp($event)\"");
 
     expect(fieldSource).toContain("[attr.for]=\"resolvedForId()\"");
+    expect(fieldSource).toContain("[attr.id]=\"showHint() ? resolvedHintId() : null\"");
+    expect(fieldSource).toContain("[attr.id]=\"showErrorText() ? resolvedErrorId() : null\"");
+    expect(fieldSource).toContain("readonly describedBy = computed(() =>");
+    expect(textInputSource).toContain("[attr.aria-describedby]=\"normalizedAriaDescribedBy()\"");
+    expect(textareaSource).toContain("[attr.aria-describedby]=\"normalizedAriaDescribedBy()\"");
     expect(checkboxSource).toContain("[attr.aria-invalid]=\"invalid() ? 'true' : null\"");
     expect(switchSource).toContain("role=\"switch\"");
     expect(selectSource).toContain("[attr.aria-invalid]=\"invalid() ? 'true' : null\"");
+    expect(selectSource).toContain("[attr.aria-describedby]=\"normalizedAriaDescribedBy()\"");
     expect(selectSource).toContain("(keydown)=\"onOpenKeydown($event)\"");
   });
 

@@ -11,6 +11,8 @@ interface KentraFieldInputs extends KentraVariantInput<FieldVariant> {
   readonly hint: InputSignal<string | null>;
   readonly errorText: InputSignal<string | null>;
   readonly forId: InputSignal<string | null>;
+  readonly hintId: InputSignal<string | null>;
+  readonly errorId: InputSignal<string | null>;
   readonly required: InputSignal<boolean>;
   readonly disabled: InputSignal<boolean>;
   readonly invalid: InputSignal<boolean>;

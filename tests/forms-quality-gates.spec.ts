@@ -60,9 +60,12 @@ describe("form quality gates", () => {
     // Signal-forms basis
     expect(textInputSource).toContain("implements KentraTextInputContract, FormValueControl<string>");
     expect(textInputSource).toContain("readonly value = model<string>(\"\")");
+    expect(textInputSource).toContain("readonly ariaDescribedBy = input<string | null>(null)");
     expect(textareaSource).toContain("implements KentraTextareaContract, FormValueControl<string>, AfterViewInit");
     expect(textareaSource).toContain("readonly value = model<string>(\"\")");
+    expect(textareaSource).toContain("readonly ariaDescribedBy = input<string | null>(null)");
     expect(selectSource).toContain("implements KentraSelectContract, FormValueControl<string | null>");
+    expect(selectSource).toContain("readonly ariaDescribedBy = input<string | null>(null)");
     expect(selectSource).toContain("imports: [KentraIcon]");
     expect(selectSource).toContain("<select");
     expect(selectSource).toContain("<k-icon class=\"icon\" name=\"caret-down\" aria-hidden=\"true\"></k-icon>");

@@ -36,11 +36,19 @@ import {
       </div>
     </div>
 
-    <p class="hint" [attr.hidden]="showHint() ? null : ''">
+    <p
+      class="hint"
+      [attr.id]="showHint() ? resolvedHintId() : null"
+      [attr.hidden]="showHint() ? null : ''"
+    >
       {{ hint() }}
     </p>
 
-    <p class="error" [attr.hidden]="showErrorText() ? null : ''">
+    <p
+      class="error"
+      [attr.id]="showErrorText() ? resolvedErrorId() : null"
+      [attr.hidden]="showErrorText() ? null : ''"
+    >
       {{ errorText() }}
     </p>
   `,
@@ -120,6 +128,8 @@ export class KentraField extends KentraElementBase implements KentraFieldContrac
   readonly hint = input<string | null>(null);
   readonly errorText = input<string | null>(null);
   readonly forId = input<string | null>(null);
+  readonly hintId = input<string | null>(null);
+  readonly errorId = input<string | null>(null);
   readonly required = input<boolean>(false);
   readonly disabled = input<boolean>(false);
   readonly invalid = input<boolean>(false);
@@ -132,6 +142,18 @@ export class KentraField extends KentraElementBase implements KentraFieldContrac
     () => this.hasNonEmptyText(this.errorText()) && this.hasError(),
   );
   readonly resolvedForId = computed(() => this.normalizeText(this.forId()));
+  readonly resolvedHintId = computed(
+    () => this.normalizeText(this.hintId()) ?? this.generatedHintId,
+  );
+  readonly resolvedErrorId = computed(
+    () => this.normalizeText(this.errorId()) ?? this.generatedErrorId,
+  );
+  readonly describedBy = computed(() =>
+    [
+      this.showHint() ? this.resolvedHintId() : null,
+      this.showErrorText() ? this.resolvedErrorId() : null,
+    ].filter((id): id is string => id !== null).join(" ") || null,
+  );
   readonly hasError = computed(
     () => this.invalid() || this.hasNonEmptyText(this.errorText()),
   );
@@ -152,6 +174,10 @@ export class KentraField extends KentraElementBase implements KentraFieldContrac
     };
   }
 
+  private readonly generatedId = `k-field-${++fieldInstanceCounter}`;
+  private readonly generatedHintId = `${this.generatedId}-hint`;
+  private readonly generatedErrorId = `${this.generatedId}-error`;
+
   private hasNonEmptyText(value: string | null): boolean {
     return this.normalizeText(value) !== null;
   }
@@ -165,3 +191,5 @@ export class KentraField extends KentraElementBase implements KentraFieldContrac
     return normalized.length > 0 ? normalized : null;
   }
 }
+
+let fieldInstanceCounter = 0;

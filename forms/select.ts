@@ -42,11 +42,13 @@ type SelectionChangeEvent = {
       <select
         #controlElement
         class="control"
+        [attr.id]="normalizedId()"
         [value]="resolvedValue()"
         [attr.name]="normalizedName()"
         [required]="required()"
         [disabled]="disabled()"
         [attr.aria-invalid]="invalid() ? 'true' : null"
+        [attr.aria-describedby]="normalizedAriaDescribedBy()"
         (change)="onSelectionChange($event)"
         (focus)="onFocus()"
         (blur)="onBlur()"
@@ -167,11 +169,17 @@ export class KentraSelect
   readonly disabled = input<boolean>(false);
   readonly invalid = input<boolean>(false);
   readonly required = input<boolean>(false);
+  readonly id = input<string | null>(null);
   readonly name = input<string>("");
+  readonly ariaDescribedBy = input<string | null>(null);
   readonly touched = model(false);
   readonly selectionChanged = output<SelectionChangeEvent>();
 
   readonly normalizedName = computed(() => this.normalizeText(this.name()));
+  readonly normalizedId = computed(() => this.normalizeText(this.id()));
+  readonly normalizedAriaDescribedBy = computed(() =>
+    this.normalizeText(this.ariaDescribedBy()),
+  );
   readonly resolvedValue = computed(() => this.value() ?? "");
   readonly showPlaceholder = computed(
     () => this.normalizeText(this.placeholder()) !== null,

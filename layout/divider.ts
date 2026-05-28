@@ -24,7 +24,6 @@ import {
       inline-size: var(--k-divider-inline-size, 100%);
       block-size: var(--k-divider-block-size, 1px);
       background: var(--k-divider-color, currentColor);
-      margin-block: var(--k-divider-spacing, var(--k-divider-spacing-md, 0));
     }
   `,
   template: "",

@@ -29,7 +29,9 @@ interface KentraTextInputInputs extends KentraVariantInput<TextInputVariant> {
   readonly readonly: InputSignal<boolean>;
   readonly invalid: InputSignal<boolean>;
   readonly required: InputSignal<boolean>;
+  readonly id: InputSignal<string | null>;
   readonly name: InputSignal<string>;
+  readonly ariaDescribedBy: InputSignal<string | null>;
   readonly min: InputSignal<number | undefined>;
   readonly max: InputSignal<number | undefined>;
   readonly minLength: InputSignal<number | undefined>;

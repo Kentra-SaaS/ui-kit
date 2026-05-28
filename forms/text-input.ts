@@ -43,6 +43,7 @@ type ValueChangeEvent = {
       <input
         #controlElement
         class="control"
+        [attr.id]="normalizedId()"
         [attr.type]="type()"
         [value]="value()"
         [attr.placeholder]="placeholder()"
@@ -56,6 +57,7 @@ type ValueChangeEvent = {
         [disabled]="disabled()"
         [required]="required()"
         [attr.aria-invalid]="invalid() ? 'true' : null"
+        [attr.aria-describedby]="normalizedAriaDescribedBy()"
         (input)="onInput($event)"
         (focus)="onFocus($event)"
         (blur)="onBlur($event)"
@@ -181,7 +183,9 @@ export class KentraTextInput
   readonly readonly = input<boolean>(false);
   readonly invalid = input<boolean>(false);
   readonly required = input<boolean>(false);
+  readonly id = input<string | null>(null);
   readonly name = input<string>("");
+  readonly ariaDescribedBy = input<string | null>(null);
   readonly min = input<number | undefined>(undefined);
   readonly max = input<number | undefined>(undefined);
   readonly minLength = input<number | undefined>(undefined);
@@ -196,6 +200,10 @@ export class KentraTextInput
   readonly showPrefix = computed(() => this.prefixText() !== null);
   readonly showSuffix = computed(() => this.suffixText() !== null);
   readonly normalizedName = computed(() => this.normalizeText(this.name()));
+  readonly normalizedId = computed(() => this.normalizeText(this.id()));
+  readonly normalizedAriaDescribedBy = computed(() =>
+    this.normalizeText(this.ariaDescribedBy()),
+  );
   readonly minAttr = computed(() => this.toOptionalAttr(this.min()));
   readonly maxAttr = computed(() => this.toOptionalAttr(this.max()));
   readonly minLengthAttr = computed(() => this.toOptionalAttr(this.minLength()));

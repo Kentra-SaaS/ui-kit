@@ -4,6 +4,7 @@ import {
   computed,
   input,
 } from "@angular/core";
+import { NgTemplateOutlet } from "@angular/common";
 import {
   HeadingVariant,
   headingStyleMap,
@@ -17,10 +18,33 @@ import {
   host: {
     "[class]": "hostClasses()",
     "[style]": "hostStyles()",
-    "role": "heading",
-    "[attr.aria-level]": "ariaLevel()",
   },
-  template: `<span class="content"><ng-content></ng-content></span>`,
+  template: `
+    <ng-template #content>
+      <ng-content></ng-content>
+    </ng-template>
+
+    @switch (headingLevel()) {
+      @case (1) {
+        <h1 class="content"><ng-container [ngTemplateOutlet]="content"></ng-container></h1>
+      }
+      @case (2) {
+        <h2 class="content"><ng-container [ngTemplateOutlet]="content"></ng-container></h2>
+      }
+      @case (3) {
+        <h3 class="content"><ng-container [ngTemplateOutlet]="content"></ng-container></h3>
+      }
+      @case (4) {
+        <h4 class="content"><ng-container [ngTemplateOutlet]="content"></ng-container></h4>
+      }
+      @case (5) {
+        <h5 class="content"><ng-container [ngTemplateOutlet]="content"></ng-container></h5>
+      }
+      @default {
+        <h6 class="content"><ng-container [ngTemplateOutlet]="content"></ng-container></h6>
+      }
+    }
+  `,
   styles: `
     :host {
       display: block;
@@ -28,7 +52,9 @@ import {
     }
 
     .content {
-      margin: 0;
+      display: block;
+      margin-block: 0;
+      margin-inline: 0;
       font-family: var(--k-heading-family, inherit);
       font-size: var(--k-heading-font-size, inherit);
       line-height: var(--k-heading-line-height, inherit);
@@ -48,13 +74,14 @@ import {
       }
     }
   `,
+  imports: [NgTemplateOutlet],
 })
 export class KentraHeading
   extends KentraElementBase
   implements KentraHeadingContract
 {
   readonly variant = input<HeadingVariant>("h2");
-  readonly ariaLevel = computed(() => this.toHeadingLevel(this.variant()));
+  readonly headingLevel = computed(() => this.toHeadingLevel(this.variant()));
 
   protected readonly baseClass = headingStyleMap.baseClass;
 

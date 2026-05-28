@@ -24,6 +24,9 @@ describe("typography quality gates", () => {
     expect(linkSource).toContain(":host {");
 
     // Mobile adaptation for heading scale
+    expect(headingSource).toContain("<h1 class=\"content\">");
+    expect(headingSource).toContain("<h2 class=\"content\">");
+    expect(headingSource).toContain("<h3 class=\"content\">");
     expect(headingSource).toContain("@media (max-width: 48rem)");
     expect(headingSource).toContain(":host(.k-heading--variant-display) .content");
     expect(headingSource).toContain(":host(.k-heading--variant-h1) .content");
@@ -33,6 +36,8 @@ describe("typography quality gates", () => {
     // Token-based responsive baseline for body/link typography
     expect(textSource).toContain("font-size: var(--k-text-font-size, inherit);");
     expect(linkSource).toContain("font-size: var(--k-link-font-size, inherit);");
+    expect(linkSource).toContain("<a");
+    expect(linkSource).toContain("[attr.href]=\"resolvedHref()\"");
     expect(linkSource).toContain("readonly routerLink = input<string | unknown[] | null>(null);");
     expect(linkSource).toContain("[routerLink]=\"resolvedRouterLink()\"");
   });

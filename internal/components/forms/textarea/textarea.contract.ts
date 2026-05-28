@@ -18,7 +18,9 @@ interface KentraTextareaInputs extends KentraVariantInput<TextareaVariant> {
   readonly readonly: InputSignal<boolean>;
   readonly invalid: InputSignal<boolean>;
   readonly required: InputSignal<boolean>;
+  readonly id: InputSignal<string | null>;
   readonly name: InputSignal<string>;
+  readonly ariaDescribedBy: InputSignal<string | null>;
 }
 
 interface KentraTextareaOutputs extends KentraValueChangedOutput<string>, KentraFocusOutput, KentraBlurOutput {}

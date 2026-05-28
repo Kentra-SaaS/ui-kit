@@ -26,7 +26,9 @@ interface KentraSelectInputs extends KentraVariantInput<SelectVariant> {
   readonly disabled: InputSignal<boolean>;
   readonly invalid: InputSignal<boolean>;
   readonly required: InputSignal<boolean>;
+  readonly id: InputSignal<string | null>;
   readonly name: InputSignal<string>;
+  readonly ariaDescribedBy: InputSignal<string | null>;
 }
 
 interface KentraSelectOutputs extends KentraSelectionChangedOutput<string | null> {}

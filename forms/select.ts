@@ -12,6 +12,10 @@ import {
 import type { FormValueControl } from "@angular/forms/signals";
 import { KentraIcon } from "@kentra-saas/ui-kit/icons";
 import {
+  coerceBooleanInput,
+  coerceStringInput,
+} from "./form-control-input-transforms";
+import {
   KentraElementBase,
   KentraSelectContract,
   KentraSelectOption,
@@ -35,7 +39,7 @@ type SelectionChangeEvent = {
   host: {
     "[class]": "hostClasses()",
     "[style]": "hostStyles()",
-    "[attr.aria-disabled]": "disabled() ? 'true' : null",
+    "[attr.aria-disabled]": "isDisabled() ? 'true' : null",
   },
   template: `
     <div class="trigger">
@@ -45,9 +49,9 @@ type SelectionChangeEvent = {
         [attr.id]="normalizedId()"
         [value]="resolvedValue()"
         [attr.name]="normalizedName()"
-        [required]="required()"
-        [disabled]="disabled()"
-        [attr.aria-invalid]="invalid() ? 'true' : null"
+        [required]="isRequired()"
+        [disabled]="isDisabled()"
+        [attr.aria-invalid]="isInvalid() ? 'true' : null"
         [attr.aria-describedby]="normalizedAriaDescribedBy()"
         (change)="onSelectionChange($event)"
         (focus)="onFocus()"
@@ -166,11 +170,11 @@ export class KentraSelect
   readonly options = input<readonly KentraSelectOption[]>([]);
   readonly optionGroups = input<readonly KentraSelectOptionGroup[]>([]);
   readonly placeholder = input<string | null>(null);
-  readonly disabled = input<boolean>(false);
-  readonly invalid = input<boolean>(false);
-  readonly required = input<boolean>(false);
+  readonly disabled = input(false, { transform: coerceBooleanInput });
+  readonly invalid = input(false, { transform: coerceBooleanInput });
+  readonly required = input(false, { transform: coerceBooleanInput });
   readonly id = input<string | null>(null);
-  readonly name = input<string>("");
+  readonly name = input("", { transform: coerceStringInput });
   readonly ariaDescribedBy = input<string | null>(null);
   readonly touched = model(false);
   readonly selectionChanged = output<SelectionChangeEvent>();
@@ -180,6 +184,9 @@ export class KentraSelect
   readonly normalizedAriaDescribedBy = computed(() =>
     this.normalizeText(this.ariaDescribedBy()),
   );
+  readonly isDisabled = computed(() => this.disabled() === true);
+  readonly isInvalid = computed(() => this.invalid() === true);
+  readonly isRequired = computed(() => this.required() === true);
   readonly resolvedValue = computed(() => this.value() ?? "");
   readonly showPlaceholder = computed(
     () => this.normalizeText(this.placeholder()) !== null,
@@ -192,11 +199,11 @@ export class KentraSelect
   private readonly controlElement =
     viewChild<ElementRef<HTMLSelectElement>>("controlElement");
   private readonly effectiveState = computed<SelectState>(() => {
-    if (this.disabled()) {
+    if (this.isDisabled()) {
       return "disabled";
     }
 
-    if (this.invalid()) {
+    if (this.isInvalid()) {
       return "error";
     }
 
@@ -246,7 +253,7 @@ export class KentraSelect
   }
 
   onOpenIntent(): void {
-    if (this.disabled()) {
+    if (this.isDisabled()) {
       return;
     }
 
@@ -254,7 +261,7 @@ export class KentraSelect
   }
 
   onOpenKeydown(event: KeyboardEvent): void {
-    if (this.disabled()) {
+    if (this.isDisabled()) {
       return;
     }
 
@@ -282,8 +289,8 @@ export class KentraSelect
     this.controlElement()?.nativeElement.focus(options);
   }
 
-  private normalizeText(value: string | null): string | null {
-    if (value === null) {
+  private normalizeText(value: string | null | undefined): string | null {
+    if (value === null || value === undefined) {
       return null;
     }
 

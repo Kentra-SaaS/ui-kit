@@ -1,4 +1,4 @@
-import type { InputSignal, ModelSignal } from "@angular/core";
+import type { InputSignal, InputSignalWithTransform, ModelSignal } from "@angular/core";
 import type {
   SelectVariant,
 } from "./select.tokens";
@@ -23,11 +23,11 @@ interface KentraSelectInputs extends KentraVariantInput<SelectVariant> {
   readonly options: InputSignal<readonly KentraSelectOption[]>;
   readonly optionGroups: InputSignal<readonly KentraSelectOptionGroup[]>;
   readonly placeholder: InputSignal<string | null>;
-  readonly disabled: InputSignal<boolean>;
-  readonly invalid: InputSignal<boolean>;
-  readonly required: InputSignal<boolean>;
+  readonly disabled: InputSignalWithTransform<boolean, unknown>;
+  readonly invalid: InputSignalWithTransform<boolean, unknown>;
+  readonly required: InputSignalWithTransform<boolean, unknown>;
   readonly id: InputSignal<string | null>;
-  readonly name: InputSignal<string>;
+  readonly name: InputSignalWithTransform<string, unknown>;
   readonly ariaDescribedBy: InputSignal<string | null>;
 }
 

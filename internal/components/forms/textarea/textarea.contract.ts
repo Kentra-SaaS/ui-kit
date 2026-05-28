@@ -1,4 +1,4 @@
-import type { InputSignal, ModelSignal } from "@angular/core";
+import type { InputSignal, InputSignalWithTransform, ModelSignal } from "@angular/core";
 import type {
   TextareaVariant,
 } from "./textarea.tokens";
@@ -12,14 +12,14 @@ import type {
 interface KentraTextareaInputs extends KentraVariantInput<TextareaVariant> {
   readonly value: ModelSignal<string>;
   readonly rows: InputSignal<number>;
-  readonly maxLength: InputSignal<number | undefined>;
+  readonly maxLength: InputSignalWithTransform<number | undefined, unknown>;
   readonly placeholder: InputSignal<string | null>;
-  readonly disabled: InputSignal<boolean>;
-  readonly readonly: InputSignal<boolean>;
-  readonly invalid: InputSignal<boolean>;
-  readonly required: InputSignal<boolean>;
+  readonly disabled: InputSignalWithTransform<boolean, unknown>;
+  readonly readonly: InputSignalWithTransform<boolean, unknown>;
+  readonly invalid: InputSignalWithTransform<boolean, unknown>;
+  readonly required: InputSignalWithTransform<boolean, unknown>;
   readonly id: InputSignal<string | null>;
-  readonly name: InputSignal<string>;
+  readonly name: InputSignalWithTransform<string, unknown>;
   readonly ariaDescribedBy: InputSignal<string | null>;
 }
 

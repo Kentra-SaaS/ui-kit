@@ -1,4 +1,4 @@
-import type { InputSignal, ModelSignal } from "@angular/core";
+import type { InputSignal, InputSignalWithTransform, ModelSignal } from "@angular/core";
 import type {
   RadioGroupVariant,
 } from "./radio-group.tokens";
@@ -16,10 +16,10 @@ export interface KentraRadioOption {
 interface KentraRadioGroupInputs extends KentraVariantInput<RadioGroupVariant> {
   readonly value: ModelSignal<string | null>;
   readonly options: InputSignal<readonly KentraRadioOption[]>;
-  readonly name: InputSignal<string>;
-  readonly disabled: InputSignal<boolean>;
-  readonly invalid: InputSignal<boolean>;
-  readonly required: InputSignal<boolean>;
+  readonly name: InputSignalWithTransform<string, unknown>;
+  readonly disabled: InputSignalWithTransform<boolean, unknown>;
+  readonly invalid: InputSignalWithTransform<boolean, unknown>;
+  readonly required: InputSignalWithTransform<boolean, unknown>;
 }
 
 interface KentraRadioGroupOutputs extends KentraSelectionChangedOutput<string | null> {}

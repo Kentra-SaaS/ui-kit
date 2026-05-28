@@ -11,6 +11,10 @@ import {
 } from "@angular/core";
 import type { FormValueControl } from "@angular/forms/signals";
 import {
+  coerceBooleanInput,
+  coerceStringInput,
+} from "./form-control-input-transforms";
+import {
   KentraElementBase,
   KentraRadioGroupContract,
   KentraRadioOption,
@@ -34,10 +38,10 @@ let radioGroupId = 0;
   host: {
     "[class]": "hostClasses()",
     "[style]": "hostStyles()",
-    "[attr.aria-disabled]": "disabled() ? 'true' : null",
+    "[attr.aria-disabled]": "isDisabled() ? 'true' : null",
   },
   template: `
-    <fieldset class="group" [disabled]="disabled()">
+    <fieldset class="group" [disabled]="isDisabled()">
       @for (option of options(); track option.value) {
         <label class="item" [class.item-disabled]="isOptionDisabled(option)">
           <input
@@ -48,7 +52,7 @@ let radioGroupId = 0;
             [value]="option.value"
             [checked]="value() === option.value"
             [disabled]="isOptionDisabled(option)"
-            [required]="required()"
+            [required]="isRequired()"
             (change)="onSelectionChange($event)"
             (focus)="onFocus()"
             (blur)="onBlur()"
@@ -176,16 +180,19 @@ export class KentraRadioGroup
   readonly variant = input<RadioGroupVariant>("vertical");
   readonly value = model<string | null>(null);
   readonly options = input<readonly KentraRadioOption[]>([]);
-  readonly name = input<string>("");
-  readonly disabled = input<boolean>(false);
-  readonly invalid = input<boolean>(false);
-  readonly required = input<boolean>(false);
+  readonly name = input("", { transform: coerceStringInput });
+  readonly disabled = input(false, { transform: coerceBooleanInput });
+  readonly invalid = input(false, { transform: coerceBooleanInput });
+  readonly required = input(false, { transform: coerceBooleanInput });
   readonly touched = model(false);
   readonly selectionChanged = output<SelectionChangeEvent>();
 
   readonly resolvedName = computed(
     () => this.normalizeText(this.name()) ?? `k-radio-group-${this.localId}`,
   );
+  readonly isDisabled = computed(() => this.disabled() === true);
+  readonly isInvalid = computed(() => this.invalid() === true);
+  readonly isRequired = computed(() => this.required() === true);
 
   protected readonly baseClass = radioGroupStyleMap.baseClass;
 
@@ -194,11 +201,11 @@ export class KentraRadioGroup
   private readonly controlElements =
     viewChildren<ElementRef<HTMLInputElement>>("controlElement");
   private readonly effectiveState = computed<RadioGroupState>(() => {
-    if (this.disabled()) {
+    if (this.isDisabled()) {
       return "disabled";
     }
 
-    if (this.invalid()) {
+    if (this.isInvalid()) {
       return "error";
     }
 
@@ -226,7 +233,7 @@ export class KentraRadioGroup
   }
 
   isOptionDisabled(option: KentraRadioOption): boolean {
-    return this.disabled() || option.disabled === true;
+    return this.isDisabled() || option.disabled === true;
   }
 
   onSelectionChange(event: Event): void {
@@ -259,8 +266,8 @@ export class KentraRadioGroup
     this.controlElements()[0]?.nativeElement.focus(options);
   }
 
-  private normalizeText(value: string | null): string | null {
-    if (value === null) {
+  private normalizeText(value: string | null | undefined): string | null {
+    if (value === null || value === undefined) {
       return null;
     }
 

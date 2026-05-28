@@ -1,4 +1,4 @@
-import type { InputSignal, ModelSignal } from "@angular/core";
+import type { InputSignal, InputSignalWithTransform, ModelSignal } from "@angular/core";
 import type {
   CheckboxVariant,
 } from "./checkbox.tokens";
@@ -10,10 +10,10 @@ import type {
 interface KentraCheckboxInputs extends KentraVariantInput<CheckboxVariant> {
   readonly checked: ModelSignal<boolean>;
   readonly indeterminate: InputSignal<boolean>;
-  readonly disabled: InputSignal<boolean>;
-  readonly invalid: InputSignal<boolean>;
-  readonly required: InputSignal<boolean>;
-  readonly name: InputSignal<string>;
+  readonly disabled: InputSignalWithTransform<boolean, unknown>;
+  readonly invalid: InputSignalWithTransform<boolean, unknown>;
+  readonly required: InputSignalWithTransform<boolean, unknown>;
+  readonly name: InputSignalWithTransform<string, unknown>;
 }
 
 interface KentraCheckboxOutputs extends KentraValueChangedOutput<boolean> {}

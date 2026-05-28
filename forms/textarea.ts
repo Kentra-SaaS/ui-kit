@@ -12,6 +12,11 @@ import {
 } from "@angular/core";
 import type { FormValueControl } from "@angular/forms/signals";
 import {
+  coerceBooleanInput,
+  coerceOptionalNumberInput,
+  coerceStringInput,
+} from "./form-control-input-transforms";
+import {
   KentraElementBase,
   KentraTextareaContract,
   TextareaState,
@@ -32,7 +37,7 @@ type ValueChangeEvent = {
   host: {
     "[class]": "hostClasses()",
     "[style]": "hostStyles()",
-    "[attr.aria-disabled]": "disabled() ? 'true' : null",
+    "[attr.aria-disabled]": "isDisabled() ? 'true' : null",
   },
   template: `
     <textarea
@@ -44,10 +49,10 @@ type ValueChangeEvent = {
       [attr.maxlength]="maxLengthAttr()"
       [attr.placeholder]="placeholder()"
       [attr.name]="normalizedName()"
-      [readOnly]="readonly()"
-      [disabled]="disabled()"
-      [required]="required()"
-      [attr.aria-invalid]="invalid() ? 'true' : null"
+      [readOnly]="isReadonly()"
+      [disabled]="isDisabled()"
+      [required]="isRequired()"
+      [attr.aria-invalid]="isInvalid() ? 'true' : null"
       [attr.aria-describedby]="normalizedAriaDescribedBy()"
       (input)="onInput($event)"
       (focus)="onFocus($event)"
@@ -126,14 +131,16 @@ export class KentraTextarea
   readonly variant = input<TextareaVariant>("default");
   readonly value = model<string>("");
   readonly rows = input<number>(4);
-  readonly maxLength = input<number | undefined>(undefined);
+  readonly maxLength = input<number | undefined, unknown>(undefined, {
+    transform: coerceOptionalNumberInput,
+  });
   readonly placeholder = input<string | null>(null);
-  readonly disabled = input<boolean>(false);
-  readonly readonly = input<boolean>(false);
-  readonly invalid = input<boolean>(false);
-  readonly required = input<boolean>(false);
+  readonly disabled = input(false, { transform: coerceBooleanInput });
+  readonly readonly = input(false, { transform: coerceBooleanInput });
+  readonly invalid = input(false, { transform: coerceBooleanInput });
+  readonly required = input(false, { transform: coerceBooleanInput });
   readonly id = input<string | null>(null);
-  readonly name = input<string>("");
+  readonly name = input("", { transform: coerceStringInput });
   readonly ariaDescribedBy = input<string | null>(null);
   readonly touched = model(false);
   readonly valueChanged = output<ValueChangeEvent>();
@@ -147,6 +154,10 @@ export class KentraTextarea
   readonly normalizedAriaDescribedBy = computed(() =>
     this.normalizeText(this.ariaDescribedBy()),
   );
+  readonly isDisabled = computed(() => this.disabled() === true);
+  readonly isReadonly = computed(() => this.readonly() === true);
+  readonly isInvalid = computed(() => this.invalid() === true);
+  readonly isRequired = computed(() => this.required() === true);
 
   protected readonly baseClass = textareaStyleMap.baseClass;
 
@@ -154,15 +165,15 @@ export class KentraTextarea
   private readonly controlElement =
     viewChild<ElementRef<HTMLTextAreaElement>>("controlElement");
   private readonly effectiveState = computed<TextareaState>(() => {
-    if (this.disabled()) {
+    if (this.isDisabled()) {
       return "disabled";
     }
 
-    if (this.readonly()) {
+    if (this.isReadonly()) {
       return "readonly";
     }
 
-    if (this.invalid()) {
+    if (this.isInvalid()) {
       return "error";
     }
 
@@ -243,8 +254,8 @@ export class KentraTextarea
     control.style.blockSize = `${control.scrollHeight}px`;
   }
 
-  private normalizeText(value: string | null): string | null {
-    if (value === null) {
+  private normalizeText(value: string | null | undefined): string | null {
+    if (value === null || value === undefined) {
       return null;
     }
 

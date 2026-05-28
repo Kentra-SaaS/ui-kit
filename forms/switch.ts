@@ -10,6 +10,7 @@ import {
   viewChild,
 } from "@angular/core";
 import type { FormCheckboxControl } from "@angular/forms/signals";
+import { coerceBooleanInput } from "./form-control-input-transforms";
 import {
   KentraElementBase,
   KentraSwitchContract,
@@ -32,7 +33,7 @@ type ValueChangeEvent = {
   host: {
     "[class]": "hostClasses()",
     "[style]": "hostStyles()",
-    "[attr.aria-disabled]": "disabled() ? 'true' : null",
+    "[attr.aria-disabled]": "isDisabled() ? 'true' : null",
   },
   template: `
     <label class="root" [class.label-start]="labelPosition() === 'start'">
@@ -42,7 +43,7 @@ type ValueChangeEvent = {
         type="checkbox"
         role="switch"
         [checked]="checked()"
-        [disabled]="disabled()"
+        [disabled]="isDisabled()"
         (change)="onChange($event)"
         (focus)="onFocus()"
         (blur)="onBlur()"
@@ -169,18 +170,19 @@ export class KentraSwitch
 {
   readonly variant = input<SwitchVariant>("default");
   readonly checked = model(false);
-  readonly disabled = input<boolean>(false);
+  readonly disabled = input(false, { transform: coerceBooleanInput });
   readonly labelPosition = input<KentraSwitchLabelPosition>("end");
   readonly touched = model(false);
   readonly valueChanged = output<ValueChangeEvent>();
 
   protected readonly baseClass = switchStyleMap.baseClass;
+  readonly isDisabled = computed(() => this.disabled() === true);
 
   private readonly isFocusVisible = signal(false);
   private readonly controlElement =
     viewChild<ElementRef<HTMLInputElement>>("controlElement");
   private readonly effectiveState = computed<SwitchState>(() => {
-    if (this.disabled()) {
+    if (this.isDisabled()) {
       return "disabled";
     }
 

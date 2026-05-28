@@ -1,4 +1,4 @@
-import type { InputSignal, ModelSignal } from "@angular/core";
+import type { InputSignal, InputSignalWithTransform, ModelSignal } from "@angular/core";
 import type {
   SwitchVariant,
 } from "./switch.tokens";
@@ -11,7 +11,7 @@ export type KentraSwitchLabelPosition = "start" | "end";
 
 interface KentraSwitchInputs extends KentraVariantInput<SwitchVariant> {
   readonly checked: ModelSignal<boolean>;
-  readonly disabled: InputSignal<boolean>;
+  readonly disabled: InputSignalWithTransform<boolean, unknown>;
   readonly labelPosition: InputSignal<KentraSwitchLabelPosition>;
 }
 

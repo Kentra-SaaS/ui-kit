@@ -60,16 +60,24 @@ describe("form quality gates", () => {
     // Signal-forms basis
     expect(textInputSource).toContain("implements KentraTextInputContract, FormValueControl<string>");
     expect(textInputSource).toContain("readonly value = model<string>(\"\")");
+    expect(textInputSource).toContain("readonly disabled = input(false, { transform: coerceBooleanInput })");
+    expect(textInputSource).toContain("readonly name = input(\"\", { transform: coerceStringInput })");
+    expect(textInputSource).toContain("readonly min = input<number | undefined, unknown>(undefined, {");
     expect(textInputSource).toContain("readonly ariaDescribedBy = input<string | null>(null)");
     expect(textareaSource).toContain("implements KentraTextareaContract, FormValueControl<string>, AfterViewInit");
     expect(textareaSource).toContain("readonly value = model<string>(\"\")");
+    expect(textareaSource).toContain("readonly maxLength = input<number | undefined, unknown>(undefined, {");
     expect(textareaSource).toContain("readonly ariaDescribedBy = input<string | null>(null)");
     expect(selectSource).toContain("implements KentraSelectContract, FormValueControl<string | null>");
+    expect(selectSource).toContain("readonly disabled = input(false, { transform: coerceBooleanInput })");
+    expect(selectSource).toContain("readonly name = input(\"\", { transform: coerceStringInput })");
     expect(selectSource).toContain("readonly ariaDescribedBy = input<string | null>(null)");
     expect(selectSource).toContain("imports: [KentraIcon]");
     expect(selectSource).toContain("<select");
     expect(selectSource).toContain("<k-icon class=\"icon\" name=\"caret-down\" aria-hidden=\"true\"></k-icon>");
     expect(checkboxSource).toContain("implements KentraCheckboxContract, FormCheckboxControl");
+    expect(checkboxSource).toContain("readonly required = input(false, { transform: coerceBooleanInput })");
+    expect(checkboxSource).toContain("readonly name = input(\"\", { transform: coerceStringInput })");
     expect(checkboxSource).toContain("imports: [KentraIcon]");
     expect(checkboxSource).toContain("readonly checked = model(false)");
     expect(checkboxSource).toContain("appearance: none;");
@@ -77,8 +85,11 @@ describe("form quality gates", () => {
     expect(checkboxSource).toContain(".native:checked + .control .indicator");
     expect(checkboxSource).toContain(".native:indeterminate + .control .indicator");
     expect(radioGroupSource).toContain("implements KentraRadioGroupContract, FormValueControl<string | null>");
+    expect(radioGroupSource).toContain("readonly required = input(false, { transform: coerceBooleanInput })");
+    expect(radioGroupSource).toContain("readonly name = input(\"\", { transform: coerceStringInput })");
     expect(switchSource).toContain("implements KentraSwitchContract, FormCheckboxControl");
     expect(switchSource).toContain("readonly checked = model(false)");
+    expect(switchSource).toContain("readonly disabled = input(false, { transform: coerceBooleanInput })");
     expect(switchSource).toContain("appearance: none;");
     expect(switchSource).toContain(".native:checked + .track .thumb");
 

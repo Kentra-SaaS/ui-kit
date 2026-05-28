@@ -11,6 +11,11 @@ import {
 } from "@angular/core";
 import type { FormValueControl } from "@angular/forms/signals";
 import {
+  coerceBooleanInput,
+  coerceOptionalNumberInput,
+  coerceStringInput,
+} from "./form-control-input-transforms";
+import {
   KentraElementBase,
   KentraTextInputContract,
   KentraTextInputType,
@@ -32,7 +37,7 @@ type ValueChangeEvent = {
   host: {
     "[class]": "hostClasses()",
     "[style]": "hostStyles()",
-    "[attr.aria-disabled]": "disabled() ? 'true' : null",
+    "[attr.aria-disabled]": "isDisabled() ? 'true' : null",
   },
   template: `
     <div class="shell">
@@ -53,10 +58,10 @@ type ValueChangeEvent = {
         [attr.max]="maxAttr()"
         [attr.minlength]="minLengthAttr()"
         [attr.maxlength]="maxLengthAttr()"
-        [readOnly]="readonly()"
-        [disabled]="disabled()"
-        [required]="required()"
-        [attr.aria-invalid]="invalid() ? 'true' : null"
+        [readOnly]="isReadonly()"
+        [disabled]="isDisabled()"
+        [required]="isRequired()"
+        [attr.aria-invalid]="isInvalid() ? 'true' : null"
         [attr.aria-describedby]="normalizedAriaDescribedBy()"
         (input)="onInput($event)"
         (focus)="onFocus($event)"
@@ -179,17 +184,25 @@ export class KentraTextInput
   readonly autocomplete = input<string | null>(null);
   readonly prefix = input<string | null>(null);
   readonly suffix = input<string | null>(null);
-  readonly disabled = input<boolean>(false);
-  readonly readonly = input<boolean>(false);
-  readonly invalid = input<boolean>(false);
-  readonly required = input<boolean>(false);
+  readonly disabled = input(false, { transform: coerceBooleanInput });
+  readonly readonly = input(false, { transform: coerceBooleanInput });
+  readonly invalid = input(false, { transform: coerceBooleanInput });
+  readonly required = input(false, { transform: coerceBooleanInput });
   readonly id = input<string | null>(null);
-  readonly name = input<string>("");
+  readonly name = input("", { transform: coerceStringInput });
   readonly ariaDescribedBy = input<string | null>(null);
-  readonly min = input<number | undefined>(undefined);
-  readonly max = input<number | undefined>(undefined);
-  readonly minLength = input<number | undefined>(undefined);
-  readonly maxLength = input<number | undefined>(undefined);
+  readonly min = input<number | undefined, unknown>(undefined, {
+    transform: coerceOptionalNumberInput,
+  });
+  readonly max = input<number | undefined, unknown>(undefined, {
+    transform: coerceOptionalNumberInput,
+  });
+  readonly minLength = input<number | undefined, unknown>(undefined, {
+    transform: coerceOptionalNumberInput,
+  });
+  readonly maxLength = input<number | undefined, unknown>(undefined, {
+    transform: coerceOptionalNumberInput,
+  });
   readonly touched = model(false);
   readonly valueChanged = output<ValueChangeEvent>();
   readonly focused = output<FocusEvent>();
@@ -204,6 +217,10 @@ export class KentraTextInput
   readonly normalizedAriaDescribedBy = computed(() =>
     this.normalizeText(this.ariaDescribedBy()),
   );
+  readonly isDisabled = computed(() => this.disabled() === true);
+  readonly isReadonly = computed(() => this.readonly() === true);
+  readonly isInvalid = computed(() => this.invalid() === true);
+  readonly isRequired = computed(() => this.required() === true);
   readonly minAttr = computed(() => this.toOptionalAttr(this.min()));
   readonly maxAttr = computed(() => this.toOptionalAttr(this.max()));
   readonly minLengthAttr = computed(() => this.toOptionalAttr(this.minLength()));
@@ -215,15 +232,15 @@ export class KentraTextInput
   private readonly controlElement =
     viewChild<ElementRef<HTMLInputElement>>("controlElement");
   private readonly effectiveState = computed<TextInputState>(() => {
-    if (this.disabled()) {
+    if (this.isDisabled()) {
       return "disabled";
     }
 
-    if (this.readonly()) {
+    if (this.isReadonly()) {
       return "readonly";
     }
 
-    if (this.invalid()) {
+    if (this.isInvalid()) {
       return "error";
     }
 
@@ -286,8 +303,8 @@ export class KentraTextInput
     this.controlElement()?.nativeElement.focus(options);
   }
 
-  private normalizeText(value: string | null): string | null {
-    if (value === null) {
+  private normalizeText(value: string | null | undefined): string | null {
+    if (value === null || value === undefined) {
       return null;
     }
 

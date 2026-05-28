@@ -1,4 +1,4 @@
-import type { InputSignal, ModelSignal } from "@angular/core";
+import type { InputSignal, InputSignalWithTransform, ModelSignal } from "@angular/core";
 import type {
   TextInputVariant,
 } from "./text-input.tokens";
@@ -25,17 +25,17 @@ interface KentraTextInputInputs extends KentraVariantInput<TextInputVariant> {
   readonly type: InputSignal<KentraTextInputType>;
   readonly placeholder: InputSignal<string | null>;
   readonly autocomplete: InputSignal<string | null>;
-  readonly disabled: InputSignal<boolean>;
-  readonly readonly: InputSignal<boolean>;
-  readonly invalid: InputSignal<boolean>;
-  readonly required: InputSignal<boolean>;
+  readonly disabled: InputSignalWithTransform<boolean, unknown>;
+  readonly readonly: InputSignalWithTransform<boolean, unknown>;
+  readonly invalid: InputSignalWithTransform<boolean, unknown>;
+  readonly required: InputSignalWithTransform<boolean, unknown>;
   readonly id: InputSignal<string | null>;
-  readonly name: InputSignal<string>;
+  readonly name: InputSignalWithTransform<string, unknown>;
   readonly ariaDescribedBy: InputSignal<string | null>;
-  readonly min: InputSignal<number | undefined>;
-  readonly max: InputSignal<number | undefined>;
-  readonly minLength: InputSignal<number | undefined>;
-  readonly maxLength: InputSignal<number | undefined>;
+  readonly min: InputSignalWithTransform<number | undefined, unknown>;
+  readonly max: InputSignalWithTransform<number | undefined, unknown>;
+  readonly minLength: InputSignalWithTransform<number | undefined, unknown>;
+  readonly maxLength: InputSignalWithTransform<number | undefined, unknown>;
 }
 
 interface KentraTextInputOutputs extends KentraValueChangedOutput<string>, KentraFocusOutput, KentraBlurOutput {}

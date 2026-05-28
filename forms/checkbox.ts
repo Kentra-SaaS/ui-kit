@@ -12,6 +12,10 @@ import {
 import type { FormCheckboxControl } from "@angular/forms/signals";
 import { KentraIcon } from "@kentra-saas/ui-kit/icons";
 import {
+  coerceBooleanInput,
+  coerceStringInput,
+} from "./form-control-input-transforms";
+import {
   CheckboxState,
   CheckboxVariant,
   checkboxStyleMap,
@@ -34,7 +38,7 @@ type ValueChangeEvent = {
   host: {
     "[class]": "hostClasses()",
     "[style]": "hostStyles()",
-    "[attr.aria-disabled]": "disabled() ? 'true' : null",
+    "[attr.aria-disabled]": "isDisabled() ? 'true' : null",
   },
   template: `
     <label class="root">
@@ -44,10 +48,10 @@ type ValueChangeEvent = {
         type="checkbox"
         [checked]="checked()"
         [indeterminate]="indeterminate()"
-        [disabled]="disabled()"
-        [required]="required()"
+        [disabled]="isDisabled()"
+        [required]="isRequired()"
         [attr.name]="normalizedName()"
-        [attr.aria-invalid]="invalid() ? 'true' : null"
+        [attr.aria-invalid]="isInvalid() ? 'true' : null"
         (change)="onChange($event)"
         (focus)="onFocus()"
         (blur)="onBlur()"
@@ -181,14 +185,17 @@ export class KentraCheckbox
   readonly variant = input<CheckboxVariant>("default");
   readonly checked = model(false);
   readonly indeterminate = input<boolean>(false);
-  readonly disabled = input<boolean>(false);
-  readonly invalid = input<boolean>(false);
-  readonly required = input<boolean>(false);
-  readonly name = input<string>("");
+  readonly disabled = input(false, { transform: coerceBooleanInput });
+  readonly invalid = input(false, { transform: coerceBooleanInput });
+  readonly required = input(false, { transform: coerceBooleanInput });
+  readonly name = input("", { transform: coerceStringInput });
   readonly touched = model(false);
   readonly valueChanged = output<ValueChangeEvent>();
 
   readonly normalizedName = computed(() => this.normalizeText(this.name()));
+  readonly isDisabled = computed(() => this.disabled() === true);
+  readonly isInvalid = computed(() => this.invalid() === true);
+  readonly isRequired = computed(() => this.required() === true);
   readonly indicatorGlyph = computed<IconName>(() => {
     if (this.indeterminate()) {
       return "minus";
@@ -203,11 +210,11 @@ export class KentraCheckbox
   private readonly controlElement =
     viewChild<ElementRef<HTMLInputElement>>("controlElement");
   private readonly effectiveState = computed<CheckboxState>(() => {
-    if (this.disabled()) {
+    if (this.isDisabled()) {
       return "disabled";
     }
 
-    if (this.invalid()) {
+    if (this.isInvalid()) {
       return "error";
     }
 
@@ -267,8 +274,8 @@ export class KentraCheckbox
     this.controlElement()?.nativeElement.focus(options);
   }
 
-  private normalizeText(value: string | null): string | null {
-    if (value === null) {
+  private normalizeText(value: string | null | undefined): string | null {
+    if (value === null || value === undefined) {
       return null;
     }
 

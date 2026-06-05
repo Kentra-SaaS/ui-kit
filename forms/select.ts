@@ -66,7 +66,11 @@ type SelectionChangeEvent = {
         @for (group of optionGroups(); track group.label) {
           <optgroup [attr.label]="group.label">
             @for (option of group.options; track option.value) {
-              <option [value]="option.value" [disabled]="option.disabled ?? false">
+              <option
+                [value]="option.value"
+                [selected]="isOptionSelected(option.value)"
+                [disabled]="option.disabled ?? false"
+              >
                 {{ option.label }}
               </option>
             }
@@ -74,7 +78,11 @@ type SelectionChangeEvent = {
         }
 
         @for (option of options(); track option.value) {
-          <option [value]="option.value" [disabled]="option.disabled ?? false">
+          <option
+            [value]="option.value"
+            [selected]="isOptionSelected(option.value)"
+            [disabled]="option.disabled ?? false"
+          >
             {{ option.label }}
           </option>
         }
@@ -250,6 +258,10 @@ export class KentraSelect
       previousValue,
       userTriggered: true,
     });
+  }
+
+  isOptionSelected(value: string): boolean {
+    return value === this.resolvedValue();
   }
 
   onOpenIntent(): void {

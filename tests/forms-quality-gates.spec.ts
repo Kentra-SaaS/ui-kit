@@ -74,6 +74,8 @@ describe("form quality gates", () => {
     expect(selectSource).toContain("readonly ariaDescribedBy = input<string | null>(null)");
     expect(selectSource).toContain("imports: [KentraIcon]");
     expect(selectSource).toContain("<select");
+    expect(selectSource).toContain("[selected]=\"isOptionSelected(option.value)\"");
+    expect(selectSource).toContain("isOptionSelected(value: string): boolean");
     expect(selectSource).toContain("<k-icon class=\"icon\" name=\"caret-down\" aria-hidden=\"true\"></k-icon>");
     expect(checkboxSource).toContain("implements KentraCheckboxContract, FormCheckboxControl");
     expect(checkboxSource).toContain("readonly required = input(false, { transform: coerceBooleanInput })");
